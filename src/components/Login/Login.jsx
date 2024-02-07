@@ -14,7 +14,9 @@ import {
   StMailPw,
   StMemoInfo,
   StMemoWrapper,
-  StSignUp
+  StSignUp,
+  StInputContainer,
+  StPwIcon
 } from '../../styles/Login';
 
 const Login = () => {
@@ -29,8 +31,11 @@ const Login = () => {
         <StIdPwWrapper>
           <StMailPw>이메일</StMailPw>
           <StLoginInput />
-          <StMailPw>비밀번호</StMailPw>
-          <StLoginInput />
+          <StInputContainer>
+            <StMailPw>비밀번호</StMailPw>
+            <StLoginInput type='password' />
+            <StPwIcon src='' alt='비밀번호확인' />
+          </StInputContainer>
         </StIdPwWrapper>
         <StMemoWrapper>
           <StCheckBox type='checkbox' />

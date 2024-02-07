@@ -2,18 +2,21 @@ import styled from 'styled-components';
 
 export const StContainer = styled.div`
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
+  gap: 40px;
   padding: 20px;
   box-sizing: border-box;
-  width: 700px;
+  width: 800px;
   height: 400px;
   border: 1px solid #2673db;
+  border-radius: 7px;
 `;
 
 export const StLogoWrapper = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
+  align-items: center;
   padding: 30px;
 `;
 
@@ -25,6 +28,7 @@ export const StLogoImg = styled.img`
 export const StLogoName = styled.p`
   font-weight: 900;
   font-size: 40px;
+  font-style: italic;
   line-height: 85px;
 
   color: #2673db;
@@ -47,21 +51,29 @@ export const StIdPwWrapper = styled.div`
 `;
 
 export const StMailPw = styled.p`
-  font-weight: 600;
-  font-size: 23px;
+  font-weight: 700;
+  font-size: 20px;
   line-height: 39px;
 
   color: #2673db;
 `;
 
+export const StInputContainer = styled.div`
+  position: relative;
+`;
+
 export const StLoginInput = styled.input`
   width: 300px;
-  height: 40px;
-  left: 991px;
-  top: 534px;
+  height: 35px;
   border-radius: 5px;
   border: 1px solid #2673db;
   background-color: #e3e3e3;
+`;
+
+export const StPwIcon = styled.img`
+  position: absolute;
+  top: 90px;
+  right: 10px;
 `;
 
 export const StMemoWrapper = styled.div`
@@ -76,7 +88,7 @@ export const StCheckBox = styled.input`
 
 export const StMemoInfo = styled.p`
   font-weight: 600;
-  font-size: 17px;
+  font-size: 15px;
   line-height: 29px;
 
   color: #000000;
@@ -94,15 +106,15 @@ export const StLoginBtn = styled.button`
   border: 0px;
 
   font-weight: 600;
-  font-size: 17px;
-  height: 40px;
+  font-size: 15px;
+  height: 30px;
 
   color: #ffffff;
 `;
 
 export const StSignUp = styled.p`
   font-weight: 600;
-  font-size: 17px;
+  font-size: 15px;
   line-height: 29px;
   text-decoration-line: underline;
 

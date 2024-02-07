@@ -5,7 +5,7 @@ const Login = () => {
   return (
     <StContainer>
       <StLogoWrapper>
-        <StLogoImg />
+        <StLogoImg src='' alt='로고이미지' />
         <StLogoName>Travel Vibe</StLogoName>
       </StLogoWrapper>
       <StLoginWrapper>
@@ -33,6 +33,24 @@ const StContainer = styled.div`
   display: flex;
 `;
 
-const StLogoWrapper = styled.div``;
+const StLogoWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+`;
+
+const StLogoImg = styled.img`
+  width: 70px;
+  height: 70px;
+`;
+
+const StLogoName = styled.p`
+  font-family: 'Inter';
+  font-style: italic;
+  font-weight: 900;
+  font-size: 70px;
+  line-height: 85px;
+
+  color: #2673db;
+`;
 
 export default Login;

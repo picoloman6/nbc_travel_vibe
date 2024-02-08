@@ -1,5 +1,12 @@
+import { MyPage } from "./components/MyPage";
 const App = () => {
-  return <div>App</div>;
+  return (
+    <>
+      <MyPage></MyPage>
+
+    </>
+  )
+
 };
 
 export default App;

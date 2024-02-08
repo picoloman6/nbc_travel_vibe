@@ -1,37 +1,50 @@
 import styled from 'styled-components';
 import Category from './Category';
-
+import size from '../../constants/size';
+import colors from '../../constants/colors';
+import { useState } from 'react';
+import Header from '../common/Header';
 const Posting = () => {
+  const [textarea, setTextarea] = useState(1);
+
   return (
     <StContainer>
-      <StDropDownWrap>
-        <Category />
-      </StDropDownWrap>
-      <StContentSection>
-        <StWritingBox>
+      <Header />
+      <Body>
+        <StDropDownWrap>
+          <Category />
+        </StDropDownWrap>
+        <StContentSection>
           <StTitle placeholder='제목을 입력하셈'></StTitle>
           <StPhotos></StPhotos>
           <StWrite placeholder='글 쓰셈'></StWrite>
-        </StWritingBox>
-      </StContentSection>
-      <StConformButton>ㄱㄱㄱ</StConformButton>
+        </StContentSection>
+        <StConformButton>ㄱㄱㄱ</StConformButton>
+      </Body>
     </StContainer>
   );
 };
 
 export default Posting;
 
+export const Body = styled.div`
+  width: 70%;
+`;
+
 export const StContainer = styled.div`
   display: flex;
   justify-content: center;
-  flex-direction: column;
   align-items: center;
+  flex-direction: column;
+  width: ${size.wrapperWidth};
+  min-height: ${size.bodyMinHeight};
+  margin: 0 auto;
 `;
 
 export const StDropDownWrap = styled.div`
   display: flex;
-  justify-content: flex-start;
-  align-items: center;
+  align-items: flex-start;
+  width: 100%;
 `;
 
 export const StContentSection = styled.div`
@@ -40,20 +53,15 @@ export const StContentSection = styled.div`
   flex-direction: column;
   align-items: center;
 
-  width: 1140px;
-  height: 686px;
-  left: calc(50% - 1140px / 2);
+  min-height: 686px;
 
   background: #ffffff;
   border: 2px solid #c6c6c6;
 `;
 
-export const StWritingBox = styled.div``;
-
 export const StTitle = styled.input`
-  width: 1053px;
-  height: 75px;
-  font-family: 'Inter';
+  width: 95%;
+  min-height: 75px;
   font-style: normal;
   font-size: 48px;
   border: none;
@@ -64,21 +72,17 @@ export const StTitle = styled.input`
 export const StPhotos = styled.div`
   margin-top: 10px;
   margin-bottom: 10px;
-  width: 1053px;
+  width: 95%;
   height: 248px;
 
   background: #d9d9d9;
 `;
 
 export const StWrite = styled.textarea`
-  width: 1053px;
-  left: 507px;
-  top: 750px;
+  width: 95%;
   height: auto;
   min-height: 250px;
 
-  font-family: 'Inter';
-  font-style: normal;
   font-weight: 400;
   font-size: 32px;
   line-height: 39px;
@@ -97,9 +101,9 @@ export const StConformButton = styled.button`
   height: 48px;
 
   color: white;
-  font-size: 20px;
+  font-size: 30px;
 
-  background: #2673db;
+  background: ${colors.mainBlue};
   border-radius: 20px;
   border: none;
 `;

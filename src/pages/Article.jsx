@@ -5,7 +5,7 @@ import ArticleContent from '../components/article/ArticleContent';
 import CommentForm from '../components/article/CommentForm';
 import Comment from '../components/article/Comment';
 
-import { StArticleWrapper } from './styles/Article.style';
+import { StArticleWrapper, StArticleHr } from './styles/Article.style';
 
 const Article = () => {
   return (
@@ -13,13 +13,13 @@ const Article = () => {
       <Header />
       <Body>
         <ArticleHeader />
-        <hr />
+        <StArticleHr />
         <ArticleContent />
-        <hr />
+        <StArticleHr />
         <CommentForm />
-        <hr />
+        <StArticleHr />
         <Comment />
-        <hr />
+        <StArticleHr />
       </Body>
     </StArticleWrapper>
   );

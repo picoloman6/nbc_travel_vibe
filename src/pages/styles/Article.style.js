@@ -6,3 +6,7 @@ export const StArticleWrapper = styled.div`
   min-height: ${size.bodyMinHeight};
   margin: 0 auto;
 `;
+
+export const StArticleHr = styled.hr`
+  width: '80%';
+`;

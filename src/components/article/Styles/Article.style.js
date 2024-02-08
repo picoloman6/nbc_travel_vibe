@@ -14,3 +14,21 @@ export const StArticleHeaderBottom = styled.div`
   display: flex;
   justify-content: space-between;
 `;
+
+export const StArticleContent = styled.p`
+  font-size: 32px;
+  line-height: 50px;
+  margin: 35px 0;
+`;
+
+export const StArticleHeart = styled.div`
+  display: flex;
+  align-items: center;
+
+  font-size: 20px;
+
+  > svg {
+    margin-right: 8px;
+    color: red;
+  }
+`;

@@ -1,14 +1,26 @@
+import {
+  StArticleHeaderWrapper,
+  StArticleContent,
+  StArticleHeart
+} from './Styles/Article.style';
+import { FaHeart } from 'react-icons/fa';
+
 const ArticleContent = () => {
   return (
-    <div>
-      <div style={{ border: '1px solid black', width: '80%', height: '50%' }}>
+    <StArticleHeaderWrapper>
+      <div
+        style={{ border: '1px solid black', width: '500px', height: '250px' }}>
         사진
       </div>
-      <div>
+      <StArticleContent>
         내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용
-      </div>
-      <div>하트 열개</div>
-    </div>
+        내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용
+      </StArticleContent>
+      <StArticleHeart>
+        <FaHeart />
+        <span>10</span>
+      </StArticleHeart>
+    </StArticleHeaderWrapper>
   );
 };
 

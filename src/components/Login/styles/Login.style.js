@@ -65,12 +65,17 @@ export const StLogoName = styled.p`
   font-weight: 900;
   font-size: 40px;
   font-style: italic;
+  margin: 30px 0px;
 
   color: #2673db;
 `;
 
 export const StLoginWrapper = styled.div`
   margin-right: 30px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
 `;
 
 export const StLoginTitle = styled.p`
@@ -84,11 +89,14 @@ export const StLoginTitle = styled.p`
 export const StIdPwWrapper = styled.form`
   display: flex;
   flex-direction: column;
+  margin-top: 30px;
+  margin-bottom: 10px;
 `;
 
 export const StMailPw = styled.p`
   font-weight: 700;
   font-size: 20px;
+  margin-bottom: 10px;
 
   color: #2673db;
 `;
@@ -103,27 +111,28 @@ export const StLoginInput = styled.input`
   border-radius: 5px;
   border: 1px solid #2673db;
   background-color: #e3e3e3;
+  margin-bottom: 10px;
 `;
 
 export const StPwIcon = styled.img`
   position: absolute;
   width: 30px;
-  top: 75px;
-  right: 10px;
+  top: 50%;
+  right: 5%;
   cursor: pointer;
 `;
 
 export const StMemoWrapper = styled.div`
   display: flex;
   justify-content: flex-start;
+  margin-bottom: 5%;
 `;
 
 export const StCheckBox = styled.input`
   width: 20px;
-  margin: 20px;
 `;
 
-export const StMemoInfo = styled.p`
+export const StMemoInfo = styled.span`
   font-weight: 600;
   font-size: 15px;
 

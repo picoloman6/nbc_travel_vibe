@@ -19,7 +19,7 @@ import {
   StPwIcon,
   StCloseBtn,
   StBackground
-} from '../../styles/Login';
+} from './styles/Login.style';
 
 import logoImg from '../../shared/logoImg.png';
 import pwCheck1 from '../../shared/pwCheck1.jpg';

@@ -1,9 +1,7 @@
 import { useState } from 'react';
-import MainPage from './pages/MainPage.jsx';
-import Article from './pages/Article.jsx';
 
 import ResetStyles from './App.style.js';
-import { MyPage } from './components/MyPage.jsx';
+import Login from './components/Login/Login.jsx';
 
 const App = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -14,7 +12,8 @@ const App = () => {
   return (
     <>
       <ResetStyles />
-      <MyPage />
+      <button onClick={onModalHandler}>버튼</button>
+      <Login isOpen={isOpen} onModalHandler={onModalHandler} />
     </>
   );
 };

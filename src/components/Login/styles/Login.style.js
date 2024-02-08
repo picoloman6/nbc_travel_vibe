@@ -114,7 +114,6 @@ export const StCheckBox = styled.input`
 `;
 
 export const StMemoInfo = styled.span`
-  /* font-weight: 600; */
   font-size: 12px;
 
   color: #838383;

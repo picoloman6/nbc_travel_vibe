@@ -90,7 +90,7 @@ export const StLoginInput = styled.input`
   border-radius: 3px;
   border: 0px;
   background-color: #f2f2f2;
-  margin-bottom: 10px;
+  margin-bottom: 15px;
   color: #838383;
 `;
 

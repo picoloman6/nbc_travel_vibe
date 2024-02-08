@@ -1,4 +1,4 @@
-import { StArticleHeaderRest } from '../../Styles/Components/Article.style';
+import { StArticleHeaderRest } from './Styles/Article.style';
 
 const ArticleHeader = () => {
   return (

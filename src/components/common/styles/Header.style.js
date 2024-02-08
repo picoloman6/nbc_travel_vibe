@@ -1,12 +1,13 @@
 import styled from 'styled-components';
 
-import colors from '../../constants/colors';
+import colors from '../../../constants/colors';
+import size from '../../../constants/size';
 
 export const StHeader = styled.header`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  width: 1775px;
+  width: ${size.bodyWidth};
   height: 63px;
   background: ${colors.mainBlue};
   line-height: 39px;

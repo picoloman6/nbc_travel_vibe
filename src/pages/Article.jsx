@@ -5,25 +5,23 @@ import ArticleContent from '../components/article/ArticleContent';
 import CommentForm from '../components/article/CommentForm';
 import Comment from '../components/article/Comment';
 
-import { StArticleWrapper } from './styles/Article.style';
+import { StArticleWrapper, StArticleHr } from './styles/Article.style';
 
 const Article = () => {
   return (
-    <>
+    <StArticleWrapper>
       <Header />
       <Body>
-        <StArticleWrapper>
-          <ArticleHeader />
-          <hr />
-          <ArticleContent />
-          <hr />
-          <CommentForm />
-          <hr />
-          <Comment />
-          <hr />
-        </StArticleWrapper>
+        <ArticleHeader />
+        <StArticleHr />
+        <ArticleContent />
+        <StArticleHr />
+        <CommentForm />
+        <StArticleHr />
+        <Comment />
+        <StArticleHr />
       </Body>
-    </>
+    </StArticleWrapper>
   );
 };
 

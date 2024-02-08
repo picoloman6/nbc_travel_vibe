@@ -1,61 +1,50 @@
-import React from 'react';
 import {
   StCheckBox,
-  StContainer,
   StIdPwWrapper,
   StLoginBtn,
-  StLoginBtnWrapper,
+  StAskSignUpWrapper,
   StLoginInput,
   StLoginTitle,
   StLoginWrapper,
-  StLogoImg,
-  StLogoName,
-  StLogoWrapper,
-  StMailPw,
   StMemoInfo,
   StMemoWrapper,
   StSignUp,
   StInputContainer,
   StPwIcon,
   StCloseBtn,
-  StBackground
-} from '../../styles/Login';
+  StAskSignUp,
+  StLogoName
+} from './styles/Login.style';
 
-import logoImg from '../../shared/logoImg.png';
-import pwCheck1 from '../../shared/pwCheck1.jpg';
-// import pwCheck2 from '../../../shared/pwCheck2.jpg';
-
-const Login = ({ isOpen, onModalHandler }) => {
+const Login = ({ onModalHandler, onSignUpHandler }) => {
   return (
-    <StBackground $isOpen={isOpen}>
-      <StContainer>
+    <>
+      <StLoginWrapper>
         <StCloseBtn onClick={onModalHandler}>x</StCloseBtn>
-        <StLogoWrapper>
-          <StLogoImg src={logoImg} alt='로고이미지' />
-          <StLogoName>Travel Vibe</StLogoName>
-        </StLogoWrapper>
-        <StLoginWrapper>
-          <StLoginTitle>로그인</StLoginTitle>
-          <StIdPwWrapper>
-            <StMailPw>이메일</StMailPw>
-            <StLoginInput />
-            <StInputContainer>
-              <StMailPw>비밀번호</StMailPw>
-              <StLoginInput type='password' autoComplete='on' />
-              <StPwIcon src={pwCheck1} alt='비밀번호확인' />
-            </StInputContainer>
-          </StIdPwWrapper>
-          <StMemoWrapper>
-            <StCheckBox type='checkbox' />
-            <StMemoInfo>로그인 정보 기억하기</StMemoInfo>
-          </StMemoWrapper>
-          <StLoginBtnWrapper>
-            <StLoginBtn>로그인</StLoginBtn>
-            <StSignUp>회원가입</StSignUp>
-          </StLoginBtnWrapper>
-        </StLoginWrapper>
-      </StContainer>
-    </StBackground>
+        <StLogoName>Travel Vibe</StLogoName>
+        <StLoginTitle>로그인</StLoginTitle>
+        <StIdPwWrapper>
+          <StLoginInput placeholder='이메일' />
+          <StInputContainer>
+            <StLoginInput
+              type='password'
+              autoComplete='on'
+              placeholder='비밀번호'
+            />
+            <StPwIcon />
+          </StInputContainer>
+        </StIdPwWrapper>
+        <StMemoWrapper>
+          <StCheckBox type='checkbox' />
+          <StMemoInfo>로그인 유지하기</StMemoInfo>
+        </StMemoWrapper>
+        <StLoginBtn>로그인</StLoginBtn>
+        <StAskSignUpWrapper>
+          <StAskSignUp>아직 회원이 아니신가요?</StAskSignUp>
+          <StSignUp onClick={onSignUpHandler}>회원가입</StSignUp>
+        </StAskSignUpWrapper>
+      </StLoginWrapper>
+    </>
   );
 };
 

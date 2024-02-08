@@ -1,11 +1,10 @@
+import MainPage from "./pages/MainPage";
 import Posting from './components/Posting/Posting';
 
 const App = () => {
-  return (
-    <div>
-      <Posting />
-    </div>
-  );
-};
+  return <div>
+    <MainPage></MainPage>
+  </div>;
+
 
 export default App;

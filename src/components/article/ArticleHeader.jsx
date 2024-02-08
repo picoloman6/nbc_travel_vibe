@@ -1,4 +1,4 @@
-import React from 'react';
+import { StArticleHeaderRest } from '../../Styles/Components/Article.style';
 
 const ArticleHeader = () => {
   return (
@@ -7,13 +7,15 @@ const ArticleHeader = () => {
         <span>카테고리</span>
       </div>
       <div>
-        <span>글 제목</span>
+        <h3>글 제목</h3>
       </div>
-      <div>
+      <StArticleHeaderRest>
         <span>닉네임 | 날짜</span>
-        <button>수정</button>
-        <button>삭제</button>
-      </div>
+        <div>
+          <button>수정</button>
+          <button>삭제</button>
+        </div>
+      </StArticleHeaderRest>
     </>
   );
 };

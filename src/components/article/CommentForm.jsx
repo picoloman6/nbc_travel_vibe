@@ -1,10 +1,13 @@
 const CommentForm = () => {
   return (
-    <form>
-      <label>캐릭터</label>
-      <input />
-      <button>등록</button>
-    </form>
+    <>
+      <span>댓글 몇개</span>
+      <form>
+        <label>캐릭터</label>
+        <input />
+        <button>등록</button>
+      </form>
+    </>
   );
 };
 

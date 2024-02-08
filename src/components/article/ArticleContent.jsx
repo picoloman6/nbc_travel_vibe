@@ -1,7 +1,9 @@
 const ArticleContent = () => {
   return (
     <>
-      <div>사진</div>
+      <div style={{ border: '1px solid black', width: '80%', height: '50%' }}>
+        사진
+      </div>
       <div>
         내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용
       </div>

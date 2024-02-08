@@ -16,11 +16,7 @@ import {
   StLogoName
 } from './styles/Login.style';
 
-const Login = ({ isSignUp, setIsSignUp, onModalHandler }) => {
-  const onSignUpHandler = () => {
-    setIsSignUp(!isSignUp);
-  };
-
+const Login = ({ onModalHandler, onSignUpHandler }) => {
   return (
     <>
       <StLoginWrapper>

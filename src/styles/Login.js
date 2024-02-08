@@ -22,8 +22,8 @@ export const StLogoWrapper = styled.div`
 `;
 
 export const StLogoImg = styled.img`
-  width: 70px;
-  height: 70px;
+  width: 140px;
+  height: 90px;
 `;
 
 export const StLogoName = styled.p`
@@ -34,7 +34,9 @@ export const StLogoName = styled.p`
   color: #2673db;
 `;
 
-export const StLoginWrapper = styled.div``;
+export const StLoginWrapper = styled.div`
+  margin-right: 30px;
+`;
 
 export const StLoginTitle = styled.p`
   font-weight: 800;
@@ -70,6 +72,7 @@ export const StLoginInput = styled.input`
 
 export const StPwIcon = styled.img`
   position: absolute;
+  width: 30px;
   top: 75px;
   right: 10px;
 `;

@@ -1,5 +1,7 @@
 import styled from 'styled-components';
 
+import colors from '../../../constants/colors';
+
 export const StArticleHeaderWrapper = styled.div`
   padding: 30px 40px;
 `;
@@ -21,14 +23,25 @@ export const StArticleContent = styled.p`
   margin: 35px 0;
 `;
 
-export const StArticleHeart = styled.div`
+export const StArticleContentBottom = styled.div`
   display: flex;
-  align-items: center;
 
-  font-size: 20px;
+  font-size: 23px;
+  gap: 25px;
 
-  > svg {
+  > div {
+    display: flex;
+    align-items: center;
+  }
+
+  svg {
     margin-right: 8px;
-    color: red;
+    cursor: pointer;
+  }
+`;
+
+export const StArticleHeart = styled.div`
+  > svg {
+    color: ${colors.heart};
   }
 `;

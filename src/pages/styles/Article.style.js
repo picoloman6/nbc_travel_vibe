@@ -8,5 +8,5 @@ export const StArticleWrapper = styled.div`
 `;
 
 export const StArticleHr = styled.hr`
-  width: '80%';
+  width: 95%;
 `;

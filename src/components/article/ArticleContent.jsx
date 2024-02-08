@@ -1,9 +1,11 @@
 import {
   StArticleHeaderWrapper,
   StArticleContent,
+  StArticleContentBottom,
   StArticleHeart
 } from './Styles/Article.style';
 import { FaHeart } from 'react-icons/fa';
+import { IoChatboxOutline } from 'react-icons/io5';
 
 const ArticleContent = () => {
   return (
@@ -16,10 +18,16 @@ const ArticleContent = () => {
         내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용
         내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용
       </StArticleContent>
-      <StArticleHeart>
-        <FaHeart />
-        <span>10</span>
-      </StArticleHeart>
+      <StArticleContentBottom>
+        <div>
+          <IoChatboxOutline />
+          <span>10</span>
+        </div>
+        <StArticleHeart>
+          <FaHeart />
+          <span>10</span>
+        </StArticleHeart>
+      </StArticleContentBottom>
     </StArticleHeaderWrapper>
   );
 };

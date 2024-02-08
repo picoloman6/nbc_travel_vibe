@@ -1,13 +1,14 @@
+import { StArticleHeaderWrapper } from './Styles/Article.style';
+
 const CommentForm = () => {
   return (
-    <div>
-      <span>댓글 몇개</span>
+    <StArticleHeaderWrapper>
       <form>
         <label>캐릭터</label>
-        <input />
+        <textarea />
         <button>등록</button>
       </form>
-    </div>
+    </StArticleHeaderWrapper>
   );
 };
 

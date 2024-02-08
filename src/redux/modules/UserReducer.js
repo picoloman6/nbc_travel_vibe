@@ -14,14 +14,14 @@ const initialState = {
     {
       userId: 1,
       email: 'sdkfjl',
-      pass: 'sdfsd',
+      nono: 'sdfsd',
       nickname: 'sdfsdf',
       image: 'dddd'
     },
     {
       userId: 2,
       email: 'sdk2323fjl',
-      pass: 'sdfsd',
+      nono: 'sdfsd',
       nickname: 'sdfsdf',
       image: 'dddd'
     }

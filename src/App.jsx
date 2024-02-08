@@ -24,7 +24,7 @@ const App = () => {
       postUserData({
         userId: 3,
         email: 'sdkfjl',
-        pass: 'sdfsd',
+        nono: 'sdfsd',
         nickname: 'sdfsdf',
         image: 'dddd'
       })

@@ -1,5 +1,5 @@
 import ResetStyles, { StAppWrapper } from './App.style.js';
-import MainPage from './pages/styles';
+import MainPage from './pages/MainPage.jsx';
 
 const App = () => {
   return (

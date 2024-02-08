@@ -1,6 +1,5 @@
 import styled from 'styled-components';
 import colors from '../../../constants/colors';
-import { FiEye } from 'react-icons/fi';
 
 export const StBackground = styled.div`
   display: ${(props) => (props.$isOpen ? 'block' : 'none')};
@@ -33,42 +32,22 @@ export const StContainer = styled.div`
   border-radius: 5px;
 `;
 
-export const StCloseBtn = styled.button`
-  position: absolute;
-  width: 20px;
-  height: 20px;
-  top: 3%;
-  right: 3%;
-  padding: 0px;
-  background-color: white;
-  border: 1.5px solid ${colors.mainBlue};
-  border-radius: 3px;
-  color: ${colors.mainBlue};
-  cursor: pointer;
-`;
-
 export const StLogoName = styled.p`
   font-weight: 800;
   font-size: 35px;
   font-style: italic;
-  margin: 50px 0px;
+  margin-top: 30px;
+  margin-bottom: 10px;
   text-align: center;
 
   color: ${colors.mainBlue};
-`;
-
-export const StLoginWrapper = styled.div`
-  height: 100%;
-  width: 90%;
-  display: flex;
-  flex-direction: column;
-  padding: 10px;
 `;
 
 export const StLoginTitle = styled.p`
   font-weight: 700;
   font-size: 23px;
   text-align: center;
+  margin: 10px 0px;
 
   color: black;
 `;
@@ -76,12 +55,7 @@ export const StLoginTitle = styled.p`
 export const StIdPwWrapper = styled.form`
   display: flex;
   flex-direction: column;
-  margin-top: 30px;
-  margin-bottom: 10px;
-`;
-
-export const StInputContainer = styled.div`
-  position: relative;
+  margin-top: 10px;
 `;
 
 export const StLoginInput = styled.input`
@@ -90,16 +64,8 @@ export const StLoginInput = styled.input`
   border-radius: 3px;
   border: 0px;
   background-color: #f2f2f2;
-  margin-bottom: 10px;
   color: #838383;
-`;
-
-export const StPwIcon = styled(FiEye)`
-  position: absolute;
-  width: 30px;
-  top: 20%;
-  right: 1%;
-  cursor: pointer;
+  font-size: 15px;
 `;
 
 export const StMemoWrapper = styled.div`
@@ -119,7 +85,7 @@ export const StMemoInfo = styled.span`
   color: #838383;
 `;
 
-export const StLoginBtn = styled.button`
+export const StSignUpBtn = styled.button`
   background: ${colors.mainBlue};
   border-radius: 2px;
   border: 0px;
@@ -134,23 +100,8 @@ export const StLoginBtn = styled.button`
   cursor: pointer;
 `;
 
-export const StAskSignUpWrapper = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 20px;
-`;
-
-export const StAskSignUp = styled.span`
-  font-size: 12px;
+export const StErrorMsg = styled.span`
   color: #838383;
-`;
-
-export const StSignUp = styled.span`
-  font-weight: 600;
-  font-size: 15px;
-  text-decoration-line: underline;
-
-  color: #000000;
-  cursor: pointer;
+  font-size: 12px;
+  height: 35px;
 `;

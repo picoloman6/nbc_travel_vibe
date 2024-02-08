@@ -6,7 +6,7 @@ import size from '../../../constants/size';
 export const StMainBackground = styled.div`
   width: ${size.wrapperWidth};
   min-height: ${size.bodyMinHeight};
-  background: ${colors.backgroudColor};
+  background: ${colors.subBlue};
   display: flex;
   justify-content: center;
   align-items: center;

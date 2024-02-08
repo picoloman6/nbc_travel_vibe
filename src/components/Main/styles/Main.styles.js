@@ -5,6 +5,7 @@ import size from '../../../constants/size';
 
 export const StMainBackground = styled.div`
   width: ${size.wrapperWidth};
+  min-width: 800px;
   min-height: ${size.bodyMinHeight};
   background: ${colors.backgroudColor};
   display: flex;

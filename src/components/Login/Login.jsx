@@ -25,11 +25,11 @@ import logoImg from '../../shared/logoImg.png';
 import pwCheck1 from '../../shared/pwCheck1.jpg';
 // import pwCheck2 from '../../../shared/pwCheck2.jpg';
 
-const Login = ({ isOpen, onModalCloseHandler }) => {
+const Login = ({ isOpen, onModalHandler }) => {
   return (
     <StBackground $isOpen={isOpen}>
       <StContainer>
-        <StCloseBtn onClick={onModalCloseHandler}>x</StCloseBtn>
+        <StCloseBtn onClick={onModalHandler}>x</StCloseBtn>
         <StLogoWrapper>
           <StLogoImg src={logoImg} alt='로고이미지' />
           <StLogoName>Travel Vibe</StLogoName>
@@ -41,7 +41,7 @@ const Login = ({ isOpen, onModalCloseHandler }) => {
             <StLoginInput />
             <StInputContainer>
               <StMailPw>비밀번호</StMailPw>
-              <StLoginInput type='password' />
+              <StLoginInput type='password' autoComplete='on' />
               <StPwIcon src={pwCheck1} alt='비밀번호확인' />
             </StInputContainer>
           </StIdPwWrapper>

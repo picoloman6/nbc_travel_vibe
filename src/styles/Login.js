@@ -3,10 +3,10 @@ import styled from 'styled-components';
 export const StBackground = styled.div`
   display: ${(props) => (props.$isOpen ? 'block' : 'none')};
 
+  z-index: 10;
   background-color: rgba(0, 0, 0, 0.2);
   width: 100%;
   height: 100vh;
-  z-index: 10;
   position: fixed;
   top: 0;
   left: 0;
@@ -28,19 +28,20 @@ export const StContainer = styled.div`
   box-sizing: border-box;
   width: 800px;
   height: 400px;
-  border: 1px solid #2673db;
+  border: 1.5px solid #2673db;
   border-radius: 7px;
+  /* box-shadow: 0px 0px 3px 0px; */
 `;
 
 export const StCloseBtn = styled.button`
   position: absolute;
   width: 20px;
   height: 20px;
-  top: 10px;
-  right: 20px;
+  top: 3%;
+  right: 3%;
   padding: 0px;
   background-color: white;
-  border: 1px solid #2673db;
+  border: 1.5px solid #2673db;
   border-radius: 3px;
   color: #2673db;
   cursor: pointer;
@@ -79,7 +80,7 @@ export const StLoginTitle = styled.p`
   color: #2673db;
 `;
 
-export const StIdPwWrapper = styled.div`
+export const StIdPwWrapper = styled.form`
   display: flex;
   flex-direction: column;
 `;

@@ -25,7 +25,9 @@ const StTitle = styled.div`
 
 const StContent = styled.div`
     width: 90%;
-    margin: 0 auto;
+    margin: 50px auto;
+    /* margin-bottom: 20px; */
+
 `
 
 const StContentTitle = styled.div`
@@ -36,9 +38,15 @@ const StContentTitle = styled.div`
 
 const StContentWrap = styled.div`
     border-top: 1px solid ${colors.subText};
+    border-bottom: 1px solid ${colors.subText};
+    margin-bottom: 20px;
     display: flex;
     height: 250px;
     
+    &:hover {
+        cursor: pointer;
+        
+    }
 `
 
 const StThumbImg = styled.img`
@@ -52,12 +60,12 @@ const StContentTxt = styled.div`
     font-size: 18px;
     line-height: 30px;
     min-height: 100px;
-    overflow: hidden; // 벗어나면 안보이게
-  text-overflow: ellipsis; // ...으로 표시하겠다
-  word-break: break-word; 
-  display: -webkit-box;
-  -webkit-line-clamp: 4;
-  -webkit-box-orient: vertical;
+    overflow: hidden; 
+    text-overflow: ellipsis; 
+    word-break: break-word; 
+    display: -webkit-box;
+    -webkit-line-clamp: 4;
+    -webkit-box-orient: vertical;
 `
 
 const StContentStatsWrap = styled.div`

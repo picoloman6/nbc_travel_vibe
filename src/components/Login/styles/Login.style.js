@@ -5,7 +5,7 @@ export const StBackground = styled.div`
   display: ${(props) => (props.$isOpen ? 'block' : 'none')};
 
   z-index: 10;
-  background-color: rgba(0, 0, 0, 0.2);
+  background-color: rgba(0, 0, 0, 0.3);
   width: 100%;
   height: 100vh;
   position: fixed;
@@ -25,14 +25,11 @@ export const StContainer = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  gap: 40px;
-  padding: 20px;
+  padding: 10px;
   box-sizing: border-box;
-  width: 25%;
+  width: 26%;
   height: 67%;
-  border: 1.5px solid ${colors.mainBlue};
-  border-radius: 7px;
-  /* box-shadow: 0px 0px 3px 0px; */
+  border-radius: 5px;
 `;
 
 export const StCloseBtn = styled.button`
@@ -53,25 +50,25 @@ export const StLogoName = styled.p`
   font-weight: 900;
   font-size: 40px;
   font-style: italic;
-  margin: 30px 0px;
+  margin-top: 30px;
 
   color: ${colors.mainBlue};
 `;
 
 export const StLoginWrapper = styled.div`
-  margin-right: 30px;
   height: 100%;
+  width: 90%;
   display: flex;
   flex-direction: column;
-  padding: 20px;
+  padding: 10px;
 `;
 
 export const StLoginTitle = styled.p`
-  font-weight: 800;
-  font-size: 30px;
+  font-weight: 700;
+  font-size: 25px;
   text-align: center;
 
-  color: ${colors.mainBlue};
+  color: black;
 `;
 
 export const StIdPwWrapper = styled.form`
@@ -81,25 +78,18 @@ export const StIdPwWrapper = styled.form`
   margin-bottom: 10px;
 `;
 
-export const StMailPw = styled.p`
-  font-weight: 700;
-  font-size: 20px;
-  margin-bottom: 10px;
-
-  color: ${colors.mainBlue};
-`;
-
 export const StInputContainer = styled.div`
   position: relative;
 `;
 
 export const StLoginInput = styled.input`
-  width: 300px;
-  height: 35px;
-  border-radius: 5px;
-  border: 1px solid ${colors.mainBlue};
-  background-color: #e3e3e3;
+  width: 100%;
+  height: 40px;
+  border-radius: 3px;
+  border: 0px;
+  background-color: #f2f2f2;
   margin-bottom: 10px;
+  color: #838383;
 `;
 
 export const StPwIcon = styled.img`
@@ -117,36 +107,43 @@ export const StMemoWrapper = styled.div`
 `;
 
 export const StCheckBox = styled.input`
-  width: 20px;
+  width: 15px;
 `;
 
 export const StMemoInfo = styled.span`
-  font-weight: 600;
-  font-size: 15px;
+  /* font-weight: 600; */
+  font-size: 12px;
 
-  color: #000000;
-`;
-
-export const StLoginBtnWrapper = styled.div`
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+  color: #838383;
 `;
 
 export const StLoginBtn = styled.button`
   background: ${colors.mainBlue};
-  border-radius: 5px;
+  border-radius: 2px;
   border: 0px;
 
   font-weight: 600;
   font-size: 15px;
   height: 30px;
+  width: 100%;
 
   color: #ffffff;
   cursor: pointer;
 `;
 
-export const StSignUp = styled.p`
+export const StLoginBtnWrapper = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+`;
+
+export const StAskSignUp = styled.span`
+  font-size: 12px;
+  color: #838383;
+`;
+
+export const StSignUp = styled.span`
   font-weight: 600;
   font-size: 15px;
   text-decoration-line: underline;

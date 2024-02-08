@@ -8,7 +8,7 @@ const Modal = ({ isOpen, onModalHandler, isSignUp, setIsSignUp }) => {
     <StBackground $isOpen={isOpen}>
       <StContainer>
         <StLogoName>Travel Vibe</StLogoName>
-        {isSignUp ? (
+        {/* {isSignUp ? (
           <SignUp onModalHandler={onModalHandler} />
         ) : (
           <Login
@@ -16,7 +16,12 @@ const Modal = ({ isOpen, onModalHandler, isSignUp, setIsSignUp }) => {
             isSignUp={isSignUp}
             setIsSignUp={setIsSignUp}
           />
-        )}
+        )} */}
+        <Login
+          onModalHandler={onModalHandler}
+          isSignUp={isSignUp}
+          setIsSignUp={setIsSignUp}
+        />
       </StContainer>
     </StBackground>
   );

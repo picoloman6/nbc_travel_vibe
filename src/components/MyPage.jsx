@@ -29,8 +29,8 @@ export const MyPage = () => {
                     </StUserInfoWrapper>
                 </StMyPageWrapper>
                 <StBtnsWrapper>
-                    <button>완료</button>
-                    <button>삭제</button>
+                    <StSubmitBtn>완료</StSubmitBtn>
+                    <StDeleteBtn>삭제</StDeleteBtn>
                 </StBtnsWrapper>
             </Container>
 
@@ -42,7 +42,7 @@ export const MyPage = () => {
 export const Container = styled.div`
     display: flex;
     flex-direction: column;
-    padding: 0px 60px
+    padding: 0px 300px
 `;
 
 
@@ -54,7 +54,6 @@ color: #2673DB;
 export const StMyPageWrapper = styled.div`
 display: flex;
 flex-direction: row;
-
 border: 1px solid black;
 padding: 60px;
 gap: 60px;
@@ -96,7 +95,6 @@ width: 100%;
 height: 48px;
 box-sizing: border-box;
 background: #F2F2F2;
-
 font-weight: 600;
 font-size: 24px;
 color: #838383;
@@ -121,6 +119,31 @@ export const StBtnsWrapper = styled.div`
     display: flex;
     flex-direction: row;
     justify-content: flex-end;
+    gap: 30px;
+    padding: 20px;
+`
+
+export const ButtonStyles = `
+    width: 122px;
+    height: 48px;
+    background: #2673DB;
+    border-radius: 10px;
+    border: none;
+    font-weight: 600;
+    font-size: 24px;
+    text-align: center;
+    color: #FFFFFF;
+`
+
+export const StSubmitBtn = styled.button`
+${ButtonStyles}
+background: #2673DB;
+color: #FFFFFF;
+`
+export const StDeleteBtn = styled.button`
+${ButtonStyles}
+background: #F67777;
+color: #FFFFFF;   
 `
 
 

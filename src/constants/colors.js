@@ -1,10 +1,12 @@
 const colors = {
   mainBlue: '#2673db',
-  subText: '#838383',
-  backgroudColor: '#FEFAE0',
-  deleteText: '#F67777',
   subBlue: '#CDDDF5',
-  heart: 'red'
+  subText: '#838383',
+  heart: 'red',
+  deleteText: '#F67777',
+  backgroundLightGrey: '#f2f2f2',
+  backgroudColor: '#F2F2F2',
+  buttonText: '#ffffff'
 };
 
 export default colors;

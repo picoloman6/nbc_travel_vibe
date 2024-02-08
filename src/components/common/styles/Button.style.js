@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import colors from '../../../constants/colors';
 
 export const ButtonStyles = `
   width: 122px;
@@ -10,7 +11,7 @@ export const ButtonStyles = `
   font-size: 24px;
   text-align: center;
   color: #FFFFFF;
-  cursor:pointer;
+  cursor: pointer;
 `;
 
 export const StSubmitBtn = styled.button`
@@ -24,7 +25,7 @@ export const StSubmitBtn = styled.button`
 
 export const StDeleteBtn = styled.button`
   ${ButtonStyles}
-  background: #F67777;
+  background: ${colors.deleteText};
   color: #ffffff;
   font-size: ${(props) => props.$fontSize};
   width: ${(props) => props.$width};

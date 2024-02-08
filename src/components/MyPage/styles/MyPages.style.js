@@ -1,69 +1,55 @@
-import React from 'react';
-import styled from 'styled-components';
-import { StDeleteBtn, StSubmitBtn } from './common/styles/Common.style';
-
-export const MyPage = () => {
-  return (
-    <StContainer>
-      <StMyPageTitle>프로필 설정</StMyPageTitle>
-      <StMyPageWrapper>
-        <StAvatar></StAvatar>
-        <StUserInfoWrapper>
-          <StEmail>
-            <label>이메일</label>
-            <div>이메일</div>
-          </StEmail>
-          <StNickName>
-            <label>닉네임</label>
-            <input placeholder='닉네임' type='text'></input>
-          </StNickName>
-          <StCurrentPw>
-            <label>현재 비밀번호</label>
-            <input type='password'></input>
-          </StCurrentPw>
-          <StNewPw>
-            <label>새로운 비밀번호</label>
-            <input type='password'></input>
-          </StNewPw>
-        </StUserInfoWrapper>
-      </StMyPageWrapper>
-      <StBtnsWrapper>
-        <StSubmitBtn>완료</StSubmitBtn>
-        <StDeleteBtn>삭제</StDeleteBtn>
-      </StBtnsWrapper>
-    </StContainer>
-  );
-};
+import styled from "styled-components";
+import size from "../../../constants/size";
+import colors from "../../../constants/colors";
 
 export const StContainer = styled.div`
+  width: ${size.wrapperWidth};
+  min-height: ${size.bodyMinHeight};
+  background: ${colors.subBlue};
   display: flex;
+  justify-content: center;
+  align-items: center;
   flex-direction: column;
-  padding: 0px 300px;
+  padding: 10px;
+  box-sizing: border-box;
+  margin: 0 auto;
 `;
 
+export const StMyPageWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 20px 200px;
+  width: 100%;
+`
 export const StMyPageTitle = styled.h1`
   font-weight: 600;
   font-size: 48px;
-  color: #2673db;
+  color: ${colors.mainBlue};
+  margin-bottom: 20px;
 `;
-export const StMyPageWrapper = styled.div`
+export const StUserInfoWrapper = styled.div`
   display: flex;
   flex-direction: row;
   border: 1px solid black;
+  border-radius: 10px;
   padding: 40px;
   gap: 60px;
+  width: 100%;
 `;
 export const StAvatar = styled.div`
+  flex-shrink: 0;
   width: 200px;
   height: 200px;
   background-color: green;
 `;
 
-export const StUserInfoWrapper = styled.div`
+export const StUserInfoDeatilWrapper = styled.div`
   display: flex;
   flex-direction: column;
-  width: 500px;
+  justify-content: center;
   gap: 40px;
+  width: 100%;
   & label {
     font-weight: 400;
     font-size: 24px;
@@ -71,15 +57,15 @@ export const StUserInfoWrapper = styled.div`
   & input {
     width: 100%;
     height: 48px;
-    background: #ffffff;
-    border: 1px solid #838383;
+    background: ${colors.buttonText};
+    border: 1px solid ${colors.subText};
     box-sizing: border-box;
     padding-left: 20px;
     padding-left: 20px;
     font-size: 24px;
   }
   & input ::placeholder {
-    color: #838383;
+    color: ${colors.subText};
   }
 `;
 export const StEmail = styled.div`
@@ -91,10 +77,10 @@ export const StEmail = styled.div`
     width: 100%;
     height: 48px;
     box-sizing: border-box;
-    background: #f2f2f2;
+    background: ${colors.backgroudColor};
     font-weight: 600;
     font-size: 24px;
-    color: #838383;
+    color: ${colors.subText};
     display: flex;
     align-items: center;
     padding-left: 20px;

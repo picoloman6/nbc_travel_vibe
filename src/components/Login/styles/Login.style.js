@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import colors from '../../../constants/colors';
 
 export const StBackground = styled.div`
   display: ${(props) => (props.$isOpen ? 'block' : 'none')};
@@ -28,7 +29,7 @@ export const StContainer = styled.div`
   box-sizing: border-box;
   width: 800px;
   height: 400px;
-  border: 1.5px solid #2673db;
+  border: 1.5px solid ${colors.mainBlue};
   border-radius: 7px;
   /* box-shadow: 0px 0px 3px 0px; */
 `;
@@ -41,9 +42,9 @@ export const StCloseBtn = styled.button`
   right: 3%;
   padding: 0px;
   background-color: white;
-  border: 1.5px solid #2673db;
+  border: 1.5px solid ${colors.mainBlue};
   border-radius: 3px;
-  color: #2673db;
+  color: ${colors.mainBlue};
   cursor: pointer;
 `;
 
@@ -67,7 +68,7 @@ export const StLogoName = styled.p`
   font-style: italic;
   margin: 30px 0px;
 
-  color: #2673db;
+  color: ${colors.mainBlue};
 `;
 
 export const StLoginWrapper = styled.div`
@@ -83,7 +84,7 @@ export const StLoginTitle = styled.p`
   font-size: 30px;
   text-align: center;
 
-  color: #2673db;
+  color: ${colors.mainBlue};
 `;
 
 export const StIdPwWrapper = styled.form`
@@ -98,7 +99,7 @@ export const StMailPw = styled.p`
   font-size: 20px;
   margin-bottom: 10px;
 
-  color: #2673db;
+  color: ${colors.mainBlue};
 `;
 
 export const StInputContainer = styled.div`
@@ -109,7 +110,7 @@ export const StLoginInput = styled.input`
   width: 300px;
   height: 35px;
   border-radius: 5px;
-  border: 1px solid #2673db;
+  border: 1px solid ${colors.mainBlue};
   background-color: #e3e3e3;
   margin-bottom: 10px;
 `;
@@ -146,7 +147,7 @@ export const StLoginBtnWrapper = styled.div`
 `;
 
 export const StLoginBtn = styled.button`
-  background: #2673db;
+  background: ${colors.mainBlue};
   border-radius: 5px;
   border: 0px;
 

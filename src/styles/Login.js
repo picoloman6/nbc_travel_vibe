@@ -3,6 +3,7 @@ import styled from 'styled-components';
 export const StContainer = styled.div`
   display: flex;
   justify-content: center;
+  align-items: center;
   gap: 40px;
   padding: 20px;
   box-sizing: border-box;
@@ -29,7 +30,6 @@ export const StLogoName = styled.p`
   font-weight: 900;
   font-size: 40px;
   font-style: italic;
-  line-height: 85px;
 
   color: #2673db;
 `;
@@ -39,7 +39,6 @@ export const StLoginWrapper = styled.div``;
 export const StLoginTitle = styled.p`
   font-weight: 800;
   font-size: 30px;
-  line-height: 67px;
   text-align: center;
 
   color: #2673db;
@@ -53,7 +52,6 @@ export const StIdPwWrapper = styled.div`
 export const StMailPw = styled.p`
   font-weight: 700;
   font-size: 20px;
-  line-height: 39px;
 
   color: #2673db;
 `;
@@ -72,7 +70,7 @@ export const StLoginInput = styled.input`
 
 export const StPwIcon = styled.img`
   position: absolute;
-  top: 90px;
+  top: 75px;
   right: 10px;
 `;
 
@@ -89,7 +87,6 @@ export const StCheckBox = styled.input`
 export const StMemoInfo = styled.p`
   font-weight: 600;
   font-size: 15px;
-  line-height: 29px;
 
   color: #000000;
 `;
@@ -115,7 +112,6 @@ export const StLoginBtn = styled.button`
 export const StSignUp = styled.p`
   font-weight: 600;
   font-size: 15px;
-  line-height: 29px;
   text-decoration-line: underline;
 
   color: #000000;

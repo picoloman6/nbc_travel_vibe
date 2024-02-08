@@ -24,7 +24,7 @@ const App = () => {
       postUserData({
         userId: 3,
         email: 'sdkfjl',
-        password: 'sdfsd',
+        pass: 'sdfsd',
         nickname: 'sdfsdf',
         image: 'dddd'
       })

@@ -5,12 +5,13 @@ import MainPage from './pages/MainPage.jsx';
 import MyPage from './components/MyPage/MyPage.jsx';
 import ArticlePage from './pages/ArticlePage.jsx';
 import Modal from './components/Login/Modal.jsx';
+import MyArticle from './components/MyArticle/MyArticle.jsx';
 
 const App = () => {
   return (
     <StAppWrapper>
       <ResetStyles />
-      <ArticlePage />
+      <MyArticle />
       <Modal />
     </StAppWrapper>
   );

@@ -75,14 +75,16 @@ export const StLine = styled.div`
 `
 
 export const StContentsWrap = styled.div`
+  width: 80%;
+  background-color: violet;
+  margin: 0 auto;
 `
 
 export const StArticlesWrap = styled.ul`
-  width: 80%;
   justify-content: flex-start;
   gap: 50px;
   display: flex;
-  justify-content: center;
+  /* justify-content: center; */
   flex-wrap: wrap;
   margin: 0 auto;
   padding: 0;

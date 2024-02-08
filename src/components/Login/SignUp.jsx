@@ -1,22 +1,18 @@
 import React from 'react';
 import {
-  StCheckBox,
   StIdPwWrapper,
   StLoginBtn,
   StLoginInput,
   StLoginTitle,
   StLoginWrapper,
-  StMemoInfo,
-  StMemoWrapper,
   StSignUp,
   StInputContainer,
   StPwIcon,
   StCloseBtn,
-  StLogoName,
   StAskSignUpWrapper,
   StAskSignUp
 } from './styles/Login.style';
-import { FiEye } from 'react-icons/fi';
+import { StLogoName } from './styles/SignUp.style';
 
 const SignUp = ({ onSignUpHandler, onModalHandler }) => {
   return (

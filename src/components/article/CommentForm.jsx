@@ -4,7 +4,7 @@ import {
   StArticleTextArea
 } from './Styles/Article.style';
 
-import { StSubmitBtn } from '../common/styles/Common.style';
+import { StSubmitBtn } from '../common/styles/Button.style';
 
 const CommentForm = () => {
   return (

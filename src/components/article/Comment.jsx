@@ -4,7 +4,7 @@ import {
   StArticleCommentUser,
   StArticleComment
 } from './Styles/Article.style';
-import { StDeleteBtn } from '../common/styles/Common.style';
+import { StDeleteBtn } from '../common/styles/Button.style';
 
 const Comment = () => {
   return (

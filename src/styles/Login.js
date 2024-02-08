@@ -53,6 +53,7 @@ export const StLogoWrapper = styled.div`
   justify-content: center;
   align-items: center;
   padding: 30px;
+  margin-top: 40px;
 `;
 
 export const StLogoImg = styled.img`

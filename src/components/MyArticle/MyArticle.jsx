@@ -10,7 +10,7 @@ const StMyArticleContainer = styled.div`
     width: ${size.bodyWidth};
     min-height: ${size.bodyMinHeight};
     min-width: 800px;
-    padding: 20px;
+    padding: 20px; 
 `
 
 const StTitle = styled.div`
@@ -21,13 +21,14 @@ const StTitle = styled.div`
     line-height: 100%;
     color: ${colors.mainBlue};
     width: fit-content;
+    padding: 80px 0 50px 100px;
 `
 
 const StContent = styled.div`
     width: 90%;
     margin: 50px auto;
-    /* margin-bottom: 20px; */
-
+    padding-bottom: 20px;
+    
 `
 
 const StContentTitle = styled.div`
@@ -58,6 +59,8 @@ const StThumbImg = styled.img`
 
 const StContentTxt = styled.div`
     font-size: 18px;
+    color: ${colors.subText};
+    margin-right: 10px;
     line-height: 30px;
     min-height: 100px;
     overflow: hidden; 
@@ -96,7 +99,7 @@ const MyArticle = () => {
         <StMyArticleContainer>
             <Header></Header>
             <Body>
-                <StTitle>글 관리</StTitle>
+                <StTitle>작성글 관리</StTitle>
                 <StContent>
                     <StContentWrap>
                         <StThumbImg src={thumbImg}></StThumbImg>
@@ -112,49 +115,6 @@ const MyArticle = () => {
                             </StContentCategoryDateWrap>
                         </StContentStatsWrap>
                     </StContentWrap>
-                    <StContentWrap>
-                        <StThumbImg src={thumbImg}></StThumbImg>
-                        <StContentStatsWrap>
-                            <div>
-                                <StContentTitle>치즈 오븐 스파게티</StContentTitle>
-                                <StContentTxt>파스타의 한 종류입니다. 이처럼 파스타는 이처럼 파스타는 이처럼 파스타는 이처럼 파스타는 이처럼 파스타는 이처럼 파스타는 이처럼 파스타는 이처럼 파스타는 이처럼 파스타는 형태에 따라 약 350가지가 넘는 다양한 종류가 있습니다. 원료는 듀럼밀 세몰리나로 동일하지만 용도 및 이탈리아인들의 ...</StContentTxt>
-                            </div>
-                            <StContentCategoryDateWrap>
-                                <span>Eat</span>
-                                <StLine></StLine>
-                                <span>2032.23.93</span>
-                            </StContentCategoryDateWrap>
-                        </StContentStatsWrap>
-                    </StContentWrap>
-                    <StContentWrap>
-                        <StThumbImg src={thumbImg}></StThumbImg>
-                        <StContentStatsWrap>
-                            <div>
-                                <StContentTitle>치즈 오븐 스파게티</StContentTitle>
-                                <StContentTxt>파스타의 한 종류입니다. 이처럼 파스타는 이처럼 파스타는 이처럼 파스타는 이처럼 파스타는 이처럼 파스타는 이처럼 파스타는 이처럼 파스타는 이처럼 파스타는 이처럼 파스타는 형태에 따라 약 350가지가 넘는 다양한 종류가 있습니다. 원료는 듀럼밀 세몰리나로 동일하지만 용도 및 이탈리아인들의 ...</StContentTxt>
-                            </div>
-                            <StContentCategoryDateWrap>
-                                <span>Eat</span>
-                                <StLine></StLine>
-                                <span>2032.23.93</span>
-                            </StContentCategoryDateWrap>
-                        </StContentStatsWrap>
-                    </StContentWrap>
-                    <StContentWrap>
-                        <StThumbImg src={thumbImg}></StThumbImg>
-                        <StContentStatsWrap>
-                            <div>
-                                <StContentTitle>치즈 오븐 스파게티</StContentTitle>
-                                <StContentTxt>파스타의 한 종류입니다. 이처럼 파스타는 이처럼 파스타는 이처럼 파스타는 이처럼 파스타는 이처럼 파스타는 이처럼 파스타는 이처럼 파스타는 이처럼 파스타는 이처럼 파스타는 형태에 따라 약 350가지가 넘는 다양한 종류가 있습니다. 원료는 듀럼밀 세몰리나로 동일하지만 용도 및 이탈리아인들의 ...</StContentTxt>
-                            </div>
-                            <StContentCategoryDateWrap>
-                                <span>Eat</span>
-                                <StLine></StLine>
-                                <span>2032.23.93</span>
-                            </StContentCategoryDateWrap>
-                        </StContentStatsWrap>
-                    </StContentWrap>
-
                 </StContent>
             </Body>
         </StMyArticleContainer>

@@ -1,4 +1,3 @@
-import React from 'react';
 import {
   StCheckBox,
   StIdPwWrapper,
@@ -12,14 +11,16 @@ import {
   StMemoWrapper,
   StSignUp,
   StInputContainer,
-  StPwIcon
+  StPwIcon,
+  StCloseBtn
 } from './styles/Login.style';
 import pwCheck1 from '../../assets/pwCheck1.jpg';
 
-const Login = () => {
+const Login = ({ onSignUpHandler, onModalHandler }) => {
   return (
     <>
       <StLoginWrapper>
+        <StCloseBtn onClick={onModalHandler}>x</StCloseBtn>
         <StLoginTitle>로그인</StLoginTitle>
         <StIdPwWrapper>
           <StMailPw>이메일</StMailPw>
@@ -36,7 +37,7 @@ const Login = () => {
         </StMemoWrapper>
         <StLoginBtnWrapper>
           <StLoginBtn>로그인</StLoginBtn>
-          <StSignUp>회원가입</StSignUp>
+          <StSignUp onClick={onSignUpHandler}>회원가입</StSignUp>
         </StLoginBtnWrapper>
       </StLoginWrapper>
     </>

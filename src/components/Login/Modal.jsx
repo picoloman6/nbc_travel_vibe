@@ -1,28 +1,38 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
   StContainer,
   StLogoImg,
   StLogoName,
   StLogoWrapper,
-  StCloseBtn,
   StBackground
 } from './styles/Login.style';
 
 import logoImg from '../../assets/logoImg.png';
 import Login from './Login';
-
-// import pwCheck2 from '../../../shared/pwCheck2.jpg';
+import SignUp from './SignUp';
 
 const Modal = ({ isOpen, onModalHandler }) => {
+  const [isSignUp, setIsSignUp] = useState(false);
+
+  const onSignUpHandler = () => {
+    setIsSignUp(!isSignUp);
+  };
+
   return (
     <StBackground $isOpen={isOpen}>
       <StContainer>
-        <StCloseBtn onClick={onModalHandler}>x</StCloseBtn>
         <StLogoWrapper>
           <StLogoImg src={logoImg} alt='로고이미지' />
           <StLogoName>Travel Vibe</StLogoName>
         </StLogoWrapper>
-        <Login />
+        {isSignUp ? (
+          <SignUp onModalHandler={onModalHandler} />
+        ) : (
+          <Login
+            onSignUpHandler={onSignUpHandler}
+            onModalHandler={onModalHandler}
+          />
+        )}
       </StContainer>
     </StBackground>
   );

@@ -1,7 +1,11 @@
-import Header from './components/common/Header';
+import Article from './pages/Article';
 
 const App = () => {
-  return <Header>App</Header>;
+  return (
+    <>
+      <Article />
+    </>
+  );
 };
 
 export default App;

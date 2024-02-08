@@ -1,15 +1,16 @@
 import styled from 'styled-components';
 
+import colors from '../../constants/colors';
+
 export const StHeader = styled.header`
   display: flex;
   justify-content: space-between;
   align-items: center;
   width: 1775px;
   height: 63px;
-  left: 147px;
-  top: 159px;
-  background: #2673db;
+  background: ${colors.mainBlue};
   line-height: 39px;
+  margin: 0 auto;
 `;
 
 export const StHeaderBtnWapper = styled.div`

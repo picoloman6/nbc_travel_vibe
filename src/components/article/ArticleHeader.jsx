@@ -2,7 +2,7 @@ import { StArticleHeaderRest } from '../../Styles/Components/Article.style';
 
 const ArticleHeader = () => {
   return (
-    <>
+    <div>
       <div>
         <span>카테고리</span>
       </div>
@@ -16,7 +16,7 @@ const ArticleHeader = () => {
           <button>삭제</button>
         </div>
       </StArticleHeaderRest>
-    </>
+    </div>
   );
 };
 

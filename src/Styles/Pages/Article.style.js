@@ -1,7 +1,6 @@
 import styled from 'styled-components';
 
 export const ArticleWrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  margin: 0 100px;
+  padding: 50px 0;
 `;

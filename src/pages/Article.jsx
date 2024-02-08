@@ -9,19 +9,21 @@ import { ArticleWrapper } from '../Styles/Pages/Article.style';
 
 const Article = () => {
   return (
-    <ArticleWrapper>
+    <>
       <Header />
       <Body>
-        <ArticleHeader />
-        <hr />
-        <ArticleContent />
-        <hr />
-        <CommentForm />
-        <hr />
-        <Comment />
-        <hr />
+        <ArticleWrapper>
+          <ArticleHeader />
+          <hr />
+          <ArticleContent />
+          <hr />
+          <CommentForm />
+          <hr />
+          <Comment />
+          <hr />
+        </ArticleWrapper>
       </Body>
-    </ArticleWrapper>
+    </>
   );
 };
 

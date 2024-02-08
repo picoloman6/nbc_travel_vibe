@@ -10,7 +10,7 @@ import {
   StInputContainer,
   StPwIcon,
   StCloseBtn
-} from './styles/SignUp.style';
+} from './styles/Login.style';
 import pwCheck1 from '../../assets/pwCheck1.jpg';
 
 const SignUp = ({ onModalHandler }) => {

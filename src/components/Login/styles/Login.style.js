@@ -22,13 +22,14 @@ export const StContainer = styled.div`
   background-color: white;
 
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   gap: 40px;
   padding: 20px;
   box-sizing: border-box;
-  width: 800px;
-  height: 400px;
+  width: 25%;
+  height: 67%;
   border: 1.5px solid ${colors.mainBlue};
   border-radius: 7px;
   /* box-shadow: 0px 0px 3px 0px; */
@@ -46,20 +47,6 @@ export const StCloseBtn = styled.button`
   border-radius: 3px;
   color: ${colors.mainBlue};
   cursor: pointer;
-`;
-
-export const StLogoWrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  padding: 30px;
-  margin-top: 40px;
-`;
-
-export const StLogoImg = styled.img`
-  width: 140px;
-  height: 90px;
 `;
 
 export const StLogoName = styled.p`

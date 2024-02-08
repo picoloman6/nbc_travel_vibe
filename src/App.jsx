@@ -1,14 +1,12 @@
-import ResetStyles from './App.style.js';
-import Main from './components/Main/Main.jsx';
-
+import ResetStyles, { StAppWrapper } from './App.style.js';
+import MainPage from './pages/styles';
 
 const App = () => {
   return (
-    <>
+    <StAppWrapper>
       <ResetStyles />
       <MainPage />
-
-    </>
+    </StAppWrapper>
   );
 };
 

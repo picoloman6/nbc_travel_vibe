@@ -1,4 +1,5 @@
-import { createGlobalStyle } from 'styled-components';
+import styled, { createGlobalStyle } from 'styled-components';
+import colors from './constants/colors';
 
 const ResetStyles = createGlobalStyle`
     /* Reset CSS */
@@ -128,7 +129,10 @@ table {
   border-collapse: collapse;
   border-spacing: 0;
 }
+`;
 
+export const StAppWrapper = styled.div`
+  background: ${colors.subBlue};
 `;
 
 export default ResetStyles;

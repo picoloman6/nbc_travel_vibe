@@ -1,13 +1,22 @@
+import {
+  StArticleHeaderWrapper,
+  StArticleForm,
+  StArticleTextArea
+} from './Styles/Article.style';
+
+import { StSubmitBtn } from '../common/styles/Common.style';
+
 const CommentForm = () => {
   return (
-    <div>
-      <span>댓글 몇개</span>
-      <form>
+    <StArticleHeaderWrapper>
+      <StArticleForm>
         <label>캐릭터</label>
-        <input />
-        <button>등록</button>
-      </form>
-    </div>
+        <StArticleTextArea />
+        <StSubmitBtn $width='60px' $height='30px' $fontSize='16px'>
+          등록
+        </StSubmitBtn>
+      </StArticleForm>
+    </StArticleHeaderWrapper>
   );
 };
 

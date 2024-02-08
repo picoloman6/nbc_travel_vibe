@@ -1,5 +1,5 @@
 const size = {
-  wrapperWidth: '70%',
+  wrapperWidth: '90%',
   bodyWidth: '100%',
   bodyMinHeight: '100vh'
 };

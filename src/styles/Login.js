@@ -1,7 +1,25 @@
 import styled from 'styled-components';
 
+export const StBackground = styled.div`
+  display: ${(props) => (props.$isOpen ? 'block' : 'none')};
+
+  background-color: rgba(0, 0, 0, 0.2);
+  width: 100%;
+  height: 100vh;
+  z-index: 10;
+  position: fixed;
+  top: 0;
+  left: 0;
+`;
+
 export const StContainer = styled.div`
-  position: relative;
+  z-index: 100;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: white;
+
   display: flex;
   justify-content: center;
   align-items: center;
@@ -25,6 +43,7 @@ export const StCloseBtn = styled.button`
   border: 1px solid #2673db;
   border-radius: 3px;
   color: #2673db;
+  cursor: pointer;
 `;
 
 export const StLogoWrapper = styled.div`
@@ -124,6 +143,7 @@ export const StLoginBtn = styled.button`
   height: 30px;
 
   color: #ffffff;
+  cursor: pointer;
 `;
 
 export const StSignUp = styled.p`
@@ -132,4 +152,5 @@ export const StSignUp = styled.p`
   text-decoration-line: underline;
 
   color: #000000;
+  cursor: pointer;
 `;

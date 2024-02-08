@@ -1,9 +1,13 @@
+import { useState } from 'react';
 import Login from './components/Login/Login';
 
 const App = () => {
+  const [isOpen, setIsOpen] = useState(false);
+
   return (
     <>
-      <Login />
+      <button onClick={() => setIsOpen(!isOpen)}>테스트 버튼</button>
+      <Login isOpen={isOpen} />
     </>
   );
 };

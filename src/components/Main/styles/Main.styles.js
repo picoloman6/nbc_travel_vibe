@@ -7,7 +7,7 @@ export const StMainBackground = styled.div`
   width: ${size.wrapperWidth};
   min-width: 800px;
   min-height: ${size.bodyMinHeight};
-  background: ${colors.backgroudColor};
+  background: ${colors.subBlue};
   display: flex;
   justify-content: center;
   align-items: center;

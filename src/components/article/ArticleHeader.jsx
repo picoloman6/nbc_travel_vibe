@@ -4,7 +4,7 @@ import {
   StArticleHeaderBottom
 } from './Styles/Article.style';
 
-import { StUpdateBtn, StDeleteBtn } from '../common/styles/Common.style';
+import { StUpdateBtn, StDeleteBtn } from '../common/styles/Button.style';
 
 const ArticleHeader = () => {
   return (

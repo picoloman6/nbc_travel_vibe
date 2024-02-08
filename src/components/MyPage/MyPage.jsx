@@ -1,10 +1,22 @@
 import React from 'react';
 import { StDeleteBtn, StSubmitBtn } from '../common/styles/Button.style';
-import { StAvatar, StBtnsWrapper, StContainer, StCurrentPw, StEmail, StMyPageTitle, StMyPageWrapper, StNewPw, StNickName, StUserInfoDeatilWrapper, StUserInfoWrapper } from './styles/MyPages.style';
+import {
+  StAvatar,
+  StBtnsWrapper,
+  StContainer,
+  StCurrentPw,
+  StEmail,
+  StMyPageTitle,
+  StMyPageWrapper,
+  StNewPw,
+  StNickName,
+  StUserInfoDeatilWrapper,
+  StUserInfoWrapper
+} from './styles/MyPages.style';
 import Body from '../common/Body';
 import Header from '../common/Header';
 
-export const MyPage = () => {
+const MyPage = () => {
   return (
     <StContainer>
       <Header />
@@ -41,3 +53,5 @@ export const MyPage = () => {
     </StContainer>
   );
 };
+
+export default MyPage;

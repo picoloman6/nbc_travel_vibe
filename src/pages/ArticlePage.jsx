@@ -7,7 +7,7 @@ import Comment from '../components/article/Comment';
 
 import { StArticleWrapper, StArticleHr } from './styles/Article.style';
 
-const Article = () => {
+const ArticlePage = () => {
   return (
     <StArticleWrapper>
       <Header />
@@ -25,4 +25,4 @@ const Article = () => {
   );
 };
 
-export default Article;
+export default ArticlePage;

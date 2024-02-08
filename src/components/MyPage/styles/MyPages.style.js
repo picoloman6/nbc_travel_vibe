@@ -1,6 +1,6 @@
-import styled from "styled-components";
-import size from "../../../constants/size";
-import colors from "../../../constants/colors";
+import styled from 'styled-components';
+import size from '../../../constants/size';
+import colors from '../../../constants/colors';
 
 export const StContainer = styled.div`
   width: ${size.wrapperWidth};
@@ -10,7 +10,7 @@ export const StContainer = styled.div`
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  padding: 10px;
+  padding: 20px;
   box-sizing: border-box;
   margin: 0 auto;
 `;
@@ -21,7 +21,7 @@ export const StMyPageWrapper = styled.div`
   justify-content: center;
   padding: 20px 200px;
   width: 100%;
-`
+`;
 export const StMyPageTitle = styled.h1`
   font-weight: 600;
   font-size: 48px;

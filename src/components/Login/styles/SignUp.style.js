@@ -25,7 +25,7 @@ export const StContainer = styled.div`
   justify-content: center;
   align-items: center;
   gap: 40px;
-  padding: 20px;
+  padding: 10px;
   box-sizing: border-box;
   width: 800px;
   height: 400px;
@@ -76,7 +76,7 @@ export const StLoginWrapper = styled.div`
   height: 100%;
   display: flex;
   flex-direction: column;
-  padding: 20px;
+  padding: 5px;
 `;
 
 export const StLoginTitle = styled.p`
@@ -90,13 +90,13 @@ export const StLoginTitle = styled.p`
 export const StIdPwWrapper = styled.form`
   display: flex;
   flex-direction: column;
-  margin-top: 30px;
+  /* margin-top: 30px; */
   margin-bottom: 10px;
 `;
 
 export const StMailPw = styled.p`
   font-weight: 700;
-  font-size: 20px;
+  font-size: 17px;
   margin-bottom: 10px;
 
   color: ${colors.mainBlue};
@@ -123,27 +123,9 @@ export const StPwIcon = styled.img`
   cursor: pointer;
 `;
 
-export const StMemoWrapper = styled.div`
-  display: flex;
-  justify-content: flex-start;
-  margin-bottom: 5%;
-`;
-
-export const StCheckBox = styled.input`
-  width: 20px;
-`;
-
-export const StMemoInfo = styled.span`
-  font-weight: 600;
-  font-size: 15px;
-
-  color: #000000;
-`;
-
 export const StLoginBtnWrapper = styled.div`
   display: flex;
-  justify-content: space-between;
-  align-items: center;
+  justify-content: center;
 `;
 
 export const StLoginBtn = styled.button`
@@ -154,16 +136,8 @@ export const StLoginBtn = styled.button`
   font-weight: 600;
   font-size: 15px;
   height: 30px;
+  width: 70%;
 
   color: #ffffff;
-  cursor: pointer;
-`;
-
-export const StSignUp = styled.p`
-  font-weight: 600;
-  font-size: 15px;
-  text-decoration-line: underline;
-
-  color: #000000;
   cursor: pointer;
 `;

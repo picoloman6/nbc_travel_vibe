@@ -1,6 +1,5 @@
 import React from 'react';
 import {
-  StCheckBox,
   StIdPwWrapper,
   StLoginBtn,
   StLoginBtnWrapper,
@@ -8,13 +7,10 @@ import {
   StLoginTitle,
   StLoginWrapper,
   StMailPw,
-  StMemoInfo,
-  StMemoWrapper,
-  StSignUp,
   StInputContainer,
   StPwIcon,
   StCloseBtn
-} from './styles/Login.style';
+} from './styles/SignUp.style';
 import pwCheck1 from '../../assets/pwCheck1.jpg';
 
 const SignUp = ({ onModalHandler }) => {
@@ -40,7 +36,7 @@ const SignUp = ({ onModalHandler }) => {
           </StInputContainer>
         </StIdPwWrapper>
         <StLoginBtnWrapper>
-          <StLoginBtn>로그인</StLoginBtn>
+          <StLoginBtn>회원가입</StLoginBtn>
         </StLoginBtnWrapper>
       </StLoginWrapper>
     </>

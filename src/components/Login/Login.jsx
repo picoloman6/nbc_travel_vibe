@@ -16,7 +16,8 @@ import {
   StMemoWrapper,
   StSignUp,
   StInputContainer,
-  StPwIcon
+  StPwIcon,
+  StCloseBtn
 } from '../../styles/Login';
 
 import logoImg from '../../shared/logoImg.png';
@@ -26,6 +27,7 @@ import pwCheck1 from '../../shared/pwCheck1.jpg';
 const Login = () => {
   return (
     <StContainer>
+      <StCloseBtn>x</StCloseBtn>
       <StLogoWrapper>
         <StLogoImg src={logoImg} alt='로고이미지' />
         <StLogoName>Travel Vibe</StLogoName>

@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 
 export const StContainer = styled.div`
+  position: relative;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -11,6 +12,19 @@ export const StContainer = styled.div`
   height: 400px;
   border: 1px solid #2673db;
   border-radius: 7px;
+`;
+
+export const StCloseBtn = styled.button`
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  top: 10px;
+  right: 20px;
+  padding: 0px;
+  background-color: white;
+  border: 1px solid #2673db;
+  border-radius: 3px;
+  color: #2673db;
 `;
 
 export const StLogoWrapper = styled.div`

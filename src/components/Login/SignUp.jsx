@@ -26,19 +26,21 @@ const SignUp = ({ onModalHandler }) => {
         <StIdPwWrapper>
           <StMailPw>이메일</StMailPw>
           <StLoginInput />
+          <StMailPw>닉네임</StMailPw>
+          <StLoginInput />
           <StInputContainer>
             <StMailPw>비밀번호</StMailPw>
             <StLoginInput type='password' autoComplete='on' />
             <StPwIcon src={pwCheck1} alt='비밀번호확인' />
           </StInputContainer>
+          <StInputContainer>
+            <StMailPw>비밀번호 확인</StMailPw>
+            <StLoginInput type='password' autoComplete='on' />
+            <StPwIcon src={pwCheck1} alt='비밀번호확인' />
+          </StInputContainer>
         </StIdPwWrapper>
-        <StMemoWrapper>
-          <StCheckBox type='checkbox' />
-          <StMemoInfo>로그인 정보 기억하기</StMemoInfo>
-        </StMemoWrapper>
         <StLoginBtnWrapper>
           <StLoginBtn>로그인</StLoginBtn>
-          <StSignUp>회원가입</StSignUp>
         </StLoginBtnWrapper>
       </StLoginWrapper>
     </>

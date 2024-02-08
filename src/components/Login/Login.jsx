@@ -16,7 +16,11 @@ import {
 } from './styles/Login.style';
 import pwCheck1 from '../../assets/pwCheck1.jpg';
 
-const Login = ({ onSignUpHandler, onModalHandler }) => {
+const Login = ({ isSignUp, setIsSignUp, onModalHandler }) => {
+  const onSignUpHandler = () => {
+    setIsSignUp(!isSignUp);
+  };
+
   return (
     <>
       <StLoginWrapper>

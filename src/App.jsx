@@ -12,9 +12,6 @@ const App = () => {
       setIsSignUp(!isSignUp);
     }
   };
-  const onSignUpHandler = () => {
-    setIsSignUp(!isSignUp);
-  };
 
   return (
     <>
@@ -24,7 +21,7 @@ const App = () => {
         isOpen={isOpen}
         onModalHandler={onModalHandler}
         isSignUp={isSignUp}
-        onSignUpHandler={onSignUpHandler}
+        setIsSignUp={setIsSignUp}
       />
     </>
   );

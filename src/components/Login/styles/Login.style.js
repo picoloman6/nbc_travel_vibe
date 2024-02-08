@@ -142,8 +142,7 @@ export const StMemoInfo = styled.span`
 
 export const StLoginBtnWrapper = styled.div`
   display: flex;
-  justify-content: space-between;
-  align-items: center;
+  justify-content: center;
 `;
 
 export const StLoginBtn = styled.button`

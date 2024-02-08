@@ -10,7 +10,7 @@ import logoImg from '../../assets/logoImg.png';
 import Login from './Login';
 import SignUp from './SignUp';
 
-const Modal = ({ isOpen, onModalHandler, isSignUp, onSignUpHandler }) => {
+const Modal = ({ isOpen, onModalHandler, isSignUp, setIsSignUp }) => {
   return (
     <StBackground $isOpen={isOpen}>
       <StContainer>
@@ -22,8 +22,9 @@ const Modal = ({ isOpen, onModalHandler, isSignUp, onSignUpHandler }) => {
           <SignUp onModalHandler={onModalHandler} />
         ) : (
           <Login
-            onSignUpHandler={onSignUpHandler}
             onModalHandler={onModalHandler}
+            isSignUp={isSignUp}
+            setIsSignUp={setIsSignUp}
           />
         )}
       </StContainer>

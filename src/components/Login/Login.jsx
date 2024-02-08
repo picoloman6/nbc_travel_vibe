@@ -2,7 +2,7 @@ import {
   StCheckBox,
   StIdPwWrapper,
   StLoginBtn,
-  StLoginBtnWrapper,
+  StAskSignUpWrapper,
   StLoginInput,
   StLoginTitle,
   StLoginWrapper,
@@ -12,9 +12,9 @@ import {
   StInputContainer,
   StPwIcon,
   StCloseBtn,
-  StAskSignUp
+  StAskSignUp,
+  StLogoName
 } from './styles/Login.style';
-import pwCheck1 from '../../assets/pwCheck1.jpg';
 
 const Login = ({ isSignUp, setIsSignUp, onModalHandler }) => {
   const onSignUpHandler = () => {
@@ -25,6 +25,7 @@ const Login = ({ isSignUp, setIsSignUp, onModalHandler }) => {
     <>
       <StLoginWrapper>
         <StCloseBtn onClick={onModalHandler}>x</StCloseBtn>
+        <StLogoName>Travel Vibe</StLogoName>
         <StLoginTitle>로그인</StLoginTitle>
         <StIdPwWrapper>
           <StLoginInput placeholder='이메일' />
@@ -34,7 +35,7 @@ const Login = ({ isSignUp, setIsSignUp, onModalHandler }) => {
               autoComplete='on'
               placeholder='비밀번호'
             />
-            <StPwIcon src={pwCheck1} alt='비밀번호확인' />
+            <StPwIcon />
           </StInputContainer>
         </StIdPwWrapper>
         <StMemoWrapper>
@@ -42,11 +43,10 @@ const Login = ({ isSignUp, setIsSignUp, onModalHandler }) => {
           <StMemoInfo>로그인 유지하기</StMemoInfo>
         </StMemoWrapper>
         <StLoginBtn>로그인</StLoginBtn>
-
-        <StLoginBtnWrapper>
+        <StAskSignUpWrapper>
           <StAskSignUp>아직 회원이 아니신가요?</StAskSignUp>
           <StSignUp onClick={onSignUpHandler}>회원가입</StSignUp>
-        </StLoginBtnWrapper>
+        </StAskSignUpWrapper>
       </StLoginWrapper>
     </>
   );

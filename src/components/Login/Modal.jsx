@@ -7,7 +7,6 @@ const Modal = ({ isOpen, onModalHandler, isSignUp, setIsSignUp }) => {
   return (
     <StBackground $isOpen={isOpen}>
       <StContainer>
-        <StLogoName>Travel Vibe</StLogoName>
         {/* {isSignUp ? (
           <SignUp onModalHandler={onModalHandler} />
         ) : (

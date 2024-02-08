@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import colors from '../../../constants/colors';
+import { FiEye } from 'react-icons/fi';
 
 export const StBackground = styled.div`
   display: ${(props) => (props.$isOpen ? 'block' : 'none')};
@@ -47,10 +48,11 @@ export const StCloseBtn = styled.button`
 `;
 
 export const StLogoName = styled.p`
-  font-weight: 900;
-  font-size: 40px;
+  font-weight: 800;
+  font-size: 35px;
   font-style: italic;
-  margin-top: 30px;
+  margin: 50px 0px;
+  text-align: center;
 
   color: ${colors.mainBlue};
 `;
@@ -65,7 +67,7 @@ export const StLoginWrapper = styled.div`
 
 export const StLoginTitle = styled.p`
   font-weight: 700;
-  font-size: 25px;
+  font-size: 23px;
   text-align: center;
 
   color: black;
@@ -92,11 +94,11 @@ export const StLoginInput = styled.input`
   color: #838383;
 `;
 
-export const StPwIcon = styled.img`
+export const StPwIcon = styled(FiEye)`
   position: absolute;
   width: 30px;
-  top: 50%;
-  right: 5%;
+  top: 20%;
+  right: 1%;
   cursor: pointer;
 `;
 
@@ -108,6 +110,7 @@ export const StMemoWrapper = styled.div`
 
 export const StCheckBox = styled.input`
   width: 15px;
+  margin-right: 10px;
 `;
 
 export const StMemoInfo = styled.span`
@@ -121,17 +124,18 @@ export const StLoginBtn = styled.button`
   background: ${colors.mainBlue};
   border-radius: 2px;
   border: 0px;
+  margin-bottom: 10px;
 
   font-weight: 600;
   font-size: 15px;
-  height: 30px;
+  height: 40px;
   width: 100%;
 
   color: #ffffff;
   cursor: pointer;
 `;
 
-export const StLoginBtnWrapper = styled.div`
+export const StAskSignUpWrapper = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;

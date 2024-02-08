@@ -1,20 +1,20 @@
 import {
   StHeader,
-  StHeaderWapper,
+  StHeaderBtnWapper,
   StHeaderBtn
-} from '../../Styles/Common/Header.style';
+} from '../../Styles/Components/Header.style';
 
 const Header = () => {
   return (
     <StHeader>
-      <StHeaderWapper>
+      <StHeaderBtnWapper>
         <StHeaderBtn>Home</StHeaderBtn>
         <StHeaderBtn>My Blog</StHeaderBtn>
-      </StHeaderWapper>
-      <StHeaderWapper>
+      </StHeaderBtnWapper>
+      <StHeaderBtnWapper>
         <StHeaderBtn>Login</StHeaderBtn>
         <StHeaderBtn>O</StHeaderBtn>
-      </StHeaderWapper>
+      </StHeaderBtnWapper>
     </StHeader>
   );
 };

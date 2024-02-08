@@ -1,5 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
+import { StDeleteBtn, StSubmitBtn } from './Common';
 
 export const MyPage = () => {
     return (
@@ -55,19 +56,18 @@ export const StMyPageWrapper = styled.div`
 display: flex;
 flex-direction: row;
 border: 1px solid black;
-padding: 60px;
+padding: 40px;
 gap: 60px;
 `
 export const StAvatar = styled.div`
-width: 300px;
-height: 300px;
+width: 200px;
+height: 200px;
 background-color: green;
 `
 
 export const StUserInfoWrapper = styled.div`
  display: flex;
  flex-direction: column;
- background-color: yellow;
  width: 500px; 
  gap: 40px;
  & label {
@@ -121,29 +121,6 @@ export const StBtnsWrapper = styled.div`
     justify-content: flex-end;
     gap: 30px;
     padding: 20px;
-`
-
-export const ButtonStyles = `
-    width: 122px;
-    height: 48px;
-    background: #2673DB;
-    border-radius: 10px;
-    border: none;
-    font-weight: 600;
-    font-size: 24px;
-    text-align: center;
-    color: #FFFFFF;
-`
-
-export const StSubmitBtn = styled.button`
-${ButtonStyles}
-background: #2673DB;
-color: #FFFFFF;
-`
-export const StDeleteBtn = styled.button`
-${ButtonStyles}
-background: #F67777;
-color: #FFFFFF;   
 `
 
 

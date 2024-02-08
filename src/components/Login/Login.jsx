@@ -25,11 +25,11 @@ import logoImg from '../../shared/logoImg.png';
 import pwCheck1 from '../../shared/pwCheck1.jpg';
 // import pwCheck2 from '../../../shared/pwCheck2.jpg';
 
-const Login = ({ isOpen }) => {
+const Login = ({ isOpen, onModalCloseHandler }) => {
   return (
     <StBackground $isOpen={isOpen}>
       <StContainer>
-        <StCloseBtn>x</StCloseBtn>
+        <StCloseBtn onClick={onModalCloseHandler}>x</StCloseBtn>
         <StLogoWrapper>
           <StLogoImg src={logoImg} alt='로고이미지' />
           <StLogoName>Travel Vibe</StLogoName>

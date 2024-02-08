@@ -108,6 +108,7 @@ export const StPwIcon = styled.img`
   width: 30px;
   top: 75px;
   right: 10px;
+  cursor: pointer;
 `;
 
 export const StMemoWrapper = styled.div`

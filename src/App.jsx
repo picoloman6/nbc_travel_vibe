@@ -3,11 +3,18 @@ import Login from './components/Login/Login';
 
 const App = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const onLoginHandler = () => {
+    setIsOpen(!isOpen);
+  };
+
+  const onModalCloseHandler = () => {
+    setIsOpen(!isOpen);
+  };
 
   return (
     <>
-      <button onClick={() => setIsOpen(!isOpen)}>테스트 버튼</button>
-      <Login isOpen={isOpen} />
+      <button onClick={onLoginHandler}>테스트 버튼</button>
+      <Login isOpen={isOpen} onModalCloseHandler={onModalCloseHandler} />
     </>
   );
 };

@@ -14,10 +14,10 @@ const ArticleHeader = () => {
       <StArticleHeaderBottom>
         <span>닉네임 | 날짜</span>
         <div>
-          <StUpdateBtn fontSize='16px' width='50px' height='30px'>
+          <StUpdateBtn $fontSize='14px' $width='50px' $height='30px'>
             수정
           </StUpdateBtn>
-          <StDeleteBtn fontSize='16px' width='50px' height='30px'>
+          <StDeleteBtn $fontSize='14px' $width='50px' $height='30px'>
             삭제
           </StDeleteBtn>
         </div>

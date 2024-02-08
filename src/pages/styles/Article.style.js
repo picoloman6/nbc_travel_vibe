@@ -1,6 +1,8 @@
 import styled from 'styled-components';
+import size from '../../constants/size';
 
 export const StArticleWrapper = styled.div`
-  margin: 0 100px;
-  padding: 50px 0;
+  width: ${size.wrapperWidth};
+  min-height: ${size.bodyMinHeight};
+  margin: 0 auto;
 `;

@@ -2,7 +2,7 @@ import { useState } from 'react';
 import MainPage from './pages/MainPage.jsx';
 import Article from './pages/Article.jsx';
 
-import ResetStyles from './App.style.js';
+import ResetStyles, { StAppWrapper } from './App.style.js';
 import { MyPage } from './components/MyPage.jsx';
 
 const App = () => {
@@ -12,10 +12,10 @@ const App = () => {
   };
 
   return (
-    <>
+    <StAppWrapper>
       <ResetStyles />
-      <MyPage />
-    </>
+      <Article />
+    </StAppWrapper>
   );
 };
 

@@ -1,16 +1,13 @@
 import { useSelector, useDispatch } from 'react-redux';
 
 import ResetStyles, { StAppWrapper } from './App.style.js';
-import Posting from './components/Posting/Posting.jsx';
-import MainPage from './pages/MainPage.jsx';
-import MyPage from './components/MyPage/MyPage.jsx';
-import ArticlePage from './pages/ArticlePage.jsx';
 import Modal from './components/Login/Modal.jsx';
 
 import { postUserData } from './redux/modules/UserReducer.js';
 import { postPostData } from './redux/modules/PostReducer.js';
 import { postCommentData } from './redux/modules/CommentReducer.js';
 import { useEffect } from 'react';
+import Router from './Shared/Router.js';
 
 const App = () => {
   // 4. useSelector로 여기서 꺼내서 쓴다.
@@ -41,7 +38,7 @@ const App = () => {
   return (
     <StAppWrapper>
       <ResetStyles />
-      <ArticlePage />
+      <Router />
       <Modal />
     </StAppWrapper>
   );

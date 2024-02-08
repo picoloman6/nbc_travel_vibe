@@ -5,7 +5,7 @@ import colors from "../../../constants/colors";
 export const StContainer = styled.div`
   width: ${size.wrapperWidth};
   min-height: ${size.bodyMinHeight};
-  background: #cdddf5;
+  background: ${colors.subBlue};
   display: flex;
   justify-content: center;
   align-items: center;
@@ -57,15 +57,15 @@ export const StUserInfoDeatilWrapper = styled.div`
   & input {
     width: 100%;
     height: 48px;
-    background: #ffffff;
-    border: 1px solid #838383;
+    background: ${colors.buttonText};
+    border: 1px solid ${colors.subText};
     box-sizing: border-box;
     padding-left: 20px;
     padding-left: 20px;
     font-size: 24px;
   }
   & input ::placeholder {
-    color: #838383;
+    color: ${colors.subText};
   }
 `;
 export const StEmail = styled.div`
@@ -77,10 +77,10 @@ export const StEmail = styled.div`
     width: 100%;
     height: 48px;
     box-sizing: border-box;
-    background: #f2f2f2;
+    background: ${colors.backgroudColor};
     font-weight: 600;
     font-size: 24px;
-    color: #838383;
+    color: ${colors.subText};
     display: flex;
     align-items: center;
     padding-left: 20px;

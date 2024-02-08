@@ -6,7 +6,8 @@ const App = () => {
   return (
     <>
       <ResetStyles />
-      <Main />
+      <MainPage />
+
     </>
   );
 };

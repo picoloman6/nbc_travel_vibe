@@ -1,8 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
 import titleBackgroundImg from '../../shared/title_background.png'
-//그럼 여기는 스타일 컴포넌트 모아서 레이아웃 잡은거
-// pages의 Main에는 이거 들어가고 모달 들어가고?
 
 export const StMainBackground = styled.div`
 width: 100%;

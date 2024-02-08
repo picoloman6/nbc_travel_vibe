@@ -1,13 +1,27 @@
+import {
+  StArticleHeaderWrapper,
+  StArticleCommentTop,
+  StArticleCommentUser,
+  StArticleComment
+} from './Styles/Article.style';
+import { StDeleteBtn } from '../common/styles/Common.style';
+
 const Comment = () => {
   return (
-    <div>
-      <div>
-        <div>사진</div>
-        <span>닉네임</span>
-        <button>삭제</button>
-      </div>
-      <div>내용내용내용내용내용내용내용내용내용내용내용내용</div>
-    </div>
+    <StArticleHeaderWrapper>
+      <StArticleCommentTop>
+        <StArticleCommentUser>
+          <span>사진</span>
+          <span>닉네임</span>
+        </StArticleCommentUser>
+        <StDeleteBtn $width='35px' $height='25px' $fontSize='11px'>
+          삭제
+        </StDeleteBtn>
+      </StArticleCommentTop>
+      <StArticleComment>
+        내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용
+      </StArticleComment>
+    </StArticleHeaderWrapper>
   );
 };
 

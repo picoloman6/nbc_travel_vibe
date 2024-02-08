@@ -52,7 +52,7 @@ export const StArticleHeart = styled.div`
 
 export const StArticleForm = styled.form`
   > button {
-    margin: 15px 0;
+    margin: 15px 0 20px 0;
     float: right;
   }
 `;
@@ -64,4 +64,25 @@ export const StArticleTextArea = styled.textarea`
   margin-top: 15px;
   resize: none;
   line-height: 23px;
+`;
+
+export const StArticleCommentTop = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 15px;
+`;
+
+export const StArticleCommentUser = styled.div`
+  font-size: 20px;
+  font-weight: bold;
+  gap: 15px;
+
+  > span:first-child {
+    margin-right: 10px;
+  }
+`;
+
+export const StArticleComment = styled.p`
+  line-height: 25px;
 `;

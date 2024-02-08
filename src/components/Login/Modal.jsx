@@ -1,4 +1,3 @@
-import React, { useState } from 'react';
 import {
   StContainer,
   StLogoImg,
@@ -11,13 +10,7 @@ import logoImg from '../../assets/logoImg.png';
 import Login from './Login';
 import SignUp from './SignUp';
 
-const Modal = ({ isOpen, onModalHandler }) => {
-  const [isSignUp, setIsSignUp] = useState(false);
-
-  const onSignUpHandler = () => {
-    setIsSignUp(!isSignUp);
-  };
-
+const Modal = ({ isOpen, onModalHandler, isSignUp, onSignUpHandler }) => {
   return (
     <StBackground $isOpen={isOpen}>
       <StContainer>

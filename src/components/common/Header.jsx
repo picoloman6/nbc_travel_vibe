@@ -2,7 +2,7 @@ import {
   StHeader,
   StHeaderBtnWapper,
   StHeaderBtn
-} from '../../Styles/Components/Header.style';
+} from './styles/Header.style';
 
 const Header = () => {
   return (

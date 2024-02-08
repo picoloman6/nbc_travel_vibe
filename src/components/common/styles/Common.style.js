@@ -1,4 +1,4 @@
-import styled from "styled-components"
+import styled from 'styled-components';
 
 export const ButtonStyles = `
     width: 122px;
@@ -10,15 +10,15 @@ export const ButtonStyles = `
     font-size: 24px;
     text-align: center;
     color: #FFFFFF;
-`
+`;
 
 export const StSubmitBtn = styled.button`
-${ButtonStyles}
-background: #2673DB;
-color: #FFFFFF;
-`
+  ${ButtonStyles}
+  background: #2673DB;
+  color: #ffffff;
+`;
 export const StDeleteBtn = styled.button`
-${ButtonStyles}
-background: #F67777;
-color: #FFFFFF;  
-`
+  ${ButtonStyles}
+  background: #F67777;
+  color: #ffffff;
+`;

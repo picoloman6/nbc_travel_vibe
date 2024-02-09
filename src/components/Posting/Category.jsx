@@ -27,4 +27,6 @@ const Category = () => {
   );
 };
 
+// 카테고리를 클릭했을때 새로운 state에 넣어서 그걸 카테고리랑 바꿔치기 하면 될 듯
+
 export default Category;

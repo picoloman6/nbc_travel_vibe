@@ -11,15 +11,17 @@ const Posting = () => {
     <StContainer>
       <Header />
       <Body>
-        <StDropDownWrap>
-          <Category />
-        </StDropDownWrap>
-        <StContentSection>
-          <StTitle placeholder='제목을 입력하셈'></StTitle>
-          <StPhotos></StPhotos>
-          <StWrite placeholder='글 쓰셈'></StWrite>
-        </StContentSection>
-        <StConformButton>ㄱㄱㄱ</StConformButton>
+        <StWritebox>
+          <StContentSection>
+            <StTitle placeholder='제목을 입력하셈'></StTitle>
+            <StPhotos></StPhotos>
+            <StWrite placeholder='글 쓰셈'></StWrite>
+          </StContentSection>
+          <StDropDownWrap>
+            <StConformButton>ㄱㄱㄱ</StConformButton>
+            <Category />
+          </StDropDownWrap>
+        </StWritebox>
       </Body>
     </StContainer>
   );
@@ -27,24 +29,31 @@ const Posting = () => {
 
 export default Posting;
 
-export const Body = styled.div`
+export const StWritebox = styled.div`
   width: 70%;
+  margin: 0 auto;
+  padding: 30px 0;
+`;
+
+export const Body = styled.div`
+  background-color: white;
+  width: ${size.bodyWidth};
 `;
 
 export const StContainer = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
   width: ${size.wrapperWidth};
   min-height: ${size.bodyMinHeight};
   margin: 0 auto;
+  padding: 20px;
+  box-sizing: border-box;
 `;
 
 export const StDropDownWrap = styled.div`
   display: flex;
-  align-items: flex-start;
+  align-items: center;
   width: 100%;
+  height: 100px;
+  gap: 20px;
 `;
 
 export const StContentSection = styled.div`
@@ -95,8 +104,6 @@ export const StWrite = styled.textarea`
 `;
 
 export const StConformButton = styled.button`
-  align-self: flex-end;
-
   width: 158px;
   height: 48px;
 

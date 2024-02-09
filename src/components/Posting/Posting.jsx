@@ -2,26 +2,23 @@ import styled from 'styled-components';
 import Category from './Category';
 import size from '../../constants/size';
 import colors from '../../constants/colors';
-import { useState } from 'react';
 import Header from '../common/Header';
 const Posting = () => {
-  const [textarea, setTextarea] = useState(1);
-
   return (
     <StContainer>
       <Header />
       <Body>
-        <StWritebox>
+        <StWriteBox>
           <StContentSection>
             <StTitle placeholder='제목을 입력하셈'></StTitle>
             <StPhotos></StPhotos>
-            <StWrite placeholder='글 쓰셈'></StWrite>
+            <StWrite placeholder='글 쓰셈' />
           </StContentSection>
           <StDropDownWrap>
             <StConformButton>ㄱㄱㄱ</StConformButton>
             <Category />
           </StDropDownWrap>
-        </StWritebox>
+        </StWriteBox>
       </Body>
     </StContainer>
   );
@@ -29,7 +26,23 @@ const Posting = () => {
 
 export default Posting;
 
-export const StWritebox = styled.div`
+export const StWrite = styled.textarea`
+  width: 95%;
+  height: auto;
+  min-height: 250px;
+
+  font-weight: 400;
+  font-size: 32px;
+  line-height: 39px;
+  resize: none;
+  overflow: hidden;
+
+  border: none;
+  border-top: 1px solid black;
+  color: #000000;
+`;
+
+export const StWriteBox = styled.div`
   width: 70%;
   margin: 0 auto;
   padding: 30px 0;
@@ -85,22 +98,6 @@ export const StPhotos = styled.div`
   height: 248px;
 
   background: #d9d9d9;
-`;
-
-export const StWrite = styled.textarea`
-  width: 95%;
-  height: auto;
-  min-height: 250px;
-
-  font-weight: 400;
-  font-size: 32px;
-  line-height: 39px;
-  resize: none;
-  overflow: hidden;
-
-  border: none;
-  border-top: 1px solid black;
-  color: #000000;
 `;
 
 export const StConformButton = styled.button`

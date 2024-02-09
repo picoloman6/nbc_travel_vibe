@@ -1,34 +1,57 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
 
 const Category = () => {
-  const [isDropDown, setIsDropDown] = useState(false);
+  const [selectedCategory, setSelectedCategory] = useState('');
+  const categoryOptions = ['Travel', 'Eat', 'Relax'];
 
-  const category = ['Travel', 'Eat', 'Relax'];
+  const handleCategoryChange = (e) => {
+    setSelectedCategory(e.target.value);
+  };
 
   return (
     <div>
-      <div onClick={() => setIsDropDown(!isDropDown)}>
-        <p>{isDropDown ? '카테고리⭡' : '카테고리⭣'}</p>
-        {isDropDown ? (
-          category.map((category) => {
-            return (
-              <ul>
-                <li>
-                  <p>{category}</p>
-                </li>
-              </ul>
-            );
-          })
-        ) : (
-          <></>
-        )}
-      </div>
+      <label>
+        카테고리:
+        <select value={selectedCategory} onChange={handleCategoryChange}>
+          <option value=''>선택하세요</option>
+          {categoryOptions.map((category, index) => (
+            <option key={index} value={category}>
+              {category}
+            </option>
+          ))}
+        </select>
+      </label>
+      {selectedCategory ? (
+        <p>선택된 카테고리: {selectedCategory}</p>
+      ) : (
+        <p>카테고리를 지정해주세요!</p>
+      )}
     </div>
   );
 };
 
-// 카테고리를 클릭했을때 새로운 state에 넣어서 그걸 카테고리랑 바꿔치기 하면 될 듯
-
 export default Category;
 
-//ul에 폰트사이즈 주고 li에 padding 10px씩 줘라
+// const [isDropDown, setIsDropDown] = useState(false);
+
+//   const category = ['Travel', 'Eat', 'Relax'];
+
+//   return (
+//     <div>
+//       <div onClick={() => setIsDropDown(!isDropDown)}>
+//         <p>{isDropDown ? '카테고리⭡' : '카테고리⭣'}</p>
+//         {isDropDown && (
+//           <ul>
+//             {category.map((categoryItem, index) => (
+//               <li key={index}>
+//                 <p>{categoryItem}</p>
+//               </li>
+//             ))}
+//           </ul>
+//         )}
+//       </div>
+//     </div>
+//   );
+// };
+
+//셀렉트라는 좋은 기능을 모르고 쓴 코드

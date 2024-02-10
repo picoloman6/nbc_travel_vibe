@@ -12,6 +12,7 @@ const Posting = () => {
   return (
     <StContainer>
       <Header />
+      <button>임시로 글 수정하기</button>
       <Body>
         <Tools>
           <PhotoInput photos={photos} setPhotos={setPhotos} />

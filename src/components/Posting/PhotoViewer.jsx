@@ -1,12 +1,31 @@
+import { useState } from 'react';
 import styled from 'styled-components';
+import PhotoModal from './PhotoModal';
 
 const PhotoViewer = ({ photos }) => {
+  const [isPhotoOpen, setIsPhotoOpen] = useState(false);
+  const [selectPhoto, setSelectPhoto] = useState('');
+
+  const handlePhotoView = (index) => {
+    setSelectPhoto(index);
+    setIsPhotoOpen(!isPhotoOpen);
+  };
+
   return (
-    <StPhotos>
-      {photos.map((photo, index) => {
-        return <PhotoImage key={index} src={photo} />;
-      })}
-    </StPhotos>
+    <>
+      <StPhotos>
+        {photos.map((photo, index) => {
+          return (
+            <PhotoImage
+              onClick={() => handlePhotoView(index)}
+              key={index}
+              src={photo}
+            />
+          );
+        })}
+      </StPhotos>
+      <PhotoModal isPhotoOpen={isPhotoOpen} selectPhoto={selectPhoto} />
+    </>
   );
 };
 

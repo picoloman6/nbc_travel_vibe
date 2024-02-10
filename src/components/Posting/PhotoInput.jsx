@@ -2,7 +2,7 @@ import { useRef } from 'react';
 import { MdAddPhotoAlternate } from 'react-icons/md';
 import styled from 'styled-components';
 
-const PhotoInput = ({ photos, setPhotos }) => {
+const PhotoInput = ({ setPhotos }) => {
   const fileInput = useRef(null);
 
   const handleButtonClick = () => {

@@ -1,7 +1,4 @@
-import React, { useState } from 'react';
-
-const Category = () => {
-  const [selectedCategory, setSelectedCategory] = useState('');
+const Category = ({ selectedCategory, setSelectedCategory }) => {
   const categoryOptions = ['Travel', 'Eat', 'Relax'];
 
   const handleCategoryChange = (e) => {

@@ -32,7 +32,7 @@ const initialState = {
       content: 'sdfsdfsdfsdf',
       created_at: 494841,
       likes: 20,
-      userId: 1
+      userId: 3
     }
   ]
 };
@@ -42,7 +42,7 @@ const postReducer = (state = initialState, action) => {
     case POST_DATA:
       return {
         ...state,
-        users: [...state.posts, action.payload]
+        posts: [...state.posts, action.payload]
       };
     default:
       return state;

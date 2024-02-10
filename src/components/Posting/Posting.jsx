@@ -5,6 +5,7 @@ import colors from '../../constants/colors';
 import Header from '../common/Header';
 import PhotoInput from './PhotoInput';
 import { useState } from 'react';
+import PhotoViewer from './PhotoViewer';
 const Posting = () => {
   const [photos, setPhotos] = useState([]);
   console.table(photos);
@@ -19,11 +20,7 @@ const Posting = () => {
         <StWriteBox>
           <StContentSection>
             <StTitle placeholder='제목을 입력하셈'></StTitle>
-            <StPhotos>
-              {photos.map((photo, index) => {
-                return <img key={index} src={photo} />;
-              })}
-            </StPhotos>
+            <PhotoViewer photos={photos} />
             <StWrite placeholder='글 쓰셈' />
           </StContentSection>
           <StConformButton>ㄱㄱㄱ</StConformButton>
@@ -99,15 +96,6 @@ export const StTitle = styled.input`
   border: none;
   border-bottom: 1px solid black;
   color: black;
-`;
-
-export const StPhotos = styled.div`
-  margin-top: 10px;
-  margin-bottom: 10px;
-  width: 95%;
-  height: 248px;
-
-  background: #d9d9d9;
 `;
 
 export const StConformButton = styled.button`

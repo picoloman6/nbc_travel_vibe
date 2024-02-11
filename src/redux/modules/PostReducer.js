@@ -59,8 +59,8 @@ const postReducer = (state = initialState, action) => {
     case SET_DATA:
       return {
         ...state,
-        posts: state.posts.map((item) =>
-          item.postId === action.payload.postId ? action.payload : item
+        posts: state.posts.map((post) =>
+          post.postId === action.payload.postId ? action.payload : post
         )
       };
     default:

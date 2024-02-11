@@ -18,6 +18,7 @@ const Posting = () => {
   const [title, setTitle] = useState('');
   const [content, setContent] = useState('');
   const [modifyPost, setModifyPost] = useState('');
+  const [postDate, SetPostDate] = useState('');
 
   //modal창을 위한 state
   const [isPhotoOpen, setIsPhotoOpen] = useState(false);
@@ -37,6 +38,7 @@ const Posting = () => {
     setPhotos([modifyData.photos]);
     setTitle(modifyData.title);
     setContent(modifyData.content);
+    SetPostDate(modifyData.created_at);
   }, []);
 
   //post를 저장
@@ -46,7 +48,7 @@ const Posting = () => {
       category: selectedCategory,
       title,
       content,
-      created_at: new Date(),
+      created_at: postDate,
       likes: 0,
       userId: postData.userId,
       photos: photos.map((photo) => photo.url)
@@ -59,9 +61,15 @@ const Posting = () => {
         return item;
       })
     );
-    dispatch(postSetData(modifyPost));
-    navigate('/posting');
   };
+
+  useEffect(() => {
+    if (modifyPost) {
+      dispatch(postSetData(modifyPost));
+      navigate('/posting');
+      console.table(postData);
+    }
+  }, [modifyPost]);
 
   const handlePhotoView = (photo) => {
     setSelectPhoto(photo);

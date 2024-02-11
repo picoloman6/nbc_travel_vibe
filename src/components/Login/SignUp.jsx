@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import {
   StLoginWrapper,
   StSignUp,
@@ -16,6 +16,8 @@ import {
   StSignUpBtn,
   StInputContainer
 } from './styles/SignUp.style';
+import { useDispatch } from 'react-redux';
+import { postUserData } from '../../redux/modules/UserReducer';
 
 const SignUp = ({
   onSignUpHandler,
@@ -43,6 +45,7 @@ const SignUp = ({
     }
   };
 
+  // 중복 이메일 찾기
   const foundEmail = importUsers.find((user) => user.email === email);
 
   // 비밀번호 형식 유효성검사
@@ -65,6 +68,27 @@ const SignUp = ({
     setNickName(e.target.value);
   };
   const foundNickname = importUsers.find((user) => user.nickname === nickName);
+
+  // 회원가입 기능
+  const dispatch = useDispatch();
+  // useEffect(() => {
+  //   onSignUp();
+  // }, [dispatch]);
+
+  const onSignUp = () => {
+    dispatch(
+      postUserData({
+        userId: Date.now(),
+        email: email,
+        nono: firstPw,
+        nickname: nickName
+      })
+    );
+  };
+  useEffect(() => {
+    console.log(importUsers);
+  }, [dispatch, importUsers]);
+
   return (
     <>
       <StLoginWrapper>
@@ -80,10 +104,10 @@ const SignUp = ({
             />
           </StInputContainer>
           <StErrorMsg>
-            {!isValidEmail && email.length > 0 && (
-              <div>올바르지 않은 이메일 형식입니다.</div>
-            )}
-            {foundEmail && <div>중복되는 이메일입니다.</div>}
+            {!isValidEmail &&
+              email.length > 0 &&
+              '올바르지 않은 이메일 형식입니다.'}
+            {foundEmail && '중복되는 이메일입니다.'}
           </StErrorMsg>
           <StInputContainer>
             <StLoginInput
@@ -124,7 +148,7 @@ const SignUp = ({
               '비밀번호가 일치하지 않습니다.'}
           </StErrorMsg>
         </StIdPwWrapper>
-        <StSignUpBtn>회원가입</StSignUpBtn>
+        <StSignUpBtn onClick={onSignUp}>회원가입</StSignUpBtn>
         <StAskSignUpWrapper>
           <StAskSignUp>이미 가입하셨나요?</StAskSignUp>
           <StSignUp onClick={onSignUpHandler}>로그인</StSignUp>

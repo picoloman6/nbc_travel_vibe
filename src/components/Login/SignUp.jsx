@@ -42,6 +42,9 @@ const SignUp = ({
       setIsValidEmail(false);
     }
   };
+
+  const foundEmail = importUsers.find((user) => user.email === email);
+
   // 비밀번호 형식 유효성검사
   const onCheckValidPw = (e) => {
     setFirstPw(e.target.value);
@@ -80,6 +83,7 @@ const SignUp = ({
             {!isValidEmail && email.length > 0 && (
               <div>올바르지 않은 이메일 형식입니다.</div>
             )}
+            {foundEmail && <div>중복되는 이메일입니다.</div>}
           </StErrorMsg>
           <StInputContainer>
             <StLoginInput

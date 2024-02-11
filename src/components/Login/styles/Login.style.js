@@ -81,23 +81,29 @@ export const StIdPwWrapper = styled.form`
 `;
 
 export const StInputContainer = styled.div`
+  width: 100%;
   position: relative;
+  margin-bottom: 15px;
+  background-color: #f2f2f2;
+  padding: 0 20px;
+  &:focus-within {
+    border: 1px solid black;
+  }
 `;
 
 export const StLoginInput = styled.input`
+  outline: none;
   width: 100%;
   height: 40px;
-  border-radius: 3px;
-  border: 0px;
+  border: none;
   background-color: #f2f2f2;
-  margin-bottom: 15px;
   color: #838383;
 `;
 
 export const StPwIcon = styled(FiEye)`
   position: absolute;
   width: 30px;
-  top: 20%;
+  top: 30%;
   right: 1%;
   cursor: pointer;
 `;

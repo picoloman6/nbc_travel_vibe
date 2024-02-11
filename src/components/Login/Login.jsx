@@ -24,7 +24,9 @@ const Login = ({ onModalHandler, onSignUpHandler }) => {
         <StLogoName>Travel Vibe</StLogoName>
         <StLoginTitle>로그인</StLoginTitle>
         <StIdPwWrapper>
-          <StLoginInput placeholder='이메일' />
+          <StInputContainer>
+            <StLoginInput placeholder='travel123@gmail.com' />
+          </StInputContainer>
           <StInputContainer>
             <StLoginInput
               type='password'

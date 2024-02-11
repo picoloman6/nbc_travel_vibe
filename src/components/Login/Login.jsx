@@ -1,4 +1,3 @@
-import { useEffect, useState } from 'react';
 import {
   StCheckBox,
   StIdPwWrapper,
@@ -17,45 +16,20 @@ import {
   StLogoName
 } from './styles/Login.style';
 import { StErrorMsg } from './styles/SignUp.style';
-import { useSelector } from 'react-redux';
 
-const Login = ({ onModalHandler, onSignUpHandler }) => {
-  // state 상태관리
-  const [email, setEmail] = useState('');
-  const [pw, setPw] = useState('');
-
-  const [isValidEmail, setIsValidEmail] = useState(false);
-  const [isValidPw, setIsValidPw] = useState(false);
-
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
-
-  // email 형식 유효성검사
-  const onCheckValidEmail = (e) => {
-    setEmail(e.target.value);
-    const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
-
-    if (emailRegex.test(email)) {
-      setIsValidEmail(true);
-    } else {
-      setIsValidEmail(false);
-    }
-  };
-
-  // 비밀번호 형식 유효성검사
-  const onCheckValidPw = (e) => {
-    setPw(e.target.value);
-    const pwRegex = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d@$!%*?&]{7,}$/;
-
-    if (pwRegex.test(pw)) {
-      setIsValidPw(true);
-    } else {
-      setIsValidPw(false);
-    }
-  };
-
-  // 등록된 user정보 가져오기 (reducer 통해서)
-  const importUsers = useSelector((state) => state.user.users);
-
+const Login = ({
+  onModalHandler,
+  onSignUpHandler,
+  importUsers,
+  email,
+  pw,
+  setIsLoggedIn,
+  onCheckValidEmail,
+  isValidEmail,
+  onCheckValidPw,
+  isValidPw
+}) => {
+  // 로그인 기능
   const onLoginConfirm = () => {
     const foundUser = importUsers.find((user) => {
       return user.email === email && user.nono === pw;

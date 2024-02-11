@@ -96,13 +96,14 @@ const SignUp = ({
       );
       setIsOpen(false);
       setIsLoggedIn(true);
+      alert('회원가입이 완료되었습니다.');
     } else {
       alert('입력하신 정보를 확인해주세요.');
     }
   };
-  // useEffect(() => {
-  //   console.log(importUsers);
-  // }, [dispatch, importUsers]);
+  useEffect(() => {
+    console.log(importUsers);
+  }, [dispatch, importUsers]);
 
   // 비밀번호 보이기/숨기기 토글
   const onShowPw = () => {

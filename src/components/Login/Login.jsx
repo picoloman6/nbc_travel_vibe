@@ -15,6 +15,7 @@ import {
   StAskSignUp,
   StLogoName
 } from './styles/Login.style';
+import { StErrorMsg } from './styles/SignUp.style';
 
 const Login = ({ onModalHandler, onSignUpHandler }) => {
   return (
@@ -27,6 +28,7 @@ const Login = ({ onModalHandler, onSignUpHandler }) => {
           <StInputContainer>
             <StLoginInput placeholder='travel123@gmail.com' />
           </StInputContainer>
+          <StErrorMsg>올바르지 않은 이메일 형식입니다.</StErrorMsg>
           <StInputContainer>
             <StLoginInput
               type='password'
@@ -35,6 +37,7 @@ const Login = ({ onModalHandler, onSignUpHandler }) => {
             />
             <StPwIcon />
           </StInputContainer>
+          <StErrorMsg>비밀번호가 틀립니다.</StErrorMsg>
         </StIdPwWrapper>
         <StMemoWrapper>
           <StCheckBox type='checkbox' />

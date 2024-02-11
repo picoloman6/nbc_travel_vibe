@@ -58,20 +58,15 @@ export const StIdPwWrapper = styled.form`
   margin-top: 10px;
 `;
 
-export const StLoginInput = styled.input`
+export const StInputContainer = styled.div`
   width: 100%;
-  height: 40px;
-  border-radius: 3px;
-  border: 0px;
+  position: relative;
   background-color: #f2f2f2;
-  color: #838383;
-  font-size: 15px;
-`;
-
-export const StMemoWrapper = styled.div`
-  display: flex;
-  justify-content: flex-start;
-  margin-bottom: 5%;
+  padding: 0 20px;
+  &:focus-within {
+    border: 1.5px solid ${colors.mainBlue};
+  }
+  border-radius: 3px;
 `;
 
 export const StCheckBox = styled.input`
@@ -101,7 +96,9 @@ export const StSignUpBtn = styled.button`
 `;
 
 export const StErrorMsg = styled.span`
-  color: #838383;
+  display: flex;
+  align-items: center;
+  color: ${colors.deleteText};
   font-size: 12px;
-  height: 35px;
+  height: 25px;
 `;

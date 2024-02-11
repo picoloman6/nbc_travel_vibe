@@ -78,19 +78,19 @@ export const StLoginTitle = styled.p`
 export const StIdPwWrapper = styled.form`
   display: flex;
   flex-direction: column;
-  margin-top: 30px;
+  margin-top: 20px;
   margin-bottom: 10px;
 `;
 
 export const StInputContainer = styled.div`
   width: 100%;
   position: relative;
-  margin-bottom: 15px;
   background-color: #f2f2f2;
   padding: 0 20px;
   &:focus-within {
-    border: 1px solid black;
+    border: 1.5px solid ${colors.mainBlue};
   }
+  border-radius: 3px;
 `;
 
 export const StLoginInput = styled.input`

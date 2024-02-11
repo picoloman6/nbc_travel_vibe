@@ -78,7 +78,7 @@ export const StLoginTitle = styled.p`
 export const StIdPwWrapper = styled.form`
   display: flex;
   flex-direction: column;
-  margin-top: 20px;
+  margin-top: 30px;
   margin-bottom: 10px;
 `;
 
@@ -113,7 +113,9 @@ export const StPwIcon = styled(FiEye)`
 export const StMemoWrapper = styled.div`
   display: flex;
   justify-content: flex-start;
+  align-items: center;
   margin-bottom: 5%;
+  height: 15px;
 `;
 
 export const StCheckBox = styled.input`

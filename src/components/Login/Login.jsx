@@ -25,7 +25,7 @@ const Login = ({ onModalHandler, onSignUpHandler }) => {
   const [isValidEmail, setIsValidEmail] = useState(false);
   const [isValidPw, setIsValidPw] = useState(false);
 
-  const onChangeEmail = (e) => {
+  const onCheckValidEmail = (e) => {
     setEmail(e.target.value);
     const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
 
@@ -36,8 +36,16 @@ const Login = ({ onModalHandler, onSignUpHandler }) => {
     }
   };
 
-  const onChangePw = (e) => {
+  const onCheckValidPw = (e) => {
     setPw(e.target.value);
+    const pwRegex =
+      /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+
+    if (pwRegex.test(pw)) {
+      setIsValidPw(true);
+    } else {
+      setIsValidPw(false);
+    }
   };
 
   // useEffect(() => {
@@ -63,7 +71,7 @@ const Login = ({ onModalHandler, onSignUpHandler }) => {
             <StLoginInput
               placeholder='travel123@gmail.com'
               value={email}
-              onChange={onChangeEmail}
+              onChange={onCheckValidEmail}
             />
           </StInputContainer>
           <StErrorMsg>
@@ -77,12 +85,17 @@ const Login = ({ onModalHandler, onSignUpHandler }) => {
               autoComplete='on'
               placeholder='비밀번호'
               value={pw}
-              onChange={onChangePw}
+              onChange={onCheckValidPw}
             />
             <StPwIcon />
           </StInputContainer>
           <StErrorMsg>
-            영문, 숫자, 특수문자 포함 8자 이상 입력해주세요.
+            {!isValidPw && pw.length > 0 && (
+              <div>
+                영문, 숫자, 특수문자 포함 8자 이상 입력해주세요.(@, $, !, %, *,
+                ?, &)
+              </div>
+            )}
           </StErrorMsg>
         </StIdPwWrapper>
         <StMemoWrapper>

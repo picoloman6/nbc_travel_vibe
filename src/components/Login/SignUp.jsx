@@ -17,11 +17,18 @@ import {
   StInputContainer
 } from './styles/SignUp.style';
 
-const SignUp = ({ onSignUpHandler, onModalHandler, validEmail, validPw }) => {
+const SignUp = ({
+  onSignUpHandler,
+  onModalHandler,
+  validEmail,
+  validPw,
+  importUsers
+}) => {
   // signUp의 state 상태관리
   const [email, setEmail] = useState('');
   const [firstPw, setFirstPw] = useState('');
   const [secondPw, setSecondPw] = useState('');
+  const [nickName, setNickName] = useState('');
 
   const [isValidEmail, setIsValidEmail] = useState(false);
   const [isValidPw, setIsValidPw] = useState(false);
@@ -49,6 +56,12 @@ const SignUp = ({ onSignUpHandler, onModalHandler, validEmail, validPw }) => {
   const onDoubleCheckPw = (e) => {
     setSecondPw(e.target.value);
   };
+
+  // 닉네임 중복검사
+  const onCheckUniqueNickname = (e) => {
+    setNickName(e.target.value);
+  };
+  const foundNickname = importUsers.find((user) => user.nickname === nickName);
   return (
     <>
       <StLoginWrapper>
@@ -69,9 +82,13 @@ const SignUp = ({ onSignUpHandler, onModalHandler, validEmail, validPw }) => {
             )}
           </StErrorMsg>
           <StInputContainer>
-            <StLoginInput placeholder='닉네임' />
+            <StLoginInput
+              placeholder='닉네임'
+              value={nickName}
+              onChange={onCheckUniqueNickname}
+            />
           </StInputContainer>
-          <StErrorMsg>중복되는 닉네임입니다.</StErrorMsg>
+          <StErrorMsg>{foundNickname && '중복되는 닉네임입니다.'}</StErrorMsg>
           <StInputContainer>
             <StLoginInput
               type='password'

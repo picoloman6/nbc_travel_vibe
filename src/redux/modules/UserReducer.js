@@ -24,7 +24,7 @@ const initialState = {
       userId: 2,
       email: 'bbbb@naver.com',
       nono: 'bbbb2222',
-      nickname: 'sdfsdf',
+      nickname: 'abcde',
       image: defaultAvatar
     }
   ]

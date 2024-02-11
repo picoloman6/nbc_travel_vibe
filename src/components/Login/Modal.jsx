@@ -40,6 +40,7 @@ const Modal = ({
             onSignUpHandler={onSignUpHandler}
             validEmail={validEmail}
             validPw={validPw}
+            importUsers={importUsers}
           />
         ) : (
           <Login

@@ -24,7 +24,8 @@ const SignUp = ({
   onModalHandler,
   validEmail,
   validPw,
-  importUsers
+  importUsers,
+  setIsOpen
 }) => {
   // signUp의 state 상태관리
   const [email, setEmail] = useState('');
@@ -84,6 +85,7 @@ const SignUp = ({
         nickname: nickName
       })
     );
+    setIsOpen(false);
   };
   useEffect(() => {
     console.log(importUsers);

@@ -41,6 +41,7 @@ const Modal = ({
             validEmail={validEmail}
             validPw={validPw}
             importUsers={importUsers}
+            setIsOpen={setIsOpen}
           />
         ) : (
           <Login

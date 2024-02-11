@@ -17,6 +17,8 @@ import {
   StLogoName
 } from './styles/Login.style';
 import { StErrorMsg } from './styles/SignUp.style';
+import { FiEye } from 'react-icons/fi';
+import { FiEyeOff } from 'react-icons/fi';
 
 const Login = ({
   setIsOpen,
@@ -69,6 +71,12 @@ const Login = ({
     }
   };
 
+  // 비밀번호 보이게 하기
+  const [isShowPw, setIsShowPw] = useState(false);
+  const onShowPw = () => {
+    setIsShowPw((prev) => !prev);
+  };
+
   return (
     <>
       <StLoginWrapper>
@@ -90,13 +98,15 @@ const Login = ({
           </StErrorMsg>
           <StInputContainer>
             <StLoginInput
-              type='password'
+              type={isShowPw ? 'text' : 'password'}
               autoComplete='on'
               placeholder='비밀번호'
               value={pw}
               onChange={onCheckValidPw}
             />
-            <StPwIcon />
+            <StPwIcon onClick={onShowPw}>
+              {isShowPw ? <FiEye /> : <FiEyeOff />}
+            </StPwIcon>
           </StInputContainer>
           <StErrorMsg>
             {!isValidPw && pw.length > 0 && (

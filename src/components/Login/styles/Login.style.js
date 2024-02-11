@@ -1,6 +1,5 @@
 import styled from 'styled-components';
 import colors from '../../../constants/colors';
-import { FiEye } from 'react-icons/fi';
 
 export const StBackground = styled.div`
   display: ${(props) => (props.$isOpen ? 'block' : 'none')};
@@ -102,10 +101,10 @@ export const StLoginInput = styled.input`
   color: #838383;
 `;
 
-export const StPwIcon = styled(FiEye)`
+export const StPwIcon = styled.div`
   position: absolute;
   width: 30px;
-  top: 30%;
+  top: 10%;
   right: 1%;
   cursor: pointer;
 `;

@@ -13,15 +13,15 @@ const initialState = {
   users: [
     {
       userId: 1,
-      email: 'sdkfjl',
-      nono: 'sdfsd',
+      email: 'sdkfjl@gmail.com',
+      nono: 'sdfsdABC@123',
       nickname: 'sdfsdf',
       image: 'dddd'
     },
     {
       userId: 2,
-      email: 'sdk2323fjl',
-      nono: 'sdfsd',
+      email: 'sdk2323fjl@naver.com',
+      nono: 'sdfsdAB$123',
       nickname: 'sdfsdf',
       image: 'dddd'
     }

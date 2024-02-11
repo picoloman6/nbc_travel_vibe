@@ -25,7 +25,8 @@ const SignUp = ({
   validEmail,
   validPw,
   importUsers,
-  setIsOpen
+  setIsOpen,
+  setIsLoggedIn
 }) => {
   // signUp의 state 상태관리
   const [email, setEmail] = useState('');
@@ -86,6 +87,7 @@ const SignUp = ({
       })
     );
     setIsOpen(false);
+    setIsLoggedIn(true);
   };
   useEffect(() => {
     console.log(importUsers);

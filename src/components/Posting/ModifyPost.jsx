@@ -27,7 +27,6 @@ const Posting = () => {
   //기존 데이터를 불러오는 요소 (아티클에서 수정하기를 누르면 파라미터로 postId를 넘겨줄거임)
   const location = useLocation();
   const id = location.state;
-  const navigate = useNavigate();
 
   const postData = useSelector((state) => state.post.posts);
   const [modifyData] = postData.filter((item) => item.postId === id);
@@ -64,12 +63,9 @@ const Posting = () => {
       })
     );
   };
-
   useEffect(() => {
     if (modifyPost) {
       dispatch(postSetData(modifyPost));
-      navigate('/posting');
-      console.table(postData.photos);
     }
   }, [modifyPost]);
 

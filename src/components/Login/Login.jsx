@@ -27,7 +27,8 @@ const Login = ({
   importUsers,
   setIsLoggedIn,
   validEmail,
-  validPw
+  validPw,
+  setLoggedInUserId
 }) => {
   // Login의 state 상태관리
   const [email, setEmail] = useState('');
@@ -66,6 +67,7 @@ const Login = ({
       alert('로그인 되었습니다.');
       setIsLoggedIn(true);
       setIsOpen(false);
+      setLoggedInUserId(foundUser.userId);
     } else {
       alert('등록되지 않은 회원입니다.');
     }

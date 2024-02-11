@@ -32,3 +32,12 @@ export const StHeaderBtn = styled.button`
   background: none;
   border: none;
 `;
+
+export const Test = styled.img`
+  width: 50px;
+  position: absolute;
+  top: 3%;
+  right: 7%;
+  display: ${($isLoggedIn) => ($isLoggedIn ? 'block' : 'none')};
+  cursor: pointer;
+`;

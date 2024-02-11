@@ -17,7 +17,14 @@ import {
   StInputContainer
 } from './styles/SignUp.style';
 
-const SignUp = ({ onSignUpHandler, onModalHandler }) => {
+const SignUp = ({
+  onSignUpHandler,
+  onModalHandler,
+  isValidEmail,
+  email,
+  isValidPw,
+  pw
+}) => {
   return (
     <>
       <StLoginWrapper>
@@ -28,7 +35,11 @@ const SignUp = ({ onSignUpHandler, onModalHandler }) => {
           <StInputContainer>
             <StLoginInput placeholder='travel123@gmail.com' />
           </StInputContainer>
-          <StErrorMsg>중복되는 이메일입니다.</StErrorMsg>
+          <StErrorMsg>
+            {!isValidEmail && email.length > 0 && (
+              <div>올바르지 않은 이메일 형식입니다.</div>
+            )}
+          </StErrorMsg>
           <StInputContainer>
             <StLoginInput placeholder='닉네임' />
           </StInputContainer>
@@ -41,7 +52,11 @@ const SignUp = ({ onSignUpHandler, onModalHandler }) => {
             />
             <StPwIcon />
           </StInputContainer>
-          <StErrorMsg>현재 비밀번호가 틀립니다.</StErrorMsg>
+          <StErrorMsg>
+            {!isValidPw && pw.length > 0 && (
+              <div>영문, 숫자 포함 8자 이상 입력해주세요.</div>
+            )}
+          </StErrorMsg>
           <StInputContainer>
             <StLoginInput
               type='password'

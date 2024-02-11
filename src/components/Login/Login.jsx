@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import {
   StCheckBox,
   StIdPwWrapper,
@@ -21,14 +22,37 @@ const Login = ({
   onModalHandler,
   onSignUpHandler,
   importUsers,
-  email,
-  pw,
   setIsLoggedIn,
-  onCheckValidEmail,
-  isValidEmail,
-  onCheckValidPw,
-  isValidPw
+  validEmail,
+  validPw
 }) => {
+  // state 상태관리
+  const [email, setEmail] = useState('');
+  const [pw, setPw] = useState('');
+
+  const [isValidEmail, setIsValidEmail] = useState(false);
+  const [isValidPw, setIsValidPw] = useState(false);
+
+  // email 형식 유효성검사
+  const onCheckValidEmail = (e) => {
+    setEmail(e.target.value);
+    if (validEmail(email)) {
+      setIsValidEmail(true);
+    } else {
+      setIsValidEmail(false);
+    }
+  };
+
+  // 비밀번호 형식 유효성검사
+  const onCheckValidPw = (e) => {
+    setPw(e.target.value);
+    if (validPw(pw)) {
+      setIsValidPw(true);
+    } else {
+      setIsValidPw(false);
+    }
+  };
+
   // 로그인 기능
   const onLoginConfirm = () => {
     const foundUser = importUsers.find((user) => {

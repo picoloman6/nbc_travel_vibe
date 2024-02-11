@@ -36,6 +36,7 @@ const SignUp = ({
 
   const [isValidEmail, setIsValidEmail] = useState(false);
   const [isValidPw, setIsValidPw] = useState(false);
+  const [isValidNickName, setIsValidNickName] = useState(false);
 
   // email 형식 유효성검사
   const onCheckValidEmail = (e) => {
@@ -68,26 +69,32 @@ const SignUp = ({
   // 닉네임 중복검사
   const onCheckUniqueNickname = (e) => {
     setNickName(e.target.value);
+    if (foundNickname) {
+      setIsValidNickName(false);
+    } else {
+      setIsValidNickName(true);
+    }
   };
   const foundNickname = importUsers.find((user) => user.nickname === nickName);
 
   // 회원가입 기능
   const dispatch = useDispatch();
-  // useEffect(() => {
-  //   onSignUp();
-  // }, [dispatch]);
 
   const onSignUp = () => {
-    dispatch(
-      postUserData({
-        userId: Date.now(),
-        email: email,
-        nono: firstPw,
-        nickname: nickName
-      })
-    );
-    setIsOpen(false);
-    setIsLoggedIn(true);
+    if (isValidEmail && isValidPw && isValidNickName) {
+      dispatch(
+        postUserData({
+          userId: Date.now(),
+          email: email,
+          nono: firstPw,
+          nickname: nickName
+        })
+      );
+      setIsOpen(false);
+      setIsLoggedIn(true);
+    } else {
+      alert('입력하신 정보를 다시 한 번 확인해주세요.');
+    }
   };
   useEffect(() => {
     console.log(importUsers);

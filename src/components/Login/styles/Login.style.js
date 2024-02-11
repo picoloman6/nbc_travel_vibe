@@ -29,7 +29,7 @@ export const StContainer = styled.div`
   padding: 10px;
   box-sizing: border-box;
   width: 26%;
-  min-width: 300px;
+  min-width: 400px;
   height: 67%;
   min-height: 500px;
   border-radius: 5px;

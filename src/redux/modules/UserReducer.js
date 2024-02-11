@@ -1,3 +1,5 @@
+import defaultAvatar from '../../components/assets/defaultAvatar.png';
+
 // 1. 액션 타입을 정한다. 이름은 비슷하게
 const POST_DATA = 'user/POST_DATA';
 
@@ -13,17 +15,17 @@ const initialState = {
   users: [
     {
       userId: 1,
-      email: 'sdkfjl@gmail.com',
-      nono: 'sdfsdABC@123',
+      email: 'aaaa@gmail.com',
+      nono: 'aaaa1111',
       nickname: 'sdfsdf',
-      image: 'dddd'
+      image: defaultAvatar
     },
     {
       userId: 2,
-      email: 'sdk2323fjl@naver.com',
-      nono: 'sdfsdAB$123',
+      email: 'bbbb@naver.com',
+      nono: 'bbbb2222',
       nickname: 'sdfsdf',
-      image: 'dddd'
+      image: defaultAvatar
     }
   ]
 };

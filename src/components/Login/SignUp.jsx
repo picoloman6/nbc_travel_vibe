@@ -20,7 +20,8 @@ import {
 const SignUp = ({ onSignUpHandler, onModalHandler, validEmail, validPw }) => {
   // signUp의 state 상태관리
   const [email, setEmail] = useState('');
-  const [pw, setPw] = useState('');
+  const [firstPw, setFirstPw] = useState('');
+  const [secondPw, setSecondPw] = useState('');
 
   const [isValidEmail, setIsValidEmail] = useState(false);
   const [isValidPw, setIsValidPw] = useState(false);
@@ -36,12 +37,17 @@ const SignUp = ({ onSignUpHandler, onModalHandler, validEmail, validPw }) => {
   };
   // 비밀번호 형식 유효성검사
   const onCheckValidPw = (e) => {
-    setPw(e.target.value);
-    if (validPw(pw)) {
+    setFirstPw(e.target.value);
+    if (validPw(firstPw)) {
       setIsValidPw(true);
     } else {
       setIsValidPw(false);
     }
+  };
+
+  // 비밀번호 더블체크
+  const onDoubleCheckPw = (e) => {
+    setSecondPw(e.target.value);
   };
   return (
     <>
@@ -71,13 +77,13 @@ const SignUp = ({ onSignUpHandler, onModalHandler, validEmail, validPw }) => {
               type='password'
               autoComplete='on'
               placeholder='비밀번호'
-              value={pw}
+              value={firstPw}
               onChange={onCheckValidPw}
             />
             <StPwIcon />
           </StInputContainer>
           <StErrorMsg>
-            {!isValidPw && pw.length > 0 && (
+            {!isValidPw && firstPw.length > 0 && (
               <div>영문, 숫자 포함 8자 이상 입력해주세요.</div>
             )}
           </StErrorMsg>
@@ -86,10 +92,16 @@ const SignUp = ({ onSignUpHandler, onModalHandler, validEmail, validPw }) => {
               type='password'
               autoComplete='on'
               placeholder='비밀번호 확인'
+              value={secondPw}
+              onChange={onDoubleCheckPw}
             />
             <StPwIcon />
           </StInputContainer>
-          <StErrorMsg>비밀번호가 일치하지 않습니다.</StErrorMsg>
+          <StErrorMsg>
+            {secondPw.length > 0 &&
+              firstPw !== secondPw &&
+              '비밀번호가 일치하지 않습니다.'}
+          </StErrorMsg>
         </StIdPwWrapper>
         <StSignUpBtn>회원가입</StSignUpBtn>
         <StAskSignUpWrapper>

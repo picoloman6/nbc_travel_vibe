@@ -7,10 +7,12 @@ import {
 import Modal from '../Login/Modal';
 
 const Header = () => {
+  // 모달창을 위한 state 상태관리
   const [isOpen, setIsOpen] = useState(false);
   const [isSignUp, setIsSignUp] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
+  // 모달창 열고 닫기
   const onModalHandler = () => {
     if (isLoggedIn) {
       setIsLoggedIn(false);

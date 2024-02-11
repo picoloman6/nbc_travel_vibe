@@ -9,10 +9,17 @@ import Modal from '../Login/Modal';
 const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [isSignUp, setIsSignUp] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+
   const onModalHandler = () => {
-    setIsOpen(!isOpen);
-    if (isSignUp === true) {
-      setIsSignUp(!isSignUp);
+    if (isLoggedIn) {
+      setIsLoggedIn(false);
+      alert('로그아웃 되었습니다.');
+    } else {
+      setIsOpen(!isOpen);
+      if (isSignUp === true) {
+        setIsSignUp(!isSignUp);
+      }
     }
   };
 
@@ -23,12 +30,17 @@ const Header = () => {
         <StHeaderBtn>My Blog</StHeaderBtn>
       </StHeaderBtnWapper>
       <StHeaderBtnWapper>
-        <StHeaderBtn onClick={onModalHandler}>Login</StHeaderBtn>
+        <StHeaderBtn onClick={onModalHandler}>
+          {isLoggedIn ? 'Logout' : 'Login'}
+        </StHeaderBtn>
         <Modal
           isOpen={isOpen}
+          setIsOpen={setIsOpen}
           onModalHandler={onModalHandler}
           isSignUp={isSignUp}
           setIsSignUp={setIsSignUp}
+          isLoggedIn={isLoggedIn}
+          setIsLoggedIn={setIsLoggedIn}
         />
         <StHeaderBtn>O</StHeaderBtn>
       </StHeaderBtnWapper>

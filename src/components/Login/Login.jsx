@@ -19,6 +19,7 @@ import {
 import { StErrorMsg } from './styles/SignUp.style';
 
 const Login = ({
+  setIsOpen,
   onModalHandler,
   onSignUpHandler,
   importUsers,
@@ -62,6 +63,7 @@ const Login = ({
     if (foundUser) {
       alert('로그인 되었습니다.');
       setIsLoggedIn(true);
+      setIsOpen(false);
     } else {
       alert('등록되지 않은 회원입니다.');
     }

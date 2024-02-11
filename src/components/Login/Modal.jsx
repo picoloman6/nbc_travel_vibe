@@ -2,15 +2,20 @@ import { StContainer, StBackground } from './styles/Login.style';
 
 import Login from './Login';
 import SignUp from './SignUp';
-import { useState } from 'react';
 import { useSelector } from 'react-redux';
 
-const Modal = ({ isOpen, onModalHandler, isSignUp, setIsSignUp }) => {
+const Modal = ({
+  isOpen,
+  setIsOpen,
+  onModalHandler,
+  isSignUp,
+  setIsSignUp,
+  setIsLoggedIn,
+  isLoggedIn
+}) => {
   const onSignUpHandler = () => {
     setIsSignUp(!isSignUp);
   };
-
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   // 이메일, 비밀번호 형식 유효성 검사 함수
   const validEmail = (email) => {
@@ -38,6 +43,7 @@ const Modal = ({ isOpen, onModalHandler, isSignUp, setIsSignUp }) => {
           />
         ) : (
           <Login
+            setIsOpen={setIsOpen}
             onModalHandler={onModalHandler}
             isSignUp={isSignUp}
             setIsSignUp={setIsSignUp}

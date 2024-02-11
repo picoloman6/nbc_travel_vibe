@@ -34,8 +34,10 @@ const Posting = () => {
   console.log(modifyData);
   const dispatch = useDispatch();
 
+  console.log(modifyData.photos);
+
   useEffect(() => {
-    setPhotos([modifyData.photos]);
+    setPhotos(modifyData.photos);
     setTitle(modifyData.title);
     setContent(modifyData.content);
     SetPostDate(modifyData.created_at);
@@ -51,7 +53,7 @@ const Posting = () => {
       created_at: postDate,
       likes: 0,
       userId: postData.userId,
-      photos: photos.map((photo) => photo.url)
+      photos: photos
     };
     setModifyPost(
       await postData.map((item) => {
@@ -67,7 +69,7 @@ const Posting = () => {
     if (modifyPost) {
       dispatch(postSetData(modifyPost));
       navigate('/posting');
-      console.table(postData);
+      console.table(postData.photos);
     }
   }, [modifyPost]);
 

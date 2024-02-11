@@ -21,8 +21,11 @@ const initialState = {
       created_at: 1,
       likes: 2,
       userId: 1,
-      photos:
-        'https://i.namu.wiki/i/mmkvzpz0i0UFFKSrfyN5-jrvbiu5FWfhdFZLWnug67p1NcoISI3ql8wHLri5AalgIVcC6sRAVMUzLlST-KYh7g.webp'
+      photos: [
+        {
+          url: 'https://i.namu.wiki/i/mmkvzpz0i0UFFKSrfyN5-jrvbiu5FWfhdFZLWnug67p1NcoISI3ql8wHLri5AalgIVcC6sRAVMUzLlST-KYh7g.webp'
+        }
+      ]
     },
     {
       postId: 2,
@@ -32,8 +35,11 @@ const initialState = {
       created_at: 100000,
       likes: 3,
       userId: 2,
-      photos:
-        'https://i.namu.wiki/i/mmkvzpz0i0UFFKSrfyN5-jrvbiu5FWfhdFZLWnug67p1NcoISI3ql8wHLri5AalgIVcC6sRAVMUzLlST-KYh7g.webp'
+      photos: [
+        {
+          url: 'https://i.namu.wiki/i/mmkvzpz0i0UFFKSrfyN5-jrvbiu5FWfhdFZLWnug67p1NcoISI3ql8wHLri5AalgIVcC6sRAVMUzLlST-KYh7g.webp'
+        }
+      ]
     },
     {
       postId: 3,
@@ -43,8 +49,11 @@ const initialState = {
       created_at: 494841,
       likes: 20,
       userId: 3,
-      photos:
-        'https://i.namu.wiki/i/mmkvzpz0i0UFFKSrfyN5-jrvbiu5FWfhdFZLWnug67p1NcoISI3ql8wHLri5AalgIVcC6sRAVMUzLlST-KYh7g.webp'
+      photos: [
+        {
+          url: 'https://i.namu.wiki/i/mmkvzpz0i0UFFKSrfyN5-jrvbiu5FWfhdFZLWnug67p1NcoISI3ql8wHLri5AalgIVcC6sRAVMUzLlST-KYh7g.webp'
+        }
+      ]
     }
   ]
 };
@@ -59,9 +68,7 @@ const postReducer = (state = initialState, action) => {
     case SET_DATA:
       return {
         ...state,
-        posts: state.posts.map((post) =>
-          post.postId === action.payload.postId ? action.payload : post
-        )
+        posts: action.payload
       };
     default:
       return state;
@@ -69,3 +76,6 @@ const postReducer = (state = initialState, action) => {
 };
 
 export default postReducer;
+// posts: state.posts.map((post) =>
+//           post.postId === action.payload.postId ? action.payload : post
+//         )

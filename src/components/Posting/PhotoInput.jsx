@@ -2,7 +2,7 @@ import { useRef } from 'react';
 import { MdAddPhotoAlternate } from 'react-icons/md';
 import styled from 'styled-components';
 
-const PhotoInput = ({ setPhotos }) => {
+const PhotoInput = ({ setPhotos, photos }) => {
   const fileInput = useRef(null);
 
   const handleButtonClick = () => {
@@ -21,7 +21,7 @@ const PhotoInput = ({ setPhotos }) => {
       const reader = new FileReader(file);
       reader.readAsDataURL(file);
       reader.onload = () => {
-        setPhotos((prev) => [...prev, reader.result]);
+        setPhotos((prev) => [...prev, { url: reader.result }]);
       };
     });
   };

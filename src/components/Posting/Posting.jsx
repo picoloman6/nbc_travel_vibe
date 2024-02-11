@@ -4,7 +4,7 @@ import size from '../../constants/size';
 import colors from '../../constants/colors';
 import Header from '../common/Header';
 import PhotoInput from './PhotoInput';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import PhotoViewer from './PhotoViewer';
 import { useDispatch, useSelector } from 'react-redux';
 import { postPostData } from '../../redux/modules/PostReducer';
@@ -14,7 +14,7 @@ import { useNavigate } from 'react-router-dom';
 const Posting = () => {
   const navigate = useNavigate();
   const postData = useSelector((state) => state.post.posts);
-  console.table(postData[2].photos.length); //이거 왜 인풋에 입력할때마다 찍힘?
+  console.table(postData); //이거 왜 인풋에 입력할때마다 찍힘?
   const dispatch = useDispatch();
 
   const [photos, setPhotos] = useState([]);
@@ -24,9 +24,12 @@ const Posting = () => {
   const [isPhotoOpen, setIsPhotoOpen] = useState(false);
   const [selectPhoto, setSelectPhoto] = useState('');
 
+  // useEffect(() => {
+  //   setPhotos(photos.map((item) => ({ url: item })));
+  // }, [photos]);
+
   const handlePhotoView = (photo) => {
     setSelectPhoto(photo);
-    console.log(photo);
     setIsPhotoOpen(true);
   };
 
@@ -39,7 +42,7 @@ const Posting = () => {
       created_at: new Date(),
       likes: 0,
       userId: postData.length + 1,
-      photos: photos.map((photo) => photo.url)
+      photos: photos
     };
     dispatch(postPostData(newPost));
   };

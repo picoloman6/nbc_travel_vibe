@@ -1,8 +1,6 @@
 import styled from 'styled-components';
 
 const PhotoViewer = ({ photos, setPhotos, handlePhotoView }) => {
-  console.log(photos);
-
   const handleDeletePhoto = (index) => {
     const deletedPhoto = photos.filter((item, i) => i !== index);
     setPhotos(deletedPhoto);
@@ -14,7 +12,10 @@ const PhotoViewer = ({ photos, setPhotos, handlePhotoView }) => {
         {photos.map((photo, index) => {
           return (
             <ImageWrap key={index}>
-              <PhotoImage onClick={() => handlePhotoView(photo)} src={photo} />
+              <PhotoImage
+                onClick={() => handlePhotoView(photo)}
+                src={photo.url}
+              />
               <DeleteButton onClick={() => handleDeletePhoto(index)}>
                 X
               </DeleteButton>

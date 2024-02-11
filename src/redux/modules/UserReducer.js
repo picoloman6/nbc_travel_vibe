@@ -35,7 +35,7 @@ const userReducer = (state = initialState, action) => {
     case POST_DATA:
       return {
         ...state,
-        users: [...state.users, { ...action.user, image: defaultAvatar }]
+        users: [...state.users, { ...action.user }]
       };
     // 3. 여기 와서 action을 추가한다. 대신 데이터의 불변성을 유지한다.
     default:

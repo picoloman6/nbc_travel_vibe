@@ -20,6 +20,7 @@ import { useDispatch } from 'react-redux';
 import { postUserData } from '../../redux/modules/UserReducer';
 import { FiEyeOff } from 'react-icons/fi';
 import { FiEye } from 'react-icons/fi';
+import defaultAvatar from '../assets/defaultAvatar.png';
 
 const SignUp = ({
   onSignUpHandler,
@@ -91,19 +92,22 @@ const SignUp = ({
           userId: Date.now(),
           email: email,
           nono: firstPw,
-          nickname: nickName
+          nickname: nickName,
+          image: defaultAvatar
         })
       );
       setIsOpen(false);
       setIsLoggedIn(true);
-      alert('회원가입이 완료되었습니다.');
+      alert('축하합니다 🎉 회원가입이 완료되었습니다.');
     } else {
       alert('입력하신 정보를 확인해주세요.');
     }
   };
-  useEffect(() => {
-    console.log(importUsers);
-  }, [dispatch, importUsers]);
+
+  // 회원가입 시 로그인상태로 전환
+  // useEffect(() => {
+  //   setIsLoggedIn(true);
+  // }, [importUsers]);
 
   // 비밀번호 보이기/숨기기 토글
   const onShowPw = () => {

@@ -3,7 +3,7 @@ import {
   StHeader,
   StHeaderBtnWapper,
   StHeaderBtn,
-  Test
+  ProfileImg
 } from './styles/Header.style';
 import Modal from '../Login/Modal';
 import { useSelector } from 'react-redux';
@@ -54,7 +54,7 @@ const Header = () => {
         />
         <StHeaderBtn>
           {isLoggedIn && (
-            <Test
+            <ProfileImg
               $isLoggedIn={isLoggedIn}
               src={foundUser.image}
               alt='기본이미지'

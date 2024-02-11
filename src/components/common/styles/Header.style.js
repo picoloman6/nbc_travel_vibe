@@ -18,7 +18,7 @@ export const StHeaderBtnWapper = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin: 0 50px 0 50px;
+  margin-left: 50px;
   gap: 20px;
 `;
 
@@ -35,9 +35,7 @@ export const StHeaderBtn = styled.button`
 
 export const Test = styled.img`
   width: 50px;
-  position: absolute;
-  top: 3%;
-  right: 7%;
+  margin-right: 20px;
   display: ${($isLoggedIn) => ($isLoggedIn ? 'block' : 'none')};
   cursor: pointer;
 `;

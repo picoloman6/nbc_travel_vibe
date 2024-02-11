@@ -18,6 +18,8 @@ import {
 } from './styles/SignUp.style';
 import { useDispatch } from 'react-redux';
 import { postUserData } from '../../redux/modules/UserReducer';
+import { FiEyeOff } from 'react-icons/fi';
+import { FiEye } from 'react-icons/fi';
 
 const SignUp = ({
   onSignUpHandler,
@@ -33,6 +35,8 @@ const SignUp = ({
   const [firstPw, setFirstPw] = useState('');
   const [secondPw, setSecondPw] = useState('');
   const [nickName, setNickName] = useState('');
+  const [isShowPw, setIsShowPw] = useState(false);
+  const [secondIsShowPw, setSecondIsShowPw] = useState(false);
 
   const [isValidEmail, setIsValidEmail] = useState(false);
   const [isValidPw, setIsValidPw] = useState(false);
@@ -93,12 +97,22 @@ const SignUp = ({
       setIsOpen(false);
       setIsLoggedIn(true);
     } else {
-      alert('입력하신 정보를 다시 한 번 확인해주세요.');
+      alert('입력하신 정보를 확인해주세요.');
     }
   };
-  useEffect(() => {
-    console.log(importUsers);
-  }, [dispatch, importUsers]);
+  // useEffect(() => {
+  //   console.log(importUsers);
+  // }, [dispatch, importUsers]);
+
+  // 비밀번호 보이기/숨기기 토글
+  const onShowPw = () => {
+    setIsShowPw((prev) => !prev);
+  };
+
+  // 비밀번호 더블체크 보이기/숨기기 토글
+  const onShowSecondPw = () => {
+    setSecondIsShowPw((prev) => !prev);
+  };
 
   return (
     <>
@@ -130,13 +144,15 @@ const SignUp = ({
           <StErrorMsg>{foundNickname && '중복되는 닉네임입니다.'}</StErrorMsg>
           <StInputContainer>
             <StLoginInput
-              type='password'
+              type={isShowPw ? 'text' : 'password'}
               autoComplete='on'
               placeholder='비밀번호'
               value={firstPw}
               onChange={onCheckValidPw}
             />
-            <StPwIcon />
+            <StPwIcon onClick={onShowPw}>
+              {isShowPw ? <FiEye /> : <FiEyeOff />}
+            </StPwIcon>
           </StInputContainer>
           <StErrorMsg>
             {!isValidPw && firstPw.length > 0 && (
@@ -145,13 +161,15 @@ const SignUp = ({
           </StErrorMsg>
           <StInputContainer>
             <StLoginInput
-              type='password'
+              type={secondIsShowPw ? 'text' : 'password'}
               autoComplete='on'
               placeholder='비밀번호 확인'
               value={secondPw}
               onChange={onDoubleCheckPw}
             />
-            <StPwIcon />
+            <StPwIcon onClick={onShowSecondPw}>
+              {secondIsShowPw ? <FiEye /> : <FiEyeOff />}
+            </StPwIcon>
           </StInputContainer>
           <StErrorMsg>
             {secondPw.length > 0 &&

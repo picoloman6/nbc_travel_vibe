@@ -26,7 +26,7 @@ const Login = ({
   validEmail,
   validPw
 }) => {
-  // state 상태관리
+  // Login의 state 상태관리
   const [email, setEmail] = useState('');
   const [pw, setPw] = useState('');
 

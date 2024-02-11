@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
   StLoginWrapper,
   StSignUp,
@@ -17,14 +17,32 @@ import {
   StInputContainer
 } from './styles/SignUp.style';
 
-const SignUp = ({
-  onSignUpHandler,
-  onModalHandler,
-  isValidEmail,
-  email,
-  isValidPw,
-  pw
-}) => {
+const SignUp = ({ onSignUpHandler, onModalHandler, validEmail, validPw }) => {
+  // signUp의 state 상태관리
+  const [email, setEmail] = useState('');
+  const [pw, setPw] = useState('');
+
+  const [isValidEmail, setIsValidEmail] = useState(false);
+  const [isValidPw, setIsValidPw] = useState(false);
+
+  // email 형식 유효성검사
+  const onCheckValidEmail = (e) => {
+    setEmail(e.target.value);
+    if (validEmail(email)) {
+      setIsValidEmail(true);
+    } else {
+      setIsValidEmail(false);
+    }
+  };
+  // 비밀번호 형식 유효성검사
+  const onCheckValidPw = (e) => {
+    setPw(e.target.value);
+    if (validPw(pw)) {
+      setIsValidPw(true);
+    } else {
+      setIsValidPw(false);
+    }
+  };
   return (
     <>
       <StLoginWrapper>
@@ -33,7 +51,11 @@ const SignUp = ({
         <StLoginTitle>회원가입</StLoginTitle>
         <StIdPwWrapper>
           <StInputContainer>
-            <StLoginInput placeholder='travel123@gmail.com' />
+            <StLoginInput
+              placeholder='travel123@gmail.com'
+              value={email}
+              onChange={onCheckValidEmail}
+            />
           </StInputContainer>
           <StErrorMsg>
             {!isValidEmail && email.length > 0 && (
@@ -49,6 +71,8 @@ const SignUp = ({
               type='password'
               autoComplete='on'
               placeholder='비밀번호'
+              value={pw}
+              onChange={onCheckValidPw}
             />
             <StPwIcon />
           </StInputContainer>

@@ -33,6 +33,8 @@ const Modal = ({ isOpen, onModalHandler, isSignUp, setIsSignUp }) => {
           <SignUp
             onModalHandler={onModalHandler}
             onSignUpHandler={onSignUpHandler}
+            validEmail={validEmail}
+            validPw={validPw}
           />
         ) : (
           <Login

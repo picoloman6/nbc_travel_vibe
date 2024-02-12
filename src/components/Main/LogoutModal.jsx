@@ -1,6 +1,6 @@
 import { StBackground, StLogoutContainer } from './styles/LogoutModal.style'
 import { StCloseBtn, StLogoName, StLogoutTitle, StLogoutButton, StCancelButton, StButtonWrap } from './styles/LogoutModal.style'
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 
 
 const LogoutModal = ({ isLogoutModalOpen, setIsLogoutModalOpen, setIsLoggedIn, isLoggedIn }) => {
@@ -10,11 +10,16 @@ const LogoutModal = ({ isLogoutModalOpen, setIsLogoutModalOpen, setIsLoggedIn, i
         setIsLogoutModalOpen(!isLogoutModalOpen)
     }
 
+    const { pathname } = useLocation();
+
     const handleLogoutButtonClick = () => {
-        console.log(isLoggedIn)
         setIsLogoutModalOpen(!isLogoutModalOpen)
         setIsLoggedIn(!isLoggedIn);
-        alert('로그아웃되었습니다. 홈으로 이동합니다.')
+        if (pathname === '/') {
+            alert('로그아웃 되었습니다.')
+        } else {
+            alert('로그아웃 되었습니다. 홈으로 이동합니다.')
+        }
         navigate('/')
     }
 

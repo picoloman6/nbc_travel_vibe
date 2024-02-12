@@ -38,7 +38,7 @@ const Header = () => {
 
   const handleMyBlogButtonClick = () => {
     console.log(isLoggedIn)
-    if (!isLoggedIn) {
+    if (isLoggedIn) {
       alert("로그인 후 사용 가능합니다.")
       setIsOpen(!isOpen)
     }
@@ -55,14 +55,14 @@ const Header = () => {
     <StHeader>
       <StHeaderBtnWapper>
         <StNavLink to='/' onClick={handleHomeButtonClick}>Home</StNavLink>
-        {isLoggedIn
+        {!isLoggedIn
           ? <StNavLink to='/myarticle'>My Blog</StNavLink>
           : <StHeaderBtn onClick={handleMyBlogButtonClick}>My Blog</StHeaderBtn>
         }
 
       </StHeaderBtnWapper>
       <StHeaderBtnWapper>
-        {isLoggedIn
+        {!isLoggedIn
           ? <>
             <StNavLink to='/posting' onClick={handlePostButtonClick}>Post</StNavLink>
             <StHeaderBtn onClick={onLogoutModalHandler}>Logout</StHeaderBtn>

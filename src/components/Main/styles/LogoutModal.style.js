@@ -1,6 +1,5 @@
 import styled from 'styled-components';
 import colors from '../../../constants/colors';
-import { FiEye } from 'react-icons/fi';
 
 export const StBackground = styled.div`
   display: block;

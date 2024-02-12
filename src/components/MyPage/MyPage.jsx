@@ -24,6 +24,7 @@ const MyPage = () => {
 
   const [nickname, setNickname] = useState(user.nickname);
   const [nono, setNono] = useState(user.nono);
+  const [confirmPassword, setConfirmPassword] = useState('');
   const [image, setImage] = useState(user.image);
 
   const dispatch = useDispatch();
@@ -35,9 +36,13 @@ const MyPage = () => {
       nono,
       image
     }
-    dispatch(updateUserData(updateUser))
-    console.log('여기는 updateUser', updateUser)
-
+    if (nono === confirmPassword) {
+      dispatch(updateUserData(updateUser))
+      console.log('여기는 updateUser', updateUser)
+    } else {
+      alert('비밀번호를 확인해주세요.')
+      setConfirmPassword('')
+    }
   }
 
   return (
@@ -63,7 +68,7 @@ const MyPage = () => {
               </StCurrentPw>
               <StNewPw>
                 <label>비밀번호 확인</label>
-                <input type='password' onChange={(e) => setNono(e.target.value)}></input>
+                <input type='password' value={confirmPassword} onChange={(e) => setConfirmPassword(e.target.value)}></input>
               </StNewPw>
             </StUserInfoDeatilWrapper>
           </StUserInfoWrapper>

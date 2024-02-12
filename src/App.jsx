@@ -15,7 +15,6 @@ const App = () => {
   const users = useSelector((state) => state.user.users);
   const posts = useSelector((state) => state.post.posts);
   const comments = useSelector((state) => state.comment.comments);
-  const mypages = useSelector((state) => state.mypage.mypages);
 
   // 5. 데이터에 변화를 줄때는 이대로 사용한다.
   // dispatch 안에는 액션 객체 생성 함수
@@ -35,7 +34,6 @@ const App = () => {
   console.log(users);
   console.log(posts);
   console.log(comments);
-  console.log(users.email);
 
   return (
     <StAppWrapper>

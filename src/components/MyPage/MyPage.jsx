@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { StDeleteBtn, StSubmitBtn } from '../common/styles/Button.style';
 import {
   StAvatar,
@@ -15,11 +15,30 @@ import {
 } from './styles/MyPages.style';
 import Body from '../common/Body';
 import Header from '../common/Header';
-import { UseSelector, useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 const MyPage = () => {
-  const users = useSelector((state) => state.user.users);
-  const userEmail = users[0].email // 유저 이메일 가져오기
+  const user = useSelector((state) => state.user.users[0]);
+  const userEmail = user.email // 유저 이메일 가져오기
+
+  const [nickname, setNickname] = useState(user.nickname);
+  const [password, setPassword] = useState(user.nono);
+  const [image, setImage] = useState(user.image);
+
+  const dispatch = useDispatch();
+
+  const handleUpdate = () => {
+    const updateUser = {
+      ...user,
+      nickname,
+      password,
+      image
+    }
+    dispatch(updateUser)
+    console.log(updateUser)
+
+  }
+
   return (
     <StContainer>
       <Header />
@@ -35,25 +54,25 @@ const MyPage = () => {
               </StEmail>
               <StNickName>
                 <label>닉네임</label>
-                <input placeholder='닉네임' type='text'></input>
+                <input placeholder={user.nickname} type='text' value={nickname} onChange={(e) => setNickname(e.target.value)}></input>
               </StNickName>
               <StCurrentPw>
-                <label>현재 비밀번호</label>
-                <input type='password'></input>
+                <label>새로운 비밀번호</label>
+                <input placeholder={user.password} type='password' value={password} onChange={(e) => setPassword(e.target.value)}></input>
               </StCurrentPw>
               <StNewPw>
-                <label>새로운 비밀번호</label>
-                <input type='password'></input>
+                <label>비밀번호 확인</label>
+                <input type='password' onChange={(e) => setPassword(e.target.value)}></input>
               </StNewPw>
             </StUserInfoDeatilWrapper>
           </StUserInfoWrapper>
           <StBtnsWrapper>
-            <StSubmitBtn>완료</StSubmitBtn>
-            <StDeleteBtn>삭제</StDeleteBtn>
+            <StSubmitBtn onClick={handleUpdate}>저장</StSubmitBtn>
+            <StDeleteBtn>취소</StDeleteBtn>
           </StBtnsWrapper>
         </StMyPageWrapper>
       </Body>
-    </StContainer>
+    </StContainer >
   );
 };
 

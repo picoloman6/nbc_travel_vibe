@@ -7,9 +7,16 @@ import { FiEye } from "react-icons/fi";
 import { LiaCommentDots } from 'react-icons/lia';
 import { FcLike } from 'react-icons/fc';
 import * as Style from './styles/Main.styles'
+import { useNavigate } from 'react-router-dom';
 
 
 const Main = () => {
+  const navigate = useNavigate();
+
+  const handleArticleCardClick = () => {
+    navigate('/article')
+  }
+
   return (
     <Style.StMainBackground>
       <Header />
@@ -32,7 +39,9 @@ const Main = () => {
         </Style.StCategoryBar>
 
         <Style.StArticlesWrap>
-          <Style.StArticleCard>
+          {/* 게시글 정보들 받아와서 뿌리기 */}
+          {/* 클릭시 url에 id 같이 넘기기 */}
+          <Style.StArticleCard onClick={handleArticleCardClick}>
             <Style.StArticleThumbImg src={titleBackgroundImg} art={'게시글 썸네일 이미지'} />
             <Style.StProfileWrap>
               <Style.StProfileImge></Style.StProfileImge>

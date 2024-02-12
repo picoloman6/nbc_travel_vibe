@@ -27,7 +27,6 @@ const Header = () => {
   };
 
   const onLogoutModalHandler = () => {
-    console.log(isLoggedIn)
     setIsLogoutModalOpen(!isLogoutModalOpen);
   }
 
@@ -37,7 +36,6 @@ const Header = () => {
   }
 
   const handleMyBlogButtonClick = () => {
-    console.log(isLoggedIn)
     if (isLoggedIn) {
       alert("로그인 후 사용 가능합니다.")
       setIsOpen(!isOpen)
@@ -47,7 +45,6 @@ const Header = () => {
 
   const handleHomeButtonClick = () => {
     navigate('/')
-    console.log("isLoggedIn", isLoggedIn)
   }
 
 

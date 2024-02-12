@@ -1,4 +1,9 @@
-import styled from 'styled-components';
+import {
+  StImageWrap,
+  StDeleteButton,
+  StPhotos,
+  StPhotoImage
+} from './styles/PhotoViewerStyle';
 
 const PhotoViewer = ({ photos, setPhotos, handlePhotoView }) => {
   const handleDeletePhoto = (index) => {
@@ -11,15 +16,15 @@ const PhotoViewer = ({ photos, setPhotos, handlePhotoView }) => {
       <StPhotos>
         {photos.map((photo, index) => {
           return (
-            <ImageWrap key={index}>
-              <PhotoImage
+            <StImageWrap key={index}>
+              <StPhotoImage
                 onClick={() => handlePhotoView(photo)}
                 src={photo.url}
               />
-              <DeleteButton onClick={() => handleDeletePhoto(index)}>
+              <StDeleteButton onClick={() => handleDeletePhoto(index)}>
                 X
-              </DeleteButton>
-            </ImageWrap>
+              </StDeleteButton>
+            </StImageWrap>
           );
         })}
       </StPhotos>
@@ -28,32 +33,3 @@ const PhotoViewer = ({ photos, setPhotos, handlePhotoView }) => {
 };
 
 export default PhotoViewer;
-
-export const ImageWrap = styled.div`
-  position: relative; //이거 주고 자식한테 absolute 주면 따라감
-`;
-
-export const DeleteButton = styled.button`
-  size: 20px;
-  position: absolute;
-  right: 0;
-  top: 0;
-`;
-
-export const StPhotos = styled.div`
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
-  flex-wrap: wrap;
-  gap: 10px;
-  margin: 15px 15px 15px 15px;
-  width: 95%;
-  min-height: 248px;
-
-  background: #d9d9d9;
-`;
-
-export const PhotoImage = styled.img`
-  max-block-size: 150px;
-`;

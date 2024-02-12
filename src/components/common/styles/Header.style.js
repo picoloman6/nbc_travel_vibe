@@ -32,7 +32,8 @@ export const StHeaderBtn = styled.button`
   font-size: 32px;
   background: none;
   border: none;
-  opacity: 50%; //조건부 렌더링 필요
+  opacity: 50%;
+  padding: 0;
 
   &:hover {
     opacity: 100%;
@@ -60,6 +61,7 @@ export const StNavLink = styled(NavLink)`
   border: none;
   text-decoration: none;
   opacity: 50%;
+  margin-right: 10px;
 
   &.active {
     opacity: 100%;

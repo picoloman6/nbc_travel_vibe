@@ -37,20 +37,26 @@ const Header = () => {
     if (isLoggedIn) {
       alert("로그인 후 사용 가능합니다.")
       setIsOpen(!isOpen)
-    } else {
-      navigate('/myarticle')
     }
+
   }
 
   const handleHomeButtonClick = () => {
     navigate('/')
   }
 
+
+
+
   return (
     <StHeader>
       <StHeaderBtnWapper>
         <StNavLink to='/' onClick={handleHomeButtonClick}>Home</StNavLink>
-        <StNavLink to='/myarticle' onClick={handleMyBlogButtonClick}>My Blog</StNavLink>
+        {isLoggedIn
+          ? <StHeaderBtn onClick={handleMyBlogButtonClick}>My Blog</StHeaderBtn>
+          : <StNavLink to='/myarticle'>My Blog</StNavLink>
+        }
+
       </StHeaderBtnWapper>
       <StHeaderBtnWapper>
         {!isLoggedIn

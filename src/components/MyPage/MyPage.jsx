@@ -54,6 +54,11 @@ const MyPage = () => {
     console.log('updateUser:', updateUser);
   }
 
+  const handleCancle = () => {
+    // 이전 페이지로 돌아가기?
+    history.goBack();
+  }
+
   return (
     <StContainer>
       <Header />
@@ -83,7 +88,7 @@ const MyPage = () => {
           </StUserInfoWrapper>
           <StBtnsWrapper>
             <StSubmitBtn onClick={handleUpdate}>저장</StSubmitBtn>
-            <StDeleteBtn>취소</StDeleteBtn>
+            <StDeleteBtn onClick={handleCancle}>취소</StDeleteBtn>
           </StBtnsWrapper>
         </StMyPageWrapper>
       </Body>

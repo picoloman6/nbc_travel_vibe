@@ -17,6 +17,7 @@ import Body from '../common/Body';
 import Header from '../common/Header';
 import { useDispatch, useSelector } from 'react-redux';
 import { updateUserData } from '../../redux/modules/UserReducer';
+import { useNavigate } from 'react-router-dom';
 
 const MyPage = () => {
   const user = useSelector((state) => state.user.users[0]);
@@ -28,6 +29,7 @@ const MyPage = () => {
   const [image, setImage] = useState(user.image);
 
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const handleUpdate = () => {
     let updateUser = { ...user };
@@ -56,7 +58,7 @@ const MyPage = () => {
 
   const handleCancle = () => {
     // 이전 페이지로 돌아가기?
-    history.goBack();
+    navigate(-1);
   }
 
   return (

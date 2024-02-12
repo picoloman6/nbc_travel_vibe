@@ -22,8 +22,8 @@ const MyPage = () => {
   const user = useSelector((state) => state.user.users[0]);
   const userEmail = user.email // 유저 이메일 가져오기
 
-  const [nickname, setNickname] = useState(user.nickname);
-  const [nono, setNono] = useState(user.nono);
+  const [nickname, setNickname] = useState('');
+  const [nono, setNono] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
   const [image, setImage] = useState(user.image);
 

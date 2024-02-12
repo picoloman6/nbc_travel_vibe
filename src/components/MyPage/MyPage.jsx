@@ -23,26 +23,35 @@ const MyPage = () => {
   const userEmail = user.email // 유저 이메일 가져오기
 
   const [nickname, setNickname] = useState('');
-  const [nono, setNono] = useState('');
+  const [newPassword, setNewPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
   const [image, setImage] = useState(user.image);
 
   const dispatch = useDispatch();
 
   const handleUpdate = () => {
-    const updateUser = {
-      ...user,
-      nickname,
-      nono,
-      image
+    let updateUser = { ...user };
+    // 닉네임을 변경한 경우
+    if (nickname !== user.nickname) {
+      updateUser = { ...updateUser, nickname }
+    };
+    // 새로운 비밀번호를 입력하고, 확인란과 일치하는 경우
+    if (newPassword && newPassword === confirmPassword) {
+      updateUser = { ...updateUser, nono: newPassword };
     }
-    if (nono === confirmPassword) {
-      dispatch(updateUserData(updateUser))
-      console.log('여기는 updateUser', updateUser)
-    } else {
-      alert('비밀번호를 확인해주세요.')
+    // 비밀번호 유효성 검사
+    if (newPassword !== confirmPassword) {
+      alert('비밀번호가 일치하지 않습니다. 다시 확인해주세요.');
       setConfirmPassword('')
+      return;
     }
+    // 이미지를 변경한 경우 
+    if (image !== user.image) {
+      updateUser = { ...updateUser, image };
+    }
+
+    dispatch(updateUserData(updateUser));
+    console.log('updateUser:', updateUser);
   }
 
   return (
@@ -64,7 +73,7 @@ const MyPage = () => {
               </StNickName>
               <StCurrentPw>
                 <label>새로운 비밀번호</label>
-                <input placeholder={user.nono} type='password' value={nono} onChange={(e) => setNono(e.target.value)}></input>
+                <input placeholder={user.nono} type='password' value={newPassword} onChange={(e) => setNewPassword(e.target.value)}></input>
               </StCurrentPw>
               <StNewPw>
                 <label>비밀번호 확인</label>

@@ -66,7 +66,7 @@ const Header = () => {
           ? <>
             <StNavLink to='/posting' onClick={handlePostButtonClick}>Post</StNavLink>
             <StHeaderBtn onClick={onLogoutModalHandler}>Logout</StHeaderBtn>
-            <StHeaderProfileImage></StHeaderProfileImage>
+            <StHeaderProfileImage onClick={() => navigate('/mypage')}></StHeaderProfileImage>
           </>
           : <StHeaderBtn onClick={onModalHandler}>Login</StHeaderBtn>
         }

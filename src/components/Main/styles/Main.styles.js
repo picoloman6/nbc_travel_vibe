@@ -9,7 +9,6 @@ export const StMainBackground = styled.div`
   min-height: ${size.bodyMinHeight};
   background: ${colors.subBlue};
   display: flex;
-  justify-content: center;
   align-items: center;
   flex-direction: column;
   padding: 20px;

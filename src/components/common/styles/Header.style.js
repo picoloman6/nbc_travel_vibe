@@ -48,6 +48,10 @@ export const StHeaderProfileImage = styled.div`
   width: 35px;
   height: 35px;
   border-radius: 50%;
+
+  &:hover {
+    cursor: pointer;
+  }
 `;
 
 export const StNavLink = styled(NavLink)`

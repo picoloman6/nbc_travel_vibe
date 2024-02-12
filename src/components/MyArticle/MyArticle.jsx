@@ -7,10 +7,11 @@ import colors from '../../constants/colors'
 import thumbImg from '../assets/title_background.png'
 
 const StMyArticleContainer = styled.div`
-    width: ${size.bodyWidth};
+    width: ${size.wrapperWidth};
     min-height: ${size.bodyMinHeight};
     min-width: 800px;
     padding: 20px; 
+    margin: 0 auto;
 `
 
 const StTitle = styled.div`

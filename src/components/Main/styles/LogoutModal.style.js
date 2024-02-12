@@ -15,22 +15,22 @@ export const StBackground = styled.div`
   transition: all 0.3s;
 `;
 
-export const StContainer = styled.div`
+export const StLogoutContainer = styled.div`
   z-index: 100;
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
   background-color: white;
-
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   padding: 10px;
   box-sizing: border-box;
-  width: 26%;
-  height: 67%;
+  height: 20%;
+  width: 20%;
+  min-width: 300px;
   border-radius: 5px;
 `;
 
@@ -58,74 +58,20 @@ export const StLogoName = styled.p`
   color: ${colors.mainBlue};
 `;
 
-export const StLoginWrapper = styled.div`
-  height: 100%;
-  width: 90%;
-  display: flex;
-  flex-direction: column;
-  padding: 10px;
-`;
-
-export const StLoginTitle = styled.p`
-  font-weight: 700;
-  font-size: 23px;
+export const StLogoutTitle = styled.p`
   text-align: center;
+  font-size: 16px;
+  margin: 10px;
+  font-weight: normal;
 
   color: black;
 `;
 
-export const StIdPwWrapper = styled.form`
-  display: flex;
-  flex-direction: column;
-  margin-top: 30px;
-  margin-bottom: 10px;
-`;
-
-export const StInputContainer = styled.div`
-  position: relative;
-`;
-
-export const StLoginInput = styled.input`
-  width: 100%;
-  height: 40px;
-  border-radius: 3px;
-  border: 0px;
-  background-color: #f2f2f2;
-  margin-bottom: 15px;
-  color: #838383;
-`;
-
-export const StPwIcon = styled(FiEye)`
-  position: absolute;
-  width: 30px;
-  top: 20%;
-  right: 1%;
-  cursor: pointer;
-`;
-
-export const StMemoWrapper = styled.div`
-  display: flex;
-  justify-content: flex-start;
-  margin-bottom: 5%;
-`;
-
-export const StCheckBox = styled.input`
-  width: 15px;
-  margin-right: 10px;
-`;
-
-export const StMemoInfo = styled.span`
-  font-size: 12px;
-
-  color: #838383;
-`;
-
-export const StLoginBtn = styled.button`
+export const StLogoutButton = styled.button`
   background: ${colors.mainBlue};
   border-radius: 2px;
   border: 0px;
-  margin-bottom: 10px;
-
+  margin: 0;
   font-weight: 600;
   font-size: 15px;
   height: 40px;
@@ -135,23 +81,12 @@ export const StLoginBtn = styled.button`
   cursor: pointer;
 `;
 
-export const StAskSignUpWrapper = styled.div`
+export const StCancelButton = styled(StLogoutButton)`
+  background-color: ${colors.subText};
+`;
+
+export const StButtonWrap = styled.div`
   display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 20px;
-`;
-
-export const StAskSignUp = styled.span`
-  font-size: 12px;
-  color: #838383;
-`;
-
-export const StSignUp = styled.span`
-  font-weight: 600;
-  font-size: 15px;
-  text-decoration-line: underline;
-
-  color: #000000;
-  cursor: pointer;
+  gap: 10px;
+  width: 200px;
 `;

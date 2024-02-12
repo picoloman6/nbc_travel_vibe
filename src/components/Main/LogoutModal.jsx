@@ -1,42 +1,21 @@
-import React from 'react'
-import { StBackground, StContainer } from './styles/LogoutModal.style'
-import { StCloseBtn, StLogoName, StLoginTitle, StLoginBtn } from './styles/LogoutModal.style'
-import styled from 'styled-components'
-import colors from '../../constants/colors'
+import { StBackground, StLogoutContainer } from './styles/LogoutModal.style'
+import { StCloseBtn, StLogoName, StLogoutTitle, StLogoutButton, StCancelButton, StButtonWrap } from './styles/LogoutModal.style'
+import { useNavigate } from "react-router-dom";
 
-export const StLogoutContainer = styled(StContainer)`
-    height: 20%;
-`
-
-export const StLogoutTitle = styled(StLoginTitle)`
-    font-size: 16px;
-    margin: 10px;
-    font-weight: normal;
-`
-
-export const StButtonWrap = styled.div`
-    display: flex;
-    gap: 10px;
-    width: 60%;
-`
-
-export const StLogtoutButton = styled(StLoginBtn)`
-    margin: 0;
-`
-
-export const StCancelButton = styled(StLogtoutButton)`
-    background-color: ${colors.subText};
-`
 
 const LogoutModal = ({ isLogoutModalOpen, setIsLogoutModalOpen, setIsLoggedIn, isLoggedIn }) => {
 
+    const navigate = useNavigate();
     const handleCloseButtonClick = () => {
         setIsLogoutModalOpen(!isLogoutModalOpen)
     }
 
     const handleLogoutButtonClick = () => {
+        console.log(isLoggedIn)
         setIsLogoutModalOpen(!isLogoutModalOpen)
-        setIsLoggedIn(!isLoggedIn)
+        setIsLoggedIn(!isLoggedIn);
+        alert('로그아웃되었습니다. 홈으로 이동합니다.')
+        navigate('/')
     }
 
     return (
@@ -48,10 +27,8 @@ const LogoutModal = ({ isLogoutModalOpen, setIsLogoutModalOpen, setIsLoggedIn, i
                 <StLogoutTitle>로그아웃하시겠습니까?</StLogoutTitle>
                 <StButtonWrap>
                     <StCancelButton onClick={handleCloseButtonClick}>취소</StCancelButton>
-                    <StLogtoutButton onClick={handleLogoutButtonClick}>로그아웃</StLogtoutButton>
+                    <StLogoutButton onClick={handleLogoutButtonClick}>로그아웃</StLogoutButton>
                 </StButtonWrap>
-
-
             </StLogoutContainer>
         </StBackground>
     )

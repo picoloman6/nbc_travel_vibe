@@ -16,6 +16,9 @@ const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [isSignUp, setIsSignUp] = useState(false);
   const [isLogoutModalOpen, setIsLogoutModalOpen] = useState(false)
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+
   const onModalHandler = () => {
     setIsOpen(!isOpen);
     if (isSignUp === true) {
@@ -23,8 +26,8 @@ const Header = () => {
     }
   };
 
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
   const onLogoutModalHandler = () => {
+    console.log(isLoggedIn)
     setIsLogoutModalOpen(!isLogoutModalOpen);
   }
 
@@ -34,7 +37,8 @@ const Header = () => {
   }
 
   const handleMyBlogButtonClick = () => {
-    if (isLoggedIn) {
+    console.log(isLoggedIn)
+    if (!isLoggedIn) {
       alert("로그인 후 사용 가능합니다.")
       setIsOpen(!isOpen)
     }
@@ -43,9 +47,8 @@ const Header = () => {
 
   const handleHomeButtonClick = () => {
     navigate('/')
+    console.log("isLoggedIn", isLoggedIn)
   }
-
-
 
 
   return (
@@ -53,13 +56,13 @@ const Header = () => {
       <StHeaderBtnWapper>
         <StNavLink to='/' onClick={handleHomeButtonClick}>Home</StNavLink>
         {isLoggedIn
-          ? <StHeaderBtn onClick={handleMyBlogButtonClick}>My Blog</StHeaderBtn>
-          : <StNavLink to='/myarticle'>My Blog</StNavLink>
+          ? <StNavLink to='/myarticle'>My Blog</StNavLink>
+          : <StHeaderBtn onClick={handleMyBlogButtonClick}>My Blog</StHeaderBtn>
         }
 
       </StHeaderBtnWapper>
       <StHeaderBtnWapper>
-        {!isLoggedIn
+        {isLoggedIn
           ? <>
             <StNavLink to='/posting' onClick={handlePostButtonClick}>Post</StNavLink>
             <StHeaderBtn onClick={onLogoutModalHandler}>Logout</StHeaderBtn>

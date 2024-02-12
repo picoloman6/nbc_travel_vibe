@@ -16,13 +16,14 @@ import {
 import Body from '../common/Body';
 import Header from '../common/Header';
 import { useDispatch, useSelector } from 'react-redux';
+import { updateUserData } from '../../redux/modules/UserReducer';
 
 const MyPage = () => {
   const user = useSelector((state) => state.user.users[0]);
   const userEmail = user.email // 유저 이메일 가져오기
 
   const [nickname, setNickname] = useState(user.nickname);
-  const [password, setPassword] = useState(user.nono);
+  const [nono, setNono] = useState(user.nono);
   const [image, setImage] = useState(user.image);
 
   const dispatch = useDispatch();
@@ -31,11 +32,11 @@ const MyPage = () => {
     const updateUser = {
       ...user,
       nickname,
-      password,
+      nono,
       image
     }
-    dispatch(updateUser)
-    console.log(updateUser)
+    dispatch(updateUserData(updateUser))
+    console.log('여기는 updateUser', updateUser)
 
   }
 
@@ -58,11 +59,11 @@ const MyPage = () => {
               </StNickName>
               <StCurrentPw>
                 <label>새로운 비밀번호</label>
-                <input placeholder={user.password} type='password' value={password} onChange={(e) => setPassword(e.target.value)}></input>
+                <input placeholder={user.nono} type='password' value={nono} onChange={(e) => setNono(e.target.value)}></input>
               </StCurrentPw>
               <StNewPw>
                 <label>비밀번호 확인</label>
-                <input type='password' onChange={(e) => setPassword(e.target.value)}></input>
+                <input type='password' onChange={(e) => setNono(e.target.value)}></input>
               </StNewPw>
             </StUserInfoDeatilWrapper>
           </StUserInfoWrapper>

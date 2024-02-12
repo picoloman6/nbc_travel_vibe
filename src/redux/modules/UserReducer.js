@@ -46,7 +46,7 @@ const userReducer = (state = initialState, action) => {
     case UPDATE_USER_DATA:
       const updateUser = action.updateUser;
       const updateUsers = state.users.map(user => {
-        if (user.userId === updateUsers.userId) {
+        if (user.userId === updateUser.userId) {
           return updateUser
         }
         return user;

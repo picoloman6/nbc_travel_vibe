@@ -1,4 +1,4 @@
-import { useRef, useState } from 'react';
+import { useState } from 'react';
 import {
   StHeader,
   StHeaderBtnWapper,
@@ -8,14 +8,10 @@ import {
 } from './styles/Header.style';
 import Modal from '../Login/Modal';
 import LogoutModal from '../Main/LogoutModal';
-import { NavLink, useLocation, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 const Header = () => {
   const navigate = useNavigate();
-
-  const homeRef = useRef();
-  const myBlogRef = useRef();
-  const postRef = useRef();
 
   const [isOpen, setIsOpen] = useState(false);
   const [isSignUp, setIsSignUp] = useState(false);
@@ -26,8 +22,6 @@ const Header = () => {
       setIsSignUp(!isSignUp);
     }
   };
-
-  const [isMenuActive, setIsMenuActive] = useState(false)
 
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const onLogoutModalHandler = () => {
@@ -51,10 +45,6 @@ const Header = () => {
   const handleHomeButtonClick = () => {
     navigate('/')
   }
-
-  const { pathname } = useLocation();
-
-
 
   return (
     <StHeader>

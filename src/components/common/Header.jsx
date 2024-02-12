@@ -53,16 +53,13 @@ const Header = () => {
         <StNavLink to='/myarticle' onClick={handleMyBlogButtonClick}>My Blog</StNavLink>
       </StHeaderBtnWapper>
       <StHeaderBtnWapper>
-
-        {/* 로그인 했을 시 : Home, MyBlog, Post, Logout, 프로필 이미지 */}
-        {/* 로그인 안했을 시 : Home, MyBlog, Login */}
         {!isLoggedIn
           ? <>
             <StNavLink to='/posting' onClick={handlePostButtonClick}>Post</StNavLink>
             <StHeaderBtn onClick={onLogoutModalHandler}>Logout</StHeaderBtn>
             <StHeaderProfileImage></StHeaderProfileImage>
           </>
-          : <StNavLink onClick={onModalHandler}>Login</StNavLink>
+          : <StHeaderBtn onClick={onModalHandler}>Login</StHeaderBtn>
         }
         <Modal
           isOpen={isOpen}

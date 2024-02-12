@@ -15,8 +15,11 @@ import {
 } from './styles/MyPages.style';
 import Body from '../common/Body';
 import Header from '../common/Header';
+import { UseSelector, useSelector } from 'react-redux';
 
 const MyPage = () => {
+  const users = useSelector((state) => state.user.users);
+  const userEmail = users[0].email // 유저 이메일 가져오기
   return (
     <StContainer>
       <Header />
@@ -28,7 +31,7 @@ const MyPage = () => {
             <StUserInfoDeatilWrapper>
               <StEmail>
                 <label>이메일</label>
-                <div>이메일</div>
+                <div>{userEmail}</div>
               </StEmail>
               <StNickName>
                 <label>닉네임</label>

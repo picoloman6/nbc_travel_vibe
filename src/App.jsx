@@ -35,7 +35,7 @@ const App = () => {
   console.log(users);
   console.log(posts);
   console.log(comments);
-  console.log(mypages);
+  console.log(users.email);
 
   return (
     <StAppWrapper>

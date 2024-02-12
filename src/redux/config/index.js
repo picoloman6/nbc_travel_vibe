@@ -4,11 +4,13 @@ import { configureStore } from '@reduxjs/toolkit';
 import userReducer from '../modules/UserReducer';
 import postReducer from '../modules/PostReducer';
 import commentReducer from '../modules/CommentReducer';
+import myPageReducer from '../modules/MyPageReducer';
 
 const rootReducer = combineReducers({
   user: userReducer,
   post: postReducer,
-  comment: commentReducer
+  comment: commentReducer,
+  mypage: myPageReducer
 });
 
 const store = configureStore({

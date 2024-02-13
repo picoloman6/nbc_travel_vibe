@@ -1,8 +1,19 @@
-import ResetStyles, { StAppWrapper } from './App.style.js';
+import { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
+
 import Modal from './components/Login/Modal.jsx';
 import Router from './Shared/Router.js';
+import ResetStyles, { StAppWrapper } from './App.style.js';
+import { postGetData } from './redux/modules/PostReducer.js';
+import { getPostsApi } from './apis/posts.js';
 
 const App = () => {
+  const dispatch = useDispatch();
+  useEffect(() => {
+    const posts = getPostsApi();
+    dispatch(postGetData(posts));
+  });
+
   return (
     <StAppWrapper>
       <ResetStyles />

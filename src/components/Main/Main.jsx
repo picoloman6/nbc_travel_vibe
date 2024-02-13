@@ -23,14 +23,13 @@ const Main = () => {
     navigate(`/article?pid=${id}`);
   };
 
-  const findCommentNum = () => {
-    comments.find((item) => {
-      return item.postId === articles.postId
+  const findCommentNum = (id) => {
+    const commentCount = comments.filter((item) => {
+      return item.postId === id
     })
-    return comments.length;
+    return commentCount.length;
   }
 
-  const commentNum = findCommentNum();
 
   return (
     <Style.StMainBackground>
@@ -81,19 +80,22 @@ const Main = () => {
                       <Style.StIconWrap>
                         <FiEye />
                       </Style.StIconWrap>{' '}
+                      {/* 조회수 */}
                       <span></span>
                     </Style.StIconsStatsWrap>
                     <Style.StIconsStatsWrap>
                       <Style.StIconWrap>
                         <LiaCommentDots />
                       </Style.StIconWrap>{' '}
-                      <span>{commentNum}</span>
+                      {/* 댓글 수 */}
+                      <span>{findCommentNum(item.postId)}</span>
                     </Style.StIconsStatsWrap>
                   </div>
                   <Style.StIconsStatsWrap>
                     <Style.StIconWrap>
                       <FcLike />
                     </Style.StIconWrap>{' '}
+                    {/* 좋아요 수 */}
                     <span>{item.likes}</span>
                   </Style.StIconsStatsWrap>
                 </Style.StContentStats>

@@ -8,12 +8,13 @@ import * as Style from './styles/Main.styles';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { getCommentsApi } from '../../apis/comments';
+import { plusView } from '../../redux/modules/PostReducer';
 
 const Main = () => {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
   const categoryItems = ['All', 'Travel', 'Eat', 'Relax']
   const [category, setCategory] = useState('All')
-  const [isRendered, serIsRendered] = useState(false)
 
   const articles = useSelector((state) => state.post.posts)
 
@@ -21,24 +22,21 @@ const Main = () => {
 
   //postId를 어떻게 가져와야할까?
 
-
-
   const findCommentNum = useCallback(async (postId) => {
     const comments = await getCommentsApi();
     setComments(comments);
     return comments.length;
   }, []);
-
-  console.log("🚀 ~ Main ~ comments:", comments)
-
-  // const count = findCommentNum(item.postId);
-
+  console.log(articles)
   const handleArticleCardClick = (postId) => {
+    dispatch(plusView(1));
+    console.log(articles[0].views)
     navigate(`/article?pid=${postId}`);
+    console.log(articles[0].views)
   }
 
   const handleCategoryClick = (item) => {
-    setCategory(item)
+    setCategory(item);
   }
 
 

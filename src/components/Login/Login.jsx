@@ -3,6 +3,8 @@ import * as St from './styles/Login.style';
 import { StErrorMsg } from './styles/SignUp.style';
 import { FiEye } from 'react-icons/fi';
 import { FiEyeOff } from 'react-icons/fi';
+import { signInWithEmailAndPassword } from 'firebase/auth';
+import { auth } from '../../apis/config';
 
 const Login = ({
   setIsOpen,
@@ -42,18 +44,29 @@ const Login = ({
   };
 
   // 로그인 기능
-  const onLoginConfirm = () => {
-    const foundUser = importUsers.find((user) => {
-      return user.email === email && user.nono === pw;
-    });
+  // const onLoginConfirm = () => {
+  //   const foundUser = importUsers.find((user) => {
+  //     return user.email === email && user.nono === pw;
+  //   });
 
-    if (foundUser) {
-      alert('로그인 되었습니다.');
-      setIsLoggedIn(true);
-      setIsOpen(false);
-      setLoggedInUserId(foundUser.userId);
-    } else {
-      alert('등록되지 않은 회원입니다.');
+  //   if (foundUser) {
+  //     alert('로그인 되었습니다.');
+  //     setIsLoggedIn(true);
+  //     setIsOpen(false);
+  //     setLoggedInUserId(foundUser.userId);
+  //   } else {
+  //     alert('등록되지 않은 회원입니다.');
+  //   }
+  // };
+
+  const onLoginConfirm = async () => {
+    try {
+      const userCredential = await signInWithEmailAndPassword(auth, email, pw);
+      console.log('user with login:', userCredential.user);
+    } catch (error) {
+      const errorCode = error.code;
+      const errorMessage = error.message;
+      console.log('error with login:', errorCode, errorMessage);
     }
   };
 

@@ -1,6 +1,8 @@
 import {
   addDoc,
   collection,
+  deleteDoc,
+  doc,
   getDocs,
   orderBy,
   query,
@@ -36,6 +38,14 @@ export const postCommentApi = async (content, postId, userId, userNickname) => {
       userNickname
     };
     await addDoc(collection(db, 'comments'), comment);
+  } catch (e) {
+    console.log(e);
+  }
+};
+
+export const deleteCommentApi = async (commentId) => {
+  try {
+    await deleteDoc(doc(db, 'comments', commentId));
   } catch (e) {
     console.log(e);
   }

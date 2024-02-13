@@ -6,11 +6,11 @@ import {
 
 import { StSubmitBtn } from '../common/styles/Button.style';
 
-const CommentForm = ({ postComments }) => {
+const CommentForm = ({ postComment }) => {
   const handleClick = (e) => {
     e.preventDefault();
     if (e.target.tagName === 'BUTTON') {
-      postComments(e.currentTarget.content.value);
+      postComment(e.currentTarget.content.value);
       e.currentTarget.reset();
     }
   };

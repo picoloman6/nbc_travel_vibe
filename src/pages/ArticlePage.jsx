@@ -9,7 +9,11 @@ import ArticleContent from '../components/article/ArticleContent';
 import CommentForm from '../components/article/CommentForm';
 import Comment from '../components/article/Comment';
 import { StArticleWrapper, StArticleHr } from './styles/Article.style';
-import { getCommentsApi, postCommentApi } from '../apis/comments';
+import {
+  deleteCommentApi,
+  getCommentsApi,
+  postCommentApi
+} from '../apis/comments';
 
 const ArticlePage = () => {
   const navigate = useNavigate();
@@ -25,8 +29,13 @@ const ArticlePage = () => {
     setComments(comments);
   }, [postId]);
 
-  const postComments = async (content) => {
+  const postComment = async (content) => {
     await postCommentApi(content, postId, '1', 'kaka');
+    await getComments();
+  };
+
+  const deleteComment = async (commentId) => {
+    await deleteCommentApi(commentId);
     await getComments();
   };
 
@@ -56,15 +65,19 @@ const ArticlePage = () => {
             commentsLen={comments ? comments.length : 0}
           />
           <StArticleHr />
-          <CommentForm postComments={postComments} />
+          <CommentForm postComment={postComment} />
           <StArticleHr />
-          {comments &&
-            comments.map((v, i) => (
-              <div key={v.commentId}>
-                <Comment comment={v} />
-                {i !== comments.length - 1 && <StArticleHr />}
-              </div>
-            ))}
+          <div>
+            {comments &&
+              comments.map((v, i) => (
+                <Comment
+                  key={v.commentId}
+                  comment={v}
+                  border={i < comments.length - 1}
+                  deleteComment={deleteComment}
+                />
+              ))}
+          </div>
         </Body>
       )}
     </StArticleWrapper>

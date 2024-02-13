@@ -6,7 +6,7 @@ import PhotoModal from './PhotoModal';
 import PhotoViewer from './PhotoViewer';
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 import { postPostData } from '../../redux/modules/PostReducer';
 import {
   StTools,

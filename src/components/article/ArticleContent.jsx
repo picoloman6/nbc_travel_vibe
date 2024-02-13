@@ -7,14 +7,14 @@ import {
 import { FaHeart } from 'react-icons/fa';
 import { IoChatboxOutline } from 'react-icons/io5';
 
-const ArticleContent = ({ content, likes, comments }) => {
+const ArticleContent = ({ contentLen, likes, comments }) => {
   return (
     <StArticleHeaderWrapper>
       <div
         style={{ border: '1px solid black', width: '500px', height: '250px' }}>
         사진
       </div>
-      <StArticleContent>{content}</StArticleContent>
+      <StArticleContent>{contentLen}</StArticleContent>
       <StArticleContentBottom>
         <div>
           <IoChatboxOutline />

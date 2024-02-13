@@ -7,7 +7,7 @@ import {
     StThumbImg, StContentStatsWrap, StContentTitle, StContentTxt, StContentCategoryDateWrap,
     StLine
 } from '../MyArticle/styles/MyArticle.style'
-import { useSearchParams } from 'react-router-dom'
+import { useNavigate, useSearchParams } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 
 
@@ -17,9 +17,13 @@ const MyArticle = () => {
         return state.post.posts;
     })
     const [params] = useSearchParams();
+    const navigate = useNavigate();
 
     const userId = params.get('uid')
-    console.log("🚀 ~ MyArticle ~ userId:", userId)
+
+    const handleConentClick = (id) => {
+        navigate(`/article?pid=${id}`)
+    }
 
     return (
         <StMyArticleContainer>
@@ -27,11 +31,12 @@ const MyArticle = () => {
             <Body>
                 <StTitle>작성글 관리</StTitle>
                 <StContent>
-                    {Articles.filter((item) => item.userId === userId * 1) //userId 임시값이 숫자라 임시로숫자로 변경
+                    {Articles.filter((item) => item.userId === userId)
                         .map((item) => {
+                            console.log(item)
                             return (
-                                <StContentWrap>
-                                    <StThumbImg src={thumbImg}></StThumbImg>
+                                <StContentWrap key={item.postId} onClick={() => handleConentClick(item.postId)}>
+                                    <StThumbImg src={item.photos[0]}></StThumbImg>
                                     <StContentStatsWrap>
                                         <div>
                                             <StContentTitle>{item.title}</StContentTitle>
@@ -40,7 +45,7 @@ const MyArticle = () => {
                                         <StContentCategoryDateWrap>
                                             <span>{item.category}</span>
                                             <StLine></StLine>
-                                            <span>{item.created_at}</span>
+                                            <span>{item.createdAt}</span>
                                         </StContentCategoryDateWrap>
                                     </StContentStatsWrap>
                                 </StContentWrap>

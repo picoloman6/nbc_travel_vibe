@@ -1,4 +1,10 @@
+const GET_DATA = 'comment/GET_DATA';
 const POST_DATA = 'comment/POST_DATA';
+
+export const getCommentData = (comments) => ({
+  type: GET_DATA,
+  payload: comments
+});
 
 export const postCommentData = (comment) => ({
   type: POST_DATA,
@@ -6,28 +12,16 @@ export const postCommentData = (comment) => ({
 });
 
 const initialState = {
-  comments: [
-    {
-      commentId: 1,
-      content: 'sdkfjl',
-      created_at: 1,
-      userId: 2,
-      postId: 1,
-      userNickname: 'ssss'
-    },
-    {
-      commentId: 2,
-      content: 'sdkfjl',
-      created_at: 1,
-      userId: 1,
-      postId: 2,
-      userNickname: 'ssss'
-    }
-  ]
+  comments: []
 };
 
 const commentReducer = (state = initialState, action) => {
   switch (action.type) {
+    case GET_DATA:
+      return {
+        ...state,
+        comments: action.payload
+      };
     case POST_DATA:
       return {
         ...state,

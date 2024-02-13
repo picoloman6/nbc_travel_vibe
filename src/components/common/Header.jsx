@@ -6,6 +6,7 @@ import {
   StHeaderProfileImage,
   StNavLink
 } from './styles/Header.style';
+import { useSelector } from 'react-redux';
 import Modal from '../Login/Modal';
 import LogoutModal from '../Main/LogoutModal';
 import { useNavigate } from 'react-router-dom';
@@ -17,6 +18,7 @@ const Header = () => {
   const [isSignUp, setIsSignUp] = useState(false);
   const [isLogoutModalOpen, setIsLogoutModalOpen] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [loggedInUserId, setLoggedInUserId] = useState('');
 
   const onModalHandler = () => {
     if (!isLoggedIn) {
@@ -54,6 +56,10 @@ const Header = () => {
   const handleHomeButtonClick = () => {
     navigate('/');
   };
+
+  // 프로필 이미지
+  const users = useSelector((state) => state.user.users);
+  const foundUser = users.find((user) => user.userId === loggedInUserId);
 
   return (
     <StHeader>

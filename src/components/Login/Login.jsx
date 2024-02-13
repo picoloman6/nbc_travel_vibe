@@ -15,7 +15,8 @@ const Login = ({
   importUsers,
   setIsLoggedIn,
   validEmail,
-  validPw
+  validPw,
+  setLoggedInUserId
 }) => {
   // Login의 state 상태관리
   const [email, setEmail] = useState('');

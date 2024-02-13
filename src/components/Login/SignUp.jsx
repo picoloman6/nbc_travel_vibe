@@ -105,6 +105,7 @@ const SignUp = ({
         firstPw
       );
       console.log('user with signUp:', userCredential.user);
+      setIsOpen(false);
     } catch (error) {
       const errorCode = error.code;
       const errorMessage = error.message;

@@ -8,8 +8,6 @@ import {
   orderBy,
   query,
   updateDoc,
-  CollectionReference,
-  QuerySnapshot,
   increment
 } from 'firebase/firestore/lite';
 

@@ -8,11 +8,12 @@ import * as Style from './styles/Main.styles';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { plusView } from '../../redux/modules/PostReducer';
-import { updatePostApi } from '../../apis/posts';
+import { updatePostViewApi } from '../../apis/posts';
 
 const Main = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
+
   const categoryItems = ['All', 'Travel', 'Eat', 'Relax']
   const [category, setCategory] = useState('All')
 
@@ -20,10 +21,15 @@ const Main = () => {
 
   const handleArticleCardClick = (postId) => {
     // db 수정
-    const updatePost = async (postId) => {
-      await updatePostApi(postId);
+    try {
+      const updatePost = async (postId) => {
+        await updatePostViewApi(postId);
+      }
+      updatePost(postId);
+    } catch (e) {
+      alert("문제가 발생했습니다. 잠시 후 다시 시도해주세요.")
+      console.log(e)
     }
-    updatePost(postId);
 
     //내부 데이터 수정
     dispatch(plusView(postId));

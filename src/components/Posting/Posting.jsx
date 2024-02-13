@@ -45,11 +45,12 @@ const Posting = () => {
       category: selectedCategory,
       title,
       content,
-      created_at: new Date().getTime(),
+      createdAt: new Date().getTime(),
       likes: 0,
       userId: user.userId,
       views: 0,
-      userNickname: 'name'
+      userNickname: 'name',
+      photo: previewPhotos[0]
     };
     const PostId = await addPostApi(newPost);
     dispatch(postPostData(newPost));

@@ -34,7 +34,8 @@ const initialState = {
       nickname: 'abcde',
       image: defaultAvatar
     }
-  ]
+  ],
+  loginToken: null
 };
 
 const userReducer = (state = initialState, action) => {
@@ -42,7 +43,7 @@ const userReducer = (state = initialState, action) => {
     case POST_DATA:
       return {
         ...state,
-        users: [...state.users, { ...action.user }]
+        loginToken: action.user
       };
     // 3. 여기 와서 action을 추가한다. 대신 데이터의 불변성을 유지한다.
     case UPDATE_USER_DATA:

@@ -9,6 +9,7 @@ import {
 import Modal from '../Login/Modal';
 import LogoutModal from '../Main/LogoutModal';
 import { useNavigate } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 
 const Header = () => {
   const navigate = useNavigate();
@@ -17,6 +18,11 @@ const Header = () => {
   const [isSignUp, setIsSignUp] = useState(false);
   const [isLogoutModalOpen, setIsLogoutModalOpen] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [loggedInUserId, setLoggedInUserId] = useState('');
+
+  const users = useSelector((state) => state.user.users);
+  const foundUser = users.find((user) => user.userId === loggedInUserId);
+
 
   const onModalHandler = () => {
     if (!isLoggedIn) {
@@ -41,7 +47,7 @@ const Header = () => {
   // };
 
   const handlePostButtonClick = () => {
-    navigate('/posting');
+    navigate(`/posting`);
   };
 
   const handleMyBlogButtonClick = () => {
@@ -62,7 +68,7 @@ const Header = () => {
           Home
         </StNavLink>
         {!isLoggedIn ? (
-          <StNavLink to='/myarticle'>My Blog</StNavLink>
+          <StNavLink to={`/myarticle?uid=`}>My Blog</StNavLink>
         ) : (
           <StHeaderBtn onClick={handleMyBlogButtonClick}>My Blog</StHeaderBtn>
         )}

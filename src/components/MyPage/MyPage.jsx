@@ -19,7 +19,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { updateUserData } from '../../redux/modules/UserReducer';
 import { useNavigate } from 'react-router-dom';
 import { onAuthStateChanged } from "firebase/auth";
-import { auth } from '../../apis/config';
+import db, { auth } from '../../apis/config';
+import { collection, getDocs, query } from 'firebase/firestore/lite';
 
 
 const MyPage = () => {
@@ -34,21 +35,20 @@ const MyPage = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const checkUserAuthentication = useCallback(async (user) => {
-    console.log("user", user);
-    if (user) {
-      console.log("currentUser", auth.currentUser);
-      console.log("hi");
-      // 사용자 정보가 있을 때 추가 작업 수행
-    } else {
-      console.log("로그인 하세요");
-    }
-  }, []);
-
   useEffect(() => {
-    const unsubscribe = onAuthStateChanged(auth, checkUserAuthentication);
-    return () => unsubscribe();
-  }, [checkUserAuthentication]);
+    const fetchData = async () => {
+      try {
+        const querySnapshot = await getDocs(collection(db, 'users'));
+        querySnapshot.forEach((doc) => {
+          console.log(doc.id, ' => ', doc.data());
+        });
+      } catch (error) {
+        console.error('Error getting documents: ', error);
+      }
+    };
+
+    fetchData();
+  }, []);
 
   const handleUpdate = () => {
     let updateUser = { ...user };

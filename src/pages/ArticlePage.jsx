@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useState } from 'react';
 import { useSearchParams, useNavigate } from 'react-router-dom';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 
 import Header from '../components/common/Header';
 import Body from '../components/common/Body';
@@ -8,11 +8,17 @@ import ArticleHeader from '../components/article/ArticleHeader';
 import ArticleContent from '../components/article/ArticleContent';
 import CommentForm from '../components/article/CommentForm';
 import Comment from '../components/article/Comment';
-
 import { StArticleWrapper, StArticleHr } from './styles/Article.style';
-import { getCommentsApi } from '../apis/comments';
+import {
+  deleteCommentApi,
+  getCommentsApi,
+  postCommentApi
+} from '../apis/comments';
+import { deletePostApi, getPostsApi } from '../apis/posts';
+import { postGetData } from '../redux/modules/PostReducer';
 
 const ArticlePage = () => {
+  const dispatch = useDispatch();
   const navigate = useNavigate();
   const [searchParams] = useSearchParams();
   const [comments, setComments] = useState([]);
@@ -25,6 +31,32 @@ const ArticlePage = () => {
     const comments = await getCommentsApi(postId);
     setComments(comments);
   }, [postId]);
+
+  console.log(comments);
+
+  const postComment = async (content) => {
+    await postCommentApi(content, postId, '1', 'kaka');
+    await getComments();
+  };
+
+  const deleteComment = async (commentId) => {
+    await deleteCommentApi(commentId);
+    await getComments();
+  };
+
+  const moveToUpdate = () => {
+    navigate(`/posting?pid=${postId}`);
+  };
+
+  const deletePost = async () => {
+    await deletePostApi(postId);
+    const newPosts = await getPostsApi();
+    dispatch(postGetData(newPosts));
+    navigate('/');
+    comments.forEach((v) => {
+      deleteCommentApi(v.commentId);
+    });
+  };
 
   useEffect(() => {
     if (post === undefined) {
@@ -43,23 +75,30 @@ const ArticlePage = () => {
             title={post.title}
             userNickname={post.userNickname}
             createdAt={post.createdAt}
+            moveToUpdate={moveToUpdate}
+            deletePost={deletePost}
           />
           <StArticleHr />
           <ArticleContent
             content={post.content}
             likes={post.likes}
-            comments={comments.length}
+            photos={post.photos}
+            commentsLen={comments ? comments.length : 0}
           />
           <StArticleHr />
-          <CommentForm />
+          <CommentForm postComment={postComment} />
           <StArticleHr />
-          {comments.length > 0 &&
-            comments.map((v, i) => (
-              <>
-                <Comment comment={v} key={v.commentId} />
-                {i !== comments.length - 1 && <StArticleHr />}
-              </>
-            ))}
+          <div>
+            {comments &&
+              comments.map((v, i) => (
+                <Comment
+                  key={v.commentId}
+                  comment={v}
+                  border={i < comments.length - 1}
+                  deleteComment={deleteComment}
+                />
+              ))}
+          </div>
         </Body>
       )}
     </StArticleWrapper>

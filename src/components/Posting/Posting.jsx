@@ -45,7 +45,7 @@ const Posting = () => {
       category: selectedCategory,
       title,
       content,
-      created_at: new Date().getTime(),
+      createdAt: new Date().getTime(),
       likes: 0,
       userId: user.userId,
       views: 0,

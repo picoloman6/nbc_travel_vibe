@@ -19,7 +19,7 @@ export const StHeaderBtnWapper = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin: 0 50px 0 50px;
+  margin: 0 10px 0 50px;
   gap: 20px;
 `;
 
@@ -75,4 +75,11 @@ export const StNavLink = styled(NavLink)`
     opacity: 100%;
     transition: all 0.2s;
   }
+`;
+
+export const ProfileImg = styled.img`
+  width: 50px;
+  margin-right: 20px;
+  display: ${($isLoggedIn) => ($isLoggedIn ? 'block' : 'none')};
+  cursor: pointer;
 `;

@@ -1,10 +1,13 @@
 import { useState } from 'react';
+import { useSelector } from 'react-redux';
 import {
   StHeader,
   StHeaderBtnWapper,
   StHeaderBtn,
+
   StHeaderProfileImage,
-  StNavLink
+  StNavLink,
+  ProfileImg
 } from './styles/Header.style';
 import Modal from '../Login/Modal';
 import LogoutModal from '../Main/LogoutModal';
@@ -18,13 +21,32 @@ const Header = () => {
   const [isLogoutModalOpen, setIsLogoutModalOpen] = useState(false)
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
+  
+} from './styles/Header.style';
+import Modal from '../Login/Modal';
+
+
+const Header = () => {
+  // 모달창을 위한 state 상태관리
+  const [isOpen, setIsOpen] = useState(false);
+  const [isSignUp, setIsSignUp] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [loggedInUserId, setLoggedInUserId] = useState('');
+
+  // 모달창 열고 닫기
 
   const onModalHandler = () => {
-    setIsOpen(!isOpen);
-    if (isSignUp === true) {
-      setIsSignUp(!isSignUp);
+    if (isLoggedIn) {
+      setIsLoggedIn(false);
+      alert('로그아웃 되었습니다.');
+    } else {
+      setIsOpen(!isOpen);
+      if (isSignUp === true) {
+        setIsSignUp(!isSignUp);
+      }
     }
   };
+
 
   const onLogoutModalHandler = () => {
     setIsLogoutModalOpen(!isLogoutModalOpen);
@@ -48,6 +70,11 @@ const Header = () => {
   }
 
 
+  // 프로필 이미지
+  const users = useSelector((state) => state.user.users);
+  const foundUser = users.find((user) => user.userId === loggedInUserId);
+
+
   return (
     <StHeader>
       <StHeaderBtnWapper>
@@ -59,6 +86,7 @@ const Header = () => {
 
       </StHeaderBtnWapper>
       <StHeaderBtnWapper>
+
         {!isLoggedIn
           ? <>
             <StNavLink to='/posting' onClick={handlePostButtonClick}>Post</StNavLink>
@@ -67,18 +95,36 @@ const Header = () => {
           </>
           : <StHeaderBtn onClick={onModalHandler}>Login</StHeaderBtn>
         }
+
+
         <Modal
           isOpen={isOpen}
+          setIsOpen={setIsOpen}
           onModalHandler={onModalHandler}
           isSignUp={isSignUp}
           setIsSignUp={setIsSignUp}
+          isLoggedIn={isLoggedIn}
+          setIsLoggedIn={setIsLoggedIn}
+          setLoggedInUserId={setLoggedInUserId}
         />
+
         {!isLoggedIn && <LogoutModal
           isLoggedIn={isLoggedIn}
           setIsLoggedIn={setIsLoggedIn}
           isLogoutModalOpen={isLogoutModalOpen}
           setIsLogoutModalOpen={setIsLogoutModalOpen}
         />}
+
+
+        <StHeaderBtn>
+          {isLoggedIn && (
+            <ProfileImg
+              $isLoggedIn={isLoggedIn}
+              src={foundUser.image}
+              alt='기본이미지'
+            />
+          )}
+        </StHeaderBtn>
 
       </StHeaderBtnWapper>
     </StHeader>

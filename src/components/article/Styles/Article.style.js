@@ -74,12 +74,19 @@ export const StArticleCommentTop = styled.div`
 `;
 
 export const StArticleCommentUser = styled.div`
+  display: flex;
+  align-items: center;
   font-size: 20px;
   font-weight: bold;
   gap: 15px;
 
-  > span:first-child {
+  > span {
     margin-right: 10px;
+  }
+
+  > span:last-child {
+    font-weight: 400;
+    font-size: 14px;
   }
 `;
 

@@ -1,13 +1,13 @@
 import Category from './Category';
 import Header from '../common/Header';
+import { Body } from './styles/PostingStyle';
+import PhotoInput from './PhotoInput';
 import PhotoModal from './PhotoModal';
 import PhotoViewer from './PhotoViewer';
-import PhotoInput from './PhotoInput';
-import { Body } from './styles/PostingStyle';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { postPostData } from '../../redux/modules/PostReducer';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
+import { postSetData } from '../../redux/modules/PostReducer';
 import {
   StTools,
   StWrite,
@@ -19,34 +19,66 @@ import {
 } from './styles/PostingStyle';
 
 const Posting = () => {
-  const navigate = useNavigate();
-  const postData = useSelector((state) => state.post.posts);
-  const dispatch = useDispatch();
-
+  //post 저장을 하기위한 state
   const [photos, setPhotos] = useState([]);
   const [selectedCategory, setSelectedCategory] = useState('');
   const [title, setTitle] = useState('');
   const [content, setContent] = useState('');
+  const [modifyPost, setModifyPost] = useState('');
+  const [postDate, SetPostDate] = useState('');
+
+  //modal창을 위한 state
   const [isPhotoOpen, setIsPhotoOpen] = useState(false);
   const [selectPhoto, setSelectPhoto] = useState('');
+
+  //기존 데이터를 불러오는 요소 (아티클에서 수정하기를 누르면 파라미터로 postId를 넘겨줄거임)
+  const location = useLocation();
+  const id = location.state;
+
+  const postData = useSelector((state) => state.post.posts);
+  const [modifyData] = postData.filter((item) => item.postId === id);
+  console.log(modifyData);
+  const dispatch = useDispatch();
+
+  console.log(modifyData.photos);
+
+  useEffect(() => {
+    setPhotos(modifyData.photos);
+    setTitle(modifyData.title);
+    setContent(modifyData.content);
+    SetPostDate(modifyData.created_at);
+  }, []);
+
+  //post를 저장
+  const handlePosting = async () => {
+    const newPost = {
+      postId: id,
+      category: selectedCategory,
+      title,
+      content,
+      created_at: postDate,
+      likes: 0,
+      userId: postData.userId,
+      photos: photos
+    };
+    setModifyPost(
+      await postData.map((item) => {
+        if (item.postId === id) {
+          return { ...item, ...newPost };
+        }
+        return item;
+      })
+    );
+  };
+  useEffect(() => {
+    if (modifyPost) {
+      dispatch(postSetData(modifyPost));
+    }
+  }, [modifyPost]);
 
   const handlePhotoView = (photo) => {
     setSelectPhoto(photo);
     setIsPhotoOpen(true);
-  };
-
-  const handlePosting = async () => {
-    const newPost = {
-      postId: postData.length + 1,
-      category: selectedCategory,
-      title,
-      content,
-      created_at: new Date(),
-      likes: 0,
-      userId: postData.length + 1,
-      photos: photos
-    };
-    dispatch(postPostData(newPost));
   };
 
   const handleTitle = (e) => {
@@ -78,7 +110,7 @@ const Posting = () => {
             <StTitle
               placeholder='제목을 입력하셈'
               onChange={handleTitle}
-              value={title}></StTitle>
+              defaultValue={title}></StTitle>
             <PhotoViewer
               photos={photos}
               setPhotos={setPhotos}
@@ -87,15 +119,10 @@ const Posting = () => {
             <StWrite
               placeholder='글 쓰셈'
               onChange={handleContent}
-              value={content}
+              defaultValue={content}
             />
           </StContentSection>
           <StConformButton onClick={handlePosting}>ㄱㄱㄱ</StConformButton>
-          <button
-            onClick={() => navigate('/modifyPost', { state: 2 })}
-            state={2}>
-            수정하기로 이동
-          </button>
         </StWriteBox>
       </Body>
       <PhotoModal

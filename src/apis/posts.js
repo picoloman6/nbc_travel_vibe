@@ -9,7 +9,6 @@ import {
   query
 } from 'firebase/firestore/lite';
 
-
 import db from './config';
 
 export const getPostsApi = async () => {
@@ -35,6 +34,11 @@ export const deletePostApi = async (postId) => {
   } catch (e) {
     console.log(e);
   }
+};
+
+export const addPostApi = async (newPost) => {
+  const doc = await addDoc(collection(db, 'posts'), newPost);
+  return doc.id;
 };
 
 export const storage = getStorage();

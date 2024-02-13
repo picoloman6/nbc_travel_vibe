@@ -8,10 +8,10 @@ import {
   StSignUpBtn,
   StInputContainer
 } from './styles/SignUp.style';
-import { useDispatch } from 'react-redux';
-import { postUserData } from '../../redux/modules/UserReducer';
+// import { useDispatch } from 'react-redux';
+// import { postUserData } from '../../redux/modules/UserReducer';
 import { FiEye, FiEyeOff } from 'react-icons/fi';
-import defaultAvatar from '../assets/defaultAvatar.png';
+// import defaultAvatar from '../assets/defaultAvatar.png';
 import { auth } from '../../apis/config';
 import { createUserWithEmailAndPassword } from 'firebase/auth';
 

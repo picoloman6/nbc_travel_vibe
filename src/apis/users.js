@@ -4,5 +4,5 @@ import db from './config';
 
 export const addUsersApi = async () => {
   const res = await addDocs(query(collection(db, 'users')));
-  return res.docs.loginToken;
+  return res.docs.map((user) => user.loginToken);
 };

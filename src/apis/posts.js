@@ -24,10 +24,6 @@ export const getPostsApi = async () => {
   }
 };
 
-export const postDummy = async (newPost) => {
-  await addDoc(collection(db, 'posts'), newPost);
-};
-
 export const deletePostApi = async (postId) => {
   try {
     await deleteDoc(doc(db, 'posts', postId));

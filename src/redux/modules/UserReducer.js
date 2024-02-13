@@ -1,3 +1,5 @@
+import defaultAvatar from '../../components/assets/defaultAvatar.png';
+
 // 1. 액션 타입을 정한다. 이름은 비슷하게
 const POST_DATA = 'user/POST_DATA';
 
@@ -13,17 +15,17 @@ const initialState = {
   users: [
     {
       userId: 1,
-      email: 'sdkfjl',
-      nono: 'sdfsd',
+      email: 'aa@gmail.com',
+      nono: 'aaaa1111',
       nickname: 'sdfsdf',
-      image: 'dddd'
+      image: defaultAvatar
     },
     {
       userId: 2,
-      email: 'sdk2323fjl',
-      nono: 'sdfsd',
-      nickname: 'sdfsdf',
-      image: 'dddd'
+      email: 'bbbb@naver.com',
+      nono: 'bbbb2222',
+      nickname: 'abcde',
+      image: defaultAvatar
     }
   ]
 };
@@ -33,7 +35,7 @@ const userReducer = (state = initialState, action) => {
     case POST_DATA:
       return {
         ...state,
-        users: [...state.users, action.user]
+        users: [...state.users, { ...action.user }]
       };
     // 3. 여기 와서 action을 추가한다. 대신 데이터의 불변성을 유지한다.
     default:

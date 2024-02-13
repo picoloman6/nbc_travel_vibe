@@ -39,6 +39,10 @@ const ArticlePage = () => {
     await getComments();
   };
 
+  const moveToUpdate = () => {
+    navigate(`/posting?pid=${postId}`);
+  };
+
   useEffect(() => {
     if (post === undefined) {
       navigate('/');
@@ -56,6 +60,7 @@ const ArticlePage = () => {
             title={post.title}
             userNickname={post.userNickname}
             createdAt={post.createdAt}
+            moveToUpdate={moveToUpdate}
           />
           <StArticleHr />
           <ArticleContent

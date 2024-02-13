@@ -6,7 +6,13 @@ import {
 import { StUpdateBtn, StDeleteBtn } from '../common/styles/Button.style';
 import { dateConvertor } from '../../Shared/date';
 
-const ArticleHeader = ({ category, title, userNickname, createdAt }) => {
+const ArticleHeader = ({
+  category,
+  title,
+  userNickname,
+  createdAt,
+  moveToUpdate
+}) => {
   return (
     <StArticleHeaderWrapper>
       <span>{category}</span>
@@ -16,7 +22,11 @@ const ArticleHeader = ({ category, title, userNickname, createdAt }) => {
           {userNickname} | {dateConvertor(createdAt)}
         </span>
         <div>
-          <StUpdateBtn $fontSize='14px' $width='50px' $height='30px'>
+          <StUpdateBtn
+            $fontSize='14px'
+            $width='50px'
+            $height='30px'
+            onClick={moveToUpdate}>
             수정
           </StUpdateBtn>
           <StDeleteBtn $fontSize='14px' $width='50px' $height='30px'>

@@ -1,4 +1,5 @@
 import { collection, getDocs, orderBy, query } from 'firebase/firestore/lite';
+import { getStorage, ref } from 'firebase/storage';
 
 import db from './config';
 
@@ -8,3 +9,6 @@ export const getPostsApi = async () => {
   );
   return res.docs.map((v) => ({ ...v.data(), postId: v.id }));
 };
+
+export const storage = getStorage();
+export const storageRef = ref();

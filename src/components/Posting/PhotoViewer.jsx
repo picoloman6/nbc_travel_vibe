@@ -5,16 +5,28 @@ import {
   StPhotoImage
 } from './styles/PhotoViewerStyle';
 
-const PhotoViewer = ({ photos, setPhotos, handlePhotoView }) => {
-  const handleDeletePhoto = (index) => {
-    const deletedPhoto = photos.filter((item, i) => i !== index);
-    setPhotos(deletedPhoto);
+const PhotoViewer = ({
+  setPhotos,
+  handlePhotoView,
+  previewPhotos,
+  setPreviewPhotos,
+  photos
+}) => {
+  console.log(previewPhotos);
+  const handleDeletePhoto = async (index) => {
+    const deletedPhoto = previewPhotos.filter((item, i) => i !== index);
+    const newPhotos = Array.from(deletedPhoto).map((file, index) => ({
+      id: index,
+      url: file.url
+    }));
+    await setPhotos(photos.filter((item, i) => i !== index));
+    await setPreviewPhotos(newPhotos);
   };
 
   return (
     <>
       <StPhotos>
-        {photos.map((photo, index) => {
+        {previewPhotos.map((photo, index) => {
           return (
             <StImageWrap key={index}>
               <StPhotoImage

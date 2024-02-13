@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import * as St from './styles/Login.style';
 import {
   StLogoName,
@@ -11,9 +11,7 @@ import {
 // import { useDispatch } from 'react-redux';
 // import { postUserData } from '../../redux/modules/UserReducer';
 import { FiEye, FiEyeOff } from 'react-icons/fi';
-// import defaultAvatar from '../assets/defaultAvatar.png';
-import { auth } from '../../apis/config';
-import { createUserWithEmailAndPassword } from 'firebase/auth';
+import { addUsersApi, getUsersApi } from '../../apis/users';
 
 const SignUp = ({
   onSignUpHandler,
@@ -99,19 +97,28 @@ const SignUp = ({
 
   const onSignUp = async () => {
     try {
-      const userCredential = await createUserWithEmailAndPassword(
-        auth,
-        email,
-        firstPw
-      );
-      console.log('user with signUp:', userCredential.user);
+      await addUsersApi(email, firstPw, nickName);
+
       setIsOpen(false);
+      setIsLoggedIn(true);
+      alert('축하합니다 🎉 회원가입이 완료되었습니다.');
     } catch (error) {
-      const errorCode = error.code;
-      const errorMessage = error.message;
-      console.log('error with signUp:', errorCode, errorMessage);
+      alert('회원가입에 실패했습니다. 다시 시도해주세요.');
     }
   };
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const usersData = await getUsersApi();
+        console.log('Users data:', usersData);
+      } catch (error) {
+        console.error('Error getting users data:', error);
+      }
+    };
+
+    fetchData();
+  }, []);
 
   // 회원가입 시 로그인상태로 전환
   // useEffect(() => {

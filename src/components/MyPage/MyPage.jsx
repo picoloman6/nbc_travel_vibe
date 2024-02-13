@@ -20,31 +20,28 @@ import { updateUserData } from '../../redux/modules/UserReducer';
 import { useNavigate } from 'react-router-dom';
 import { onAuthStateChanged } from "firebase/auth";
 import db, { auth } from '../../apis/config';
-import { collection, getDocs, query } from 'firebase/firestore/lite';
+import { collection, doc, getDocs, query, updateDoc } from 'firebase/firestore/lite';
 
 
 const MyPage = () => {
-  const user = useSelector((state) => state.user.users[0]);
-  const userEmail = user.email // 유저 이메일 가져오기
-  const [emial, setEmail] = useState('');
-  const [nickname, setNickname] = useState('');
-  const [newPassword, setNewPassword] = useState('');
-  const [confirmPassword, setConfirmPassword] = useState('');
-  const [image, setImage] = useState(user.image);
-  const [usersData, setUsersData] = useState('')
+  const [nickname, setNickname] = useState("")
+  const [email, setEmail] = useState("")
+  const [image, setImage] = useState("")
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
+  // users 데이터 가져오기
   useEffect(() => {
     const fetchData = async () => {
-      console.log('asfd')
       try {
         const q = query(collection(db, 'users'));
         const querySnapshot = await getDocs(q);
-        console.log(querySnapshot)
         querySnapshot.docs.forEach((doc) => {
-          console.log(doc.id, ' => ', doc.data());
+          const { nickname, email, image } = doc.data();
+          setNickname(nickname)
+          setEmail(email)
+          setImage(image)
         });
       } catch (error) {
         console.error('Error getting documents: ', error);
@@ -53,29 +50,43 @@ const MyPage = () => {
     fetchData();
   }, []);
 
-  const handleUpdate = () => {
-    let updateUser = { ...user };
-    // 닉네임을 변경한 경우
-    if (nickname !== user.nickname) {
-      updateUser = { ...updateUser, nickname }
-    };
-    // 새로운 비밀번호를 입력하고, 확인란과 일치하는 경우
-    if (newPassword && newPassword === confirmPassword) {
-      updateUser = { ...updateUser, nono: newPassword };
+  //Firestore에서 사용자 데이터 업데이트하는 함수
+  const updateUserInFirestore = async (updatedData) => {
+    try {
+      const userRef = doc(db, 'users', 'iIMfE29MjRVa7Y7HpzwY0mUE3 ');
+      await updateDoc(userRef, updatedData);
+      dispatch(updateUserData(updatedData));
+    } catch (error) {
+      console.log("firestore 업데이트 실패")
     }
-    // 비밀번호 유효성 검사
-    if (newPassword !== confirmPassword) {
-      alert('비밀번호가 일치하지 않습니다. 다시 확인해주세요.');
-      setConfirmPassword('')
-      return;
-    }
-    // 이미지를 변경한 경우 
-    if (image !== user.image) {
-      updateUser = { ...updateUser, image };
-    }
+  }
 
-    dispatch(updateUserData(updateUser));
-    console.log('updateUser:', updateUser);
+  const handleUpdate = () => {
+    const updatedData = { nickname, image }
+    updateUserInFirestore(updatedData)
+    console.log(updatedData)
+    // let updateUser = { ...user };
+    // // 닉네임을 변경한 경우
+    // if (nickname !== user.nickname) {
+    //   updateUser = { ...updateUser, nickname }
+    // };
+    // // 새로운 비밀번호를 입력하고, 확인란과 일치하는 경우
+    // if (newPassword && newPassword === confirmPassword) {
+    //   updateUser = { ...updateUser, nono: newPassword };
+    // }
+    // // 비밀번호 유효성 검사
+    // if (newPassword !== confirmPassword) {
+    //   alert('비밀번호가 일치하지 않습니다. 다시 확인해주세요.');
+    //   setConfirmPassword('')
+    //   return;
+    // }
+    // // 이미지를 변경한 경우 
+    // if (image !== user.image) {
+    //   updateUser = { ...updateUser, image };
+    // }
+
+    // dispatch(updateUserData(updateUser));
+    // console.log('updateUser:', updateUser);
   }
 
   const handleCancle = () => {
@@ -94,19 +105,19 @@ const MyPage = () => {
             <StUserInfoDeatilWrapper>
               <StEmail>
                 <label>이메일</label>
-                <div>{userEmail}</div>
+                <div>{email}</div>
               </StEmail>
               <StNickName>
                 <label>닉네임</label>
-                <input placeholder={user.nickname} type='text' value={nickname} onChange={(e) => setNickname(e.target.value)}></input>
+                <input placeholder={nickname} type='text' onChange={(e) => setNickname(e.target.value)}></input>
               </StNickName>
               <StCurrentPw>
                 <label>새로운 비밀번호</label>
-                <input placeholder={user.nono} type='password' value={newPassword} onChange={(e) => setNewPassword(e.target.value)}></input>
+                <input placeholder="비밀번호" type='password'></input>
               </StCurrentPw>
               <StNewPw>
                 <label>비밀번호 확인</label>
-                <input type='password' value={confirmPassword} onChange={(e) => setConfirmPassword(e.target.value)}></input>
+                <input type='password'></input>
               </StNewPw>
             </StUserInfoDeatilWrapper>
           </StUserInfoWrapper>

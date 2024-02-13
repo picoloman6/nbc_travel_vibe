@@ -61,7 +61,8 @@ export const StCategoryWrap = styled.div`
 
 export const StCatergoryItem = styled.div`
   font-size: 28px;
-  color: ${colors.subText}; //active 색 ${colors.mainBlue}
+  color: ${(props) =>
+    props.$category === props.$item ? colors.mainBlue : colors.subText};
   letter-spacing: 1px;
 
   &:hover {

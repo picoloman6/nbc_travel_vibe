@@ -41,16 +41,14 @@ const Header = () => {
   // };
 
   const handlePostButtonClick = () => {
-    navigate(`/posting`);
+    navigate('/posting');
   };
 
   const handleMyBlogButtonClick = () => {
-    if (!isLoggedIn) {
+    if (isLoggedIn) {
       alert('로그인 후 사용 가능합니다.');
       setIsOpen(!isOpen);
-      return;
     }
-    navigate(`/posting?uid=${foundUser.userId}`);
   };
 
   const handleHomeButtonClick = () => {
@@ -63,16 +61,16 @@ const Header = () => {
         <StNavLink to='/' onClick={handleHomeButtonClick}>
           Home
         </StNavLink>
-        {isLoggedIn ? (
-          <StNavLink to={`/myarticle?uid=${foundUser.userId}`}>My Blog</StNavLink>
+        {!isLoggedIn ? (
+          <StNavLink to='/myarticle'>My Blog</StNavLink>
         ) : (
           <StHeaderBtn onClick={handleMyBlogButtonClick}>My Blog</StHeaderBtn>
         )}
       </StHeaderBtnWapper>
       <StHeaderBtnWapper>
-        {isLoggedIn ? (
+        {!isLoggedIn ? (
           <>
-            <StNavLink to={`/posting?uid=${foundUser.userId}`} onClick={handlePostButtonClick}>
+            <StNavLink to='/posting' onClick={handlePostButtonClick}>
               Post
             </StNavLink>
             <StHeaderBtn onClick={onLogoutModalHandler}>Logout</StHeaderBtn>
@@ -97,7 +95,7 @@ const Header = () => {
           setIsLoggedIn={setIsLoggedIn}
         />
 
-        {isLoggedIn && (
+        {!isLoggedIn && (
           <LogoutModal
             isLoggedIn={isLoggedIn}
             setIsLoggedIn={setIsLoggedIn}

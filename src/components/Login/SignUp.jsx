@@ -12,6 +12,8 @@ import { useDispatch } from 'react-redux';
 import { postUserData } from '../../redux/modules/UserReducer';
 import { FiEye, FiEyeOff } from 'react-icons/fi';
 import defaultAvatar from '../assets/defaultAvatar.png';
+import { auth } from '../../apis/config';
+import { createUserWithEmailAndPassword } from 'firebase/auth';
 
 const SignUp = ({
   onSignUpHandler,
@@ -74,25 +76,41 @@ const SignUp = ({
   const foundNickname = importUsers.find((user) => user.nickname === nickName);
 
   // 회원가입 기능
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
+
+  // const onSignUp = () => {
+  //   if (isValidEmail && isValidPw && isValidNickName && firstPw === secondPw) {
+  //     dispatch(
+  //       postUserData({
+  //         userId: Date.now(),
+  //         email: email,
+  //         nono: firstPw,
+  //         nickname: nickName,
+  //         image: defaultAvatar
+  //       })
+  //     );
+  //     setIsOpen(false);
+  //     // setIsLoggedIn(true);
+  //     alert('축하합니다 🎉 회원가입이 완료되었습니다.');
+  //   } else {
+  //     alert('입력하신 정보를 확인해주세요.');
+  //   }
+  // };
 
   const onSignUp = () => {
-    if (isValidEmail && isValidPw && isValidNickName && firstPw === secondPw) {
-      dispatch(
-        postUserData({
-          userId: Date.now(),
-          email: email,
-          nono: firstPw,
-          nickname: nickName,
-          image: defaultAvatar
-        })
-      );
-      setIsOpen(false);
-      // setIsLoggedIn(true);
-      alert('축하합니다 🎉 회원가입이 완료되었습니다.');
-    } else {
-      alert('입력하신 정보를 확인해주세요.');
-    }
+    createUserWithEmailAndPassword(auth, email, firstPw)
+      .then((userCredential) => {
+        // Signed in
+        const user = userCredential.user;
+        console.log('user with signUp:', user);
+        // ...
+      })
+      .catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        console.log('error with signUp:', errorCode, errorMessage);
+        // ..
+      });
   };
 
   // 회원가입 시 로그인상태로 전환
@@ -119,7 +137,7 @@ const SignUp = ({
         <StIdPwWrapper>
           <StInputContainer>
             <St.LoginInput
-              placeholder='travel123@gmail.com'
+              placeholder='이메일'
               value={email}
               onChange={onCheckValidEmail}
             />

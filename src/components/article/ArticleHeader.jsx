@@ -6,14 +6,14 @@ import {
 import { StUpdateBtn, StDeleteBtn } from '../common/styles/Button.style';
 import { dateConvertor } from '../../Shared/date';
 
-const ArticleHeader = ({ category, title, userNickname, created_at }) => {
+const ArticleHeader = ({ category, title, userNickname, createdAt }) => {
   return (
     <StArticleHeaderWrapper>
       <span>{category}</span>
       <StArticleHeaderTitle>{title}</StArticleHeaderTitle>
       <StArticleHeaderBottom>
         <span>
-          {userNickname} | {dateConvertor(created_at)}
+          {userNickname} | {dateConvertor(createdAt)}
         </span>
         <div>
           <StUpdateBtn $fontSize='14px' $width='50px' $height='30px'>

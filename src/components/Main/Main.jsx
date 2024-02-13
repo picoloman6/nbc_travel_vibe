@@ -13,10 +13,10 @@ import { plusView } from '../../redux/modules/PostReducer';
 const Main = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const categoryItems = ['All', 'Travel', 'Eat', 'Relax']
-  const [category, setCategory] = useState('All')
+  const categoryItems = ['All', 'Travel', 'Eat', 'Relax'];
+  const [category, setCategory] = useState('All');
 
-  const articles = useSelector((state) => state.post.posts)
+  const articles = useSelector((state) => state.post.posts);
 
   const [comments, setComments] = useState([]);
 
@@ -27,18 +27,17 @@ const Main = () => {
     setComments(comments);
     return comments.length;
   }, []);
-  console.log(articles)
+  console.log(articles);
   const handleArticleCardClick = (postId) => {
     dispatch(plusView(1));
-    console.log(articles[0].views)
+    console.log(articles[0].views);
     navigate(`/article?pid=${postId}`);
-    console.log(articles[0].views)
-  }
+    console.log(articles[0].views);
+  };
 
   const handleCategoryClick = (item) => {
     setCategory(item);
-  }
-
+  };
 
   return (
     <Style.StMainBackground>
@@ -52,33 +51,44 @@ const Main = () => {
             {categoryItems.map((item, idx) => {
               return (
                 <React.Fragment key={idx}>
-                  <Style.StCatergoryItem key={idx} onClick={() => handleCategoryClick(item)} $category={category} $item={item}>
+                  <Style.StCatergoryItem
+                    key={idx}
+                    onClick={() => handleCategoryClick(item)}
+                    $category={category}
+                    $item={item}>
                     {item}
                   </Style.StCatergoryItem>
                   <Style.StLine />
                 </React.Fragment>
-              )
+              );
             })}
           </Style.StCategoryWrap>
         </Style.StCategoryBar>
 
         <Style.StArticlesWrap>
-          {articles.filter((item) => {
-            const lowerCategory = category.toLocaleLowerCase();
-            return lowerCategory === 'all' ? item : item.category === lowerCategory;
-          })
+          {articles
+            .filter((item) => {
+              const lowerCategory = category.toLocaleLowerCase();
+              return lowerCategory === 'all'
+                ? item
+                : item.category === lowerCategory;
+            })
             .map((item) => {
               return (
-                <Style.StArticleCard key={item.postId} onClick={() => handleArticleCardClick(item.postId)}>
+                <Style.StArticleCard
+                  key={item.postId}
+                  onClick={() => handleArticleCardClick(item.postId)}>
                   <Style.StArticleThumbImg
-                    src={item.photos[0]}
+                    src={item.photo}
                     art={'게시글 썸네일 이미지'}
                   />
                   <Style.StProfileWrap>
                     <Style.StProfileImge></Style.StProfileImge>
                     <div>
                       <Style.StNickname>{item.userNickname}</Style.StNickname>
-                      <Style.StCreatedDate>{item.created_at}</Style.StCreatedDate>
+                      <Style.StCreatedDate>
+                        {item.created_at}
+                      </Style.StCreatedDate>
                     </div>
                   </Style.StProfileWrap>
                   <Style.StArticleContentInfoWrap>
@@ -102,7 +112,7 @@ const Main = () => {
                           <LiaCommentDots />
                         </Style.StIconWrap>{' '}
                         {/* 댓글 수 */}
-                        <span>{ }</span>
+                        <span>{}</span>
                       </Style.StIconsStatsWrap>
                     </div>
                     <Style.StIconsStatsWrap>
@@ -114,9 +124,8 @@ const Main = () => {
                     </Style.StIconsStatsWrap>
                   </Style.StContentStats>
                 </Style.StArticleCard>
-              )
+              );
             })}
-
         </Style.StArticlesWrap>
       </Body>
     </Style.StMainBackground>

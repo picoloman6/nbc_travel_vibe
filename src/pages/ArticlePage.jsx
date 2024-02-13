@@ -8,9 +8,8 @@ import ArticleHeader from '../components/article/ArticleHeader';
 import ArticleContent from '../components/article/ArticleContent';
 import CommentForm from '../components/article/CommentForm';
 import Comment from '../components/article/Comment';
-
 import { StArticleWrapper, StArticleHr } from './styles/Article.style';
-import { getCommentsApi } from '../apis/comments';
+import { getCommentsApi, postCommentApi } from '../apis/comments';
 
 const ArticlePage = () => {
   const navigate = useNavigate();
@@ -25,6 +24,11 @@ const ArticlePage = () => {
     const comments = await getCommentsApi(postId);
     setComments(comments);
   }, [postId]);
+
+  const postComments = async (content) => {
+    await postCommentApi(content, postId, '1', 'kaka');
+    await getComments();
+  };
 
   useEffect(() => {
     if (post === undefined) {
@@ -52,7 +56,7 @@ const ArticlePage = () => {
             commentsLen={comments ? comments.length : 0}
           />
           <StArticleHr />
-          <CommentForm />
+          <CommentForm postComments={postComments} />
           <StArticleHr />
           {comments &&
             comments.map((v, i) => (

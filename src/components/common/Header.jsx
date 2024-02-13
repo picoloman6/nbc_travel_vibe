@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { useSelector } from 'react-redux';
 import {
   StHeader,
   StHeaderBtnWapper,
@@ -9,10 +10,10 @@ import {
 import Modal from '../Login/Modal';
 import LogoutModal from '../Main/LogoutModal';
 import { useNavigate } from 'react-router-dom';
-import { useSelector } from 'react-redux';
 
 const Header = () => {
   const navigate = useNavigate();
+  const user = useSelector((state) => state.user);
 
   const [isOpen, setIsOpen] = useState(false);
   const [isSignUp, setIsSignUp] = useState(false);
@@ -20,12 +21,8 @@ const Header = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [loggedInUserId, setLoggedInUserId] = useState('');
 
-  const users = useSelector((state) => state.user.users);
-  const foundUser = users.find((user) => user.userId === loggedInUserId);
-
-
   const onModalHandler = () => {
-    if (!isLoggedIn) {
+    if (isLoggedIn) {
       setIsLoggedIn(false);
       alert('로그아웃 되었습니다.');
     } else {
@@ -47,7 +44,7 @@ const Header = () => {
   // };
 
   const handlePostButtonClick = () => {
-    navigate(`/posting`);
+    navigate(`/posting?uid=${user.userId}`);
   };
 
   const handleMyBlogButtonClick = () => {
@@ -67,21 +64,25 @@ const Header = () => {
         <StNavLink to='/' onClick={handleHomeButtonClick}>
           Home
         </StNavLink>
-        {!isLoggedIn ? (
-          <StNavLink to={`/myarticle?uid=`}>My Blog</StNavLink>
+        {isLoggedIn ? (
+          <StNavLink to={`/myarticle?uid=${user.userId}`}>My Blog</StNavLink>
         ) : (
           <StHeaderBtn onClick={handleMyBlogButtonClick}>My Blog</StHeaderBtn>
         )}
       </StHeaderBtnWapper>
       <StHeaderBtnWapper>
-        {!isLoggedIn ? (
+        {isLoggedIn ? (
           <>
-            <StNavLink to='/posting' onClick={handlePostButtonClick}>
+            <StNavLink
+              to={`/posting?uid=${user.userId}`}
+              onClick={handlePostButtonClick}>
               Post
             </StNavLink>
             <StHeaderBtn onClick={onLogoutModalHandler}>Logout</StHeaderBtn>
             <StHeaderProfileImage
-              onClick={() => navigate('/mypage')}></StHeaderProfileImage>
+              onClick={() =>
+                navigate(`/mypage?uid=${user.userId}`)
+              }></StHeaderProfileImage>
           </>
         ) : (
           <>

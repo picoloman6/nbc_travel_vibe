@@ -64,7 +64,8 @@ const Login = ({
   const onLoginConfirm = async () => {
     try {
       const userCredential = await signInWithEmailAndPassword(auth, email, pw);
-      dispatch(postUserData(userCredential.user.accessToken));
+      const { accessToken, uid } = userCredential.user;
+      dispatch(postUserData({ accessToken, userId: uid, email }));
 
       console.log('user with login:', userCredential.user);
       alert('로그인 되었습니다.');

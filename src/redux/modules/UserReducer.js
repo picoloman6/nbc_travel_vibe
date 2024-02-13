@@ -19,23 +19,9 @@ export const updateUserData = (updateUser) => ({
 
 // 번외. 데이터 칼럼 맘에 안들면 여기서 수정
 const initialState = {
-  users: [
-    {
-      userId: 1,
-      email: 'aa@gmail.com',
-      nono: 'aaaa1111',
-      nickname: 'sdfsdf',
-      image: defaultAvatar
-    },
-    {
-      userId: 2,
-      email: 'bbbb@naver.com',
-      nono: 'bbbb2222',
-      nickname: 'abcde',
-      image: defaultAvatar
-    }
-  ],
-  loginToken: null
+  accessToken: null,
+  email: null,
+  userId: null
 };
 
 const userReducer = (state = initialState, action) => {
@@ -43,7 +29,7 @@ const userReducer = (state = initialState, action) => {
     case POST_DATA:
       return {
         ...state,
-        loginToken: action.user
+        ...action.user
       };
     // 3. 여기 와서 action을 추가한다. 대신 데이터의 불변성을 유지한다.
     case UPDATE_USER_DATA:

@@ -26,7 +26,8 @@ const initialState = {
           url: 'https://i.namu.wiki/i/mmkvzpz0i0UFFKSrfyN5-jrvbiu5FWfhdFZLWnug67p1NcoISI3ql8wHLri5AalgIVcC6sRAVMUzLlST-KYh7g.webp'
         }
       ],
-      userNickname: 'zkzkzk'
+      userNickname: 'zkzkzk',
+      commentCount: 0
     },
     {
       postId: 2,
@@ -41,11 +42,12 @@ const initialState = {
           url: 'https://i.namu.wiki/i/mmkvzpz0i0UFFKSrfyN5-jrvbiu5FWfhdFZLWnug67p1NcoISI3ql8wHLri5AalgIVcC6sRAVMUzLlST-KYh7g.webp'
         }
       ],
-      userNickname: 'zkzkzk'
+      userNickname: 'zkzkzk',
+      commentCount: 0
     },
     {
       postId: 3,
-      category: 'relax',
+      category: 'travel',
       title: 'sdfsdf',
       content: 'sdfsdfsdfsdf',
       created_at: 494841,
@@ -56,7 +58,8 @@ const initialState = {
           url: 'https://i.namu.wiki/i/mmkvzpz0i0UFFKSrfyN5-jrvbiu5FWfhdFZLWnug67p1NcoISI3ql8wHLri5AalgIVcC6sRAVMUzLlST-KYh7g.webp'
         }
       ],
-      userNickname: 'zkzkzk'
+      userNickname: 'zkzkzk',
+      commentCount: 0
     }
   ]
 };

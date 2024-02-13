@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import colors from '../../constants/colors';
 import Header from '../common/Header';
 import Body from '../common/Body';
 import { FiEye } from 'react-icons/fi';
@@ -65,10 +64,9 @@ const Main = () => {
         <Style.StArticlesWrap>
           {articles.filter((item) => {
             const lowerCategory = category.toLocaleLowerCase();
-            return item.category === lowerCategory
+            return lowerCategory === 'all' ? item : item.category === lowerCategory;
           })
             .map((item) => {
-
               return (
                 <Style.StArticleCard key={item.postId} onClick={() => handleArticleCardClick(item.postId)}>
                   <Style.StArticleThumbImg
@@ -96,7 +94,7 @@ const Main = () => {
                           <FiEye />
                         </Style.StIconWrap>{' '}
                         {/* 조회수 */}
-                        <span></span>
+                        <span>{item.commentCount}</span>
                       </Style.StIconsStatsWrap>
                       <Style.StIconsStatsWrap>
                         <Style.StIconWrap>

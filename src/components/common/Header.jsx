@@ -38,14 +38,16 @@ const Header = () => {
   };
 
   const handlePostButtonClick = () => {
-    navigate('/posting');
+    navigate(`/posting`);
   };
 
   const handleMyBlogButtonClick = () => {
     if (!isLoggedIn) {
       alert('로그인 후 사용 가능합니다.');
       setIsOpen(!isOpen);
+      return;
     }
+    navigate(`/posting?uid=${foundUser.userId}`);
   };
 
   const handleHomeButtonClick = () => {
@@ -63,7 +65,7 @@ const Header = () => {
           Home
         </StNavLink>
         {isLoggedIn ? (
-          <StNavLink to='/myarticle'>My Blog</StNavLink>
+          <StNavLink to={`/myarticle?uid=${foundUser.userId}`}>My Blog</StNavLink>
         ) : (
           <StHeaderBtn onClick={handleMyBlogButtonClick}>My Blog</StHeaderBtn>
         )}
@@ -71,7 +73,7 @@ const Header = () => {
       <StHeaderBtnWapper>
         {isLoggedIn ? (
           <>
-            <StNavLink to='/posting' onClick={handlePostButtonClick}>
+            <StNavLink to={`/posting?uid=${foundUser.userId}`} onClick={handlePostButtonClick}>
               Post
             </StNavLink>
             <StHeaderBtn onClick={onLogoutModalHandler}>Logout</StHeaderBtn>

@@ -37,7 +37,7 @@ const SignUp = ({
   const [secondPw, setSecondPw] = useState('');
   const [nickName, setNickName] = useState('');
   const [isShowPw, setIsShowPw] = useState(false);
-  const [secondIsShowPw, setSecondIsShowPw] = useState(false);
+  const [isSecondShowPw, setIsSecondShowPw] = useState(false);
 
   const [isValidEmail, setIsValidEmail] = useState(false);
   const [isValidPw, setIsValidPw] = useState(false);
@@ -86,7 +86,7 @@ const SignUp = ({
   const dispatch = useDispatch();
 
   const onSignUp = () => {
-    if (isValidEmail && isValidPw && isValidNickName) {
+    if (isValidEmail && isValidPw && isValidNickName && firstPw === secondPw) {
       dispatch(
         postUserData({
           userId: Date.now(),
@@ -97,7 +97,7 @@ const SignUp = ({
         })
       );
       setIsOpen(false);
-      setIsLoggedIn(true);
+      // setIsLoggedIn(true);
       alert('축하합니다 🎉 회원가입이 완료되었습니다.');
     } else {
       alert('입력하신 정보를 확인해주세요.');
@@ -116,7 +116,7 @@ const SignUp = ({
 
   // 비밀번호 더블체크 보이기/숨기기 토글
   const onShowSecondPw = () => {
-    setSecondIsShowPw((prev) => !prev);
+    setIsSecondShowPw((prev) => !prev);
   };
 
   return (
@@ -166,14 +166,14 @@ const SignUp = ({
           </StErrorMsg>
           <StInputContainer>
             <StLoginInput
-              type={secondIsShowPw ? 'text' : 'password'}
+              type={isSecondShowPw ? 'text' : 'password'}
               autoComplete='on'
               placeholder='비밀번호 확인'
               value={secondPw}
               onChange={onDoubleCheckPw}
             />
             <StPwIcon onClick={onShowSecondPw}>
-              {secondIsShowPw ? <FiEye /> : <FiEyeOff />}
+              {isSecondShowPw ? <FiEye /> : <FiEyeOff />}
             </StPwIcon>
           </StInputContainer>
           <StErrorMsg>

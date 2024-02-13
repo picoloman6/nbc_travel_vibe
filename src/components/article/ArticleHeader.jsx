@@ -12,7 +12,8 @@ const ArticleHeader = ({
   userNickname,
   createdAt,
   moveToUpdate,
-  deletePost
+  deletePost,
+  isOwnPost
 }) => {
   return (
     <StArticleHeaderWrapper>
@@ -23,20 +24,24 @@ const ArticleHeader = ({
           {userNickname} | {dateConvertor(createdAt)}
         </span>
         <div>
-          <StUpdateBtn
-            $fontSize='14px'
-            $width='50px'
-            $height='30px'
-            onClick={moveToUpdate}>
-            수정
-          </StUpdateBtn>
-          <StDeleteBtn
-            $fontSize='14px'
-            $width='50px'
-            $height='30px'
-            onClick={deletePost}>
-            삭제
-          </StDeleteBtn>
+          {isOwnPost && (
+            <>
+              <StUpdateBtn
+                $fontSize='14px'
+                $width='50px'
+                $height='30px'
+                onClick={moveToUpdate}>
+                수정
+              </StUpdateBtn>
+              <StDeleteBtn
+                $fontSize='14px'
+                $width='50px'
+                $height='30px'
+                onClick={deletePost}>
+                삭제
+              </StDeleteBtn>
+            </>
+          )}
         </div>
       </StArticleHeaderBottom>
     </StArticleHeaderWrapper>

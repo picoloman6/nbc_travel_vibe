@@ -10,16 +10,18 @@ const initialState = {
     {
       commentId: 1,
       content: 'sdkfjl',
-      created_at: '1',
+      created_at: 1,
       userId: 2,
-      postId: 1
+      postId: 1,
+      userNickname: 'ssss'
     },
     {
       commentId: 2,
       content: 'sdkfjl',
-      created_at: '1',
+      created_at: 1,
       userId: 1,
-      postId: 2
+      postId: 2,
+      userNickname: 'ssss'
     }
   ]
 };

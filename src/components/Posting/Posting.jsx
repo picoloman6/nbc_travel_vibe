@@ -5,7 +5,7 @@ import PhotoViewer from './PhotoViewer';
 import PhotoInput from './PhotoInput';
 import { Body } from './styles/PostingStyle';
 import { useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { postPostData } from '../../redux/modules/PostReducer';
 import {
   StTools,
@@ -22,6 +22,7 @@ import { storage } from '../../apis/posts';
 
 const Posting = () => {
   const dispatch = useDispatch();
+  const user = useSelector((state) => state.user);
 
   const [photos, setPhotos] = useState([]);
   const [selectedCategory, setSelectedCategory] = useState('');
@@ -37,13 +38,18 @@ const Posting = () => {
   };
 
   const handlePosting = async () => {
+    if (!user.userId) {
+      return;
+    }
     const newPost = {
       category: selectedCategory,
       title,
       content,
-      created_at: new Date(),
-      likes: 0
-      // userId: postData.length + 1,
+      created_at: new Date().getTime(),
+      likes: 0,
+      userId: user.userId,
+      views: 0,
+      userNickname: 'name'
     };
     const PostId = await addPostApi(newPost);
     dispatch(postPostData(newPost));

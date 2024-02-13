@@ -1,5 +1,5 @@
 const Category = ({ selectedCategory, setSelectedCategory }) => {
-  const categoryOptions = ['Travel', 'Eat', 'Relax'];
+  const categoryOptions = ['travel', 'eat', 'relax'];
 
   const handleCategoryChange = (e) => {
     setSelectedCategory(e.target.value);

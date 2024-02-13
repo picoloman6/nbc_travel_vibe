@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { StDeleteBtn, StSubmitBtn } from '../common/styles/Button.style';
 import {
   StAvatar,
@@ -18,11 +18,14 @@ import Header from '../common/Header';
 import { useDispatch, useSelector } from 'react-redux';
 import { updateUserData } from '../../redux/modules/UserReducer';
 import { useNavigate } from 'react-router-dom';
+import { onAuthStateChanged } from "firebase/auth";
+import { auth } from '../../apis/config';
+
 
 const MyPage = () => {
   const user = useSelector((state) => state.user.users[0]);
   const userEmail = user.email // 유저 이메일 가져오기
-
+  const [emial, setEmail] = useState('');
   const [nickname, setNickname] = useState('');
   const [newPassword, setNewPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
@@ -30,6 +33,22 @@ const MyPage = () => {
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
+
+  const checkUserAuthentication = useCallback(async (user) => {
+    console.log("user", user);
+    if (user) {
+      console.log("currentUser", auth.currentUser);
+      console.log("hi");
+      // 사용자 정보가 있을 때 추가 작업 수행
+    } else {
+      console.log("로그인 하세요");
+    }
+  }, []);
+
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, checkUserAuthentication);
+    return () => unsubscribe();
+  }, [checkUserAuthentication]);
 
   const handleUpdate = () => {
     let updateUser = { ...user };

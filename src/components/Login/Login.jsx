@@ -104,7 +104,9 @@ const Login = ({
           <St.CheckBox type='checkbox' />
           <St.MemoInfo>로그인 유지하기</St.MemoInfo>
         </St.MemoWrapper>
-        <St.LoginBtn onClick={onLoginConfirm}>로그인</St.LoginBtn>
+        <St.LoginBtn type='submit' onClick={onLoginConfirm}>
+          로그인
+        </St.LoginBtn>
         <St.AskSignUpWrapper>
           <St.AskSignUp>아직 회원이 아니신가요?</St.AskSignUp>
           <St.SignUp onClick={onSignUpHandler}>회원가입</St.SignUp>

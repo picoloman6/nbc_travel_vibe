@@ -28,8 +28,9 @@ const Main = () => {
     return comments.length;
   }, []);
   console.log(articles)
+
   const handleArticleCardClick = (postId) => {
-    dispatch(plusView(1));
+    dispatch(plusView(postId));
     console.log(articles[0].views)
     navigate(`/article?pid=${postId}`);
     console.log(articles[0].views)

@@ -1,5 +1,4 @@
 import React from 'react';
-import titleBackgroundImg from '../assets/title_background.png';
 import colors from '../../constants/colors';
 import Header from '../common/Header';
 import Body from '../common/Body';
@@ -55,13 +54,11 @@ const Main = () => {
         </Style.StCategoryBar>
 
         <Style.StArticlesWrap>
-          {/* 게시글 정보들 받아와서 뿌리기 */}
-          {/* 클릭시 url에 id 같이 넘기기 */}
           {articles.map((item) => {
             return (
               <Style.StArticleCard key={item.postId} onClick={() => handleArticleCardClick(item.postId)}>
                 <Style.StArticleThumbImg
-                  src={titleBackgroundImg}
+                  src={item.photos[0].url}
                   art={'게시글 썸네일 이미지'}
                 />
                 <Style.StProfileWrap>

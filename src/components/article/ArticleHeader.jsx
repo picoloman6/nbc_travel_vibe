@@ -3,16 +3,18 @@ import {
   StArticleHeaderTitle,
   StArticleHeaderBottom
 } from './Styles/Article.style';
-
 import { StUpdateBtn, StDeleteBtn } from '../common/styles/Button.style';
+import { dateConvertor } from '../../Shared/date';
 
-const ArticleHeader = () => {
+const ArticleHeader = ({ category, title, userNickname, created_at }) => {
   return (
     <StArticleHeaderWrapper>
-      <span>카테고리</span>
-      <StArticleHeaderTitle>글 제목</StArticleHeaderTitle>
+      <span>{category}</span>
+      <StArticleHeaderTitle>{title}</StArticleHeaderTitle>
       <StArticleHeaderBottom>
-        <span>닉네임 | 날짜</span>
+        <span>
+          {userNickname} | {dateConvertor(created_at)}
+        </span>
         <div>
           <StUpdateBtn $fontSize='14px' $width='50px' $height='30px'>
             수정

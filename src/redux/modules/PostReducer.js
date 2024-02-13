@@ -18,14 +18,15 @@ const initialState = {
       category: 'relax',
       title: 'sdfsdf',
       content: 'sdfsdfsdfsdf',
-      created_at: 1,
+      created_at: 1162000000,
       likes: 2,
       userId: 1,
       photos: [
         {
           url: 'https://i.namu.wiki/i/mmkvzpz0i0UFFKSrfyN5-jrvbiu5FWfhdFZLWnug67p1NcoISI3ql8wHLri5AalgIVcC6sRAVMUzLlST-KYh7g.webp'
         }
-      ]
+      ],
+      userNickname: 'zkzkzk'
     },
     {
       postId: 2,
@@ -39,7 +40,8 @@ const initialState = {
         {
           url: 'https://i.namu.wiki/i/mmkvzpz0i0UFFKSrfyN5-jrvbiu5FWfhdFZLWnug67p1NcoISI3ql8wHLri5AalgIVcC6sRAVMUzLlST-KYh7g.webp'
         }
-      ]
+      ],
+      userNickname: 'zkzkzk'
     },
     {
       postId: 3,
@@ -53,7 +55,9 @@ const initialState = {
         {
           url: 'https://i.namu.wiki/i/mmkvzpz0i0UFFKSrfyN5-jrvbiu5FWfhdFZLWnug67p1NcoISI3ql8wHLri5AalgIVcC6sRAVMUzLlST-KYh7g.webp'
         }
-      ]
+      ],
+      userId: 1,
+      userNickname: 'zkzkzk'
     }
   ]
 };

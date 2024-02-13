@@ -5,22 +5,24 @@ import {
   StArticleComment
 } from './Styles/Article.style';
 import { StDeleteBtn } from '../common/styles/Button.style';
+import { dateConvertor } from '../../Shared/date';
 
-const Comment = () => {
+const Comment = ({ comment }) => {
+  const { content, created_at, userNickname } = comment;
+
   return (
     <StArticleHeaderWrapper>
       <StArticleCommentTop>
         <StArticleCommentUser>
           <span>사진</span>
-          <span>닉네임</span>
+          <span>{userNickname}</span>
+          <span>{dateConvertor(created_at)}</span>
         </StArticleCommentUser>
         <StDeleteBtn $width='35px' $height='25px' $fontSize='11px'>
           삭제
         </StDeleteBtn>
       </StArticleCommentTop>
-      <StArticleComment>
-        내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용내용
-      </StArticleComment>
+      <StArticleComment>{content}</StArticleComment>
     </StArticleHeaderWrapper>
   );
 };

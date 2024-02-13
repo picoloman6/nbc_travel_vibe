@@ -12,9 +12,10 @@ const initialState = {
       category: 'relax',
       title: 'sdfsdf',
       content: 'sdfsdfsdfsdf',
-      created_at: 1,
+      created_at: 1162000000,
       likes: 2,
-      userId: 1
+      userId: 1,
+      userNickname: 'zkzkzk'
     },
     {
       postId: 2,
@@ -23,7 +24,8 @@ const initialState = {
       content: 'sdfsdfsdfsdf',
       created_at: 100000,
       likes: 3,
-      userId: 2
+      userId: 2,
+      userNickname: 'zkzkzk'
     },
     {
       postId: 3,
@@ -32,7 +34,8 @@ const initialState = {
       content: 'sdfsdfsdfsdf',
       created_at: 494841,
       likes: 20,
-      userId: 1
+      userId: 1,
+      userNickname: 'zkzkzk'
     }
   ]
 };

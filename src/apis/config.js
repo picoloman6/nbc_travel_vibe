@@ -14,18 +14,6 @@ const {
   REACT_APP_MEASUREMENTID
 } = process.env;
 
-console.log(process.env);
-
-console.log(
-  REACT_APP_APIKEY,
-  REACT_APP_AUTHDOMAIN,
-  REACT_APP_PROJECTID,
-  REACT_APP_STORAGEBUCKET,
-  REACT_APP_MESSAGINGSENDERID,
-  REACT_APP_APPID,
-  REACT_APP_MEASUREMENTID
-);
-
 const firebaseConfig = {
   apiKey: REACT_APP_APIKEY,
   authDomain: REACT_APP_AUTHDOMAIN,

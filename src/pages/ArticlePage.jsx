@@ -1,4 +1,5 @@
-import { useSearchParams } from 'react-router-dom';
+import { useEffect } from 'react';
+import { useSearchParams, useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
 import Header from '../components/common/Header';
@@ -11,38 +12,46 @@ import Comment from '../components/article/Comment';
 import { StArticleWrapper, StArticleHr } from './styles/Article.style';
 
 const ArticlePage = () => {
+  const navigate = useNavigate();
   const [searchParams] = useSearchParams();
-  const postId = searchParams.get('pid') * 1;
+  const postId = searchParams.get('pid');
   const posts = useSelector((state) => state.post.posts);
   const comments = useSelector((state) => state.comment.comments);
 
-  const { category, title, content, likes, userNickname, created_at } =
-    posts.filter((v) => v.postId === postId)[0];
+  const post = posts.filter((v) => v.postId === postId)[0];
   const postComments = comments.filter((v) => v.postId === postId);
+
+  useEffect(() => {
+    if (post === undefined) {
+      navigate('/');
+    }
+  }, [post, navigate]);
 
   return (
     <StArticleWrapper>
       <Header />
-      <Body>
-        <ArticleHeader
-          category={category}
-          title={title}
-          userNickname={userNickname}
-          created_at={created_at}
-        />
-        <StArticleHr />
-        <ArticleContent
-          content={content}
-          likes={likes}
-          comments={postComments}
-        />
-        <StArticleHr />
-        <CommentForm />
-        <StArticleHr />
-        {postComments.length > 0 &&
-          postComments.map((v) => <Comment comment={v} key={v.commentId} />)}
-        <StArticleHr />
-      </Body>
+      {post && (
+        <Body>
+          <ArticleHeader
+            category={post.category}
+            title={post.title}
+            userNickname={post.userNickname}
+            createdAt={post.createdAt}
+          />
+          <StArticleHr />
+          <ArticleContent
+            content={post.content}
+            likes={post.likes}
+            comments={postComments}
+          />
+          <StArticleHr />
+          <CommentForm />
+          <StArticleHr />
+          {postComments.length > 0 &&
+            postComments.map((v) => <Comment comment={v} key={v.commentId} />)}
+          <StArticleHr />
+        </Body>
+      )}
     </StArticleWrapper>
   );
 };

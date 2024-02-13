@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useCallback, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 
 import Modal from './components/Login/Modal.jsx';
@@ -9,10 +9,15 @@ import { getPostsApi } from './apis/posts.js';
 
 const App = () => {
   const dispatch = useDispatch();
-  useEffect(() => {
-    const posts = getPostsApi();
+
+  const getPosts = useCallback(async () => {
+    const posts = await getPostsApi();
     dispatch(postGetData(posts));
-  });
+  }, [dispatch]);
+
+  useEffect(() => {
+    getPosts();
+  }, [getPosts]);
 
   return (
     <StAppWrapper>

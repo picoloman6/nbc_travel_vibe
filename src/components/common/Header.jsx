@@ -1,12 +1,10 @@
 import { useState } from 'react';
-import { useSelector } from 'react-redux';
 import {
   StHeader,
   StHeaderBtnWapper,
   StHeaderBtn,
   StHeaderProfileImage,
-  StNavLink,
-  ProfileImg
+  StNavLink
 } from './styles/Header.style';
 import Modal from '../Login/Modal';
 import LogoutModal from '../Main/LogoutModal';
@@ -19,10 +17,9 @@ const Header = () => {
   const [isSignUp, setIsSignUp] = useState(false);
   const [isLogoutModalOpen, setIsLogoutModalOpen] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [loggedInUserId, setLoggedInUserId] = useState('');
 
   const onModalHandler = () => {
-    if (isLoggedIn) {
+    if (!isLoggedIn) {
       setIsLoggedIn(false);
       alert('로그아웃 되었습니다.');
     } else {
@@ -36,6 +33,12 @@ const Header = () => {
   const onLogoutModalHandler = () => {
     setIsLogoutModalOpen(!isLogoutModalOpen);
   };
+
+  // const onLogoutModalHandler = async () => {
+  //   await signOut(auth);
+  //   setIsLoggedIn(false);
+  //   console.log('로그아웃');
+  // };
 
   const handlePostButtonClick = () => {
     navigate('/posting');
@@ -51,10 +54,6 @@ const Header = () => {
   const handleHomeButtonClick = () => {
     navigate('/');
   };
-
-  // 프로필 이미지
-  const users = useSelector((state) => state.user.users);
-  const foundUser = users.find((user) => user.userId === loggedInUserId);
 
   return (
     <StHeader>
@@ -79,11 +78,12 @@ const Header = () => {
               onClick={() => navigate('/mypage')}></StHeaderProfileImage>
           </>
         ) : (
-          <StHeaderBtn onClick={onModalHandler}>Login</StHeaderBtn>
+          <>
+            <StHeaderBtn onClick={onModalHandler}>Login</StHeaderBtn>
+            <StHeaderProfileImage
+              onClick={handleMyBlogButtonClick}></StHeaderProfileImage>
+          </>
         )}
-        <StHeaderBtn onClick={onModalHandler}>
-          {isLoggedIn ? 'Logout' : 'Login'}
-        </StHeaderBtn>
 
         <Modal
           isOpen={isOpen}
@@ -93,7 +93,6 @@ const Header = () => {
           setIsSignUp={setIsSignUp}
           isLoggedIn={isLoggedIn}
           setIsLoggedIn={setIsLoggedIn}
-          setLoggedInUserId={setLoggedInUserId}
         />
 
         {!isLoggedIn && (
@@ -104,16 +103,6 @@ const Header = () => {
             setIsLogoutModalOpen={setIsLogoutModalOpen}
           />
         )}
-
-        <StHeaderBtn>
-          {isLoggedIn && (
-            <ProfileImg
-              $isLoggedIn={isLoggedIn}
-              src={foundUser.image}
-              alt='기본이미지'
-            />
-          )}
-        </StHeaderBtn>
       </StHeaderBtnWapper>
     </StHeader>
   );

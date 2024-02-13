@@ -3,6 +3,10 @@ import * as St from './styles/Login.style';
 import { StErrorMsg } from './styles/SignUp.style';
 import { FiEye } from 'react-icons/fi';
 import { FiEyeOff } from 'react-icons/fi';
+import { signInWithEmailAndPassword } from 'firebase/auth';
+import { auth } from '../../apis/config';
+import { useDispatch } from 'react-redux';
+import { postUserData } from '../../redux/modules/UserReducer';
 
 const Login = ({
   setIsOpen,
@@ -11,8 +15,7 @@ const Login = ({
   importUsers,
   setIsLoggedIn,
   validEmail,
-  validPw,
-  setLoggedInUserId
+  validPw
 }) => {
   // Login의 state 상태관리
   const [email, setEmail] = useState('');
@@ -42,18 +45,35 @@ const Login = ({
   };
 
   // 로그인 기능
-  const onLoginConfirm = () => {
-    const foundUser = importUsers.find((user) => {
-      return user.email === email && user.nono === pw;
-    });
+  // const onLoginConfirm = () => {
+  //   const foundUser = importUsers.find((user) => {
+  //     return user.email === email && user.nono === pw;
+  //   });
 
-    if (foundUser) {
+  //   if (foundUser) {
+  //     alert('로그인 되었습니다.');
+  //     setIsLoggedIn(true);
+  //     setIsOpen(false);
+  //     setLoggedInUserId(foundUser.userId);
+  //   } else {
+  //     alert('등록되지 않은 회원입니다.');
+  //   }
+  // };
+
+  const dispatch = useDispatch();
+  const onLoginConfirm = async () => {
+    try {
+      const userCredential = await signInWithEmailAndPassword(auth, email, pw);
+      dispatch(postUserData(userCredential.user.accessToken));
+
+      console.log('user with login:', userCredential.user);
       alert('로그인 되었습니다.');
       setIsLoggedIn(true);
       setIsOpen(false);
-      setLoggedInUserId(foundUser.userId);
-    } else {
-      alert('등록되지 않은 회원입니다.');
+    } catch (error) {
+      const errorCode = error.code;
+      const errorMessage = error.message;
+      console.log('error with login:', errorCode, errorMessage);
     }
   };
 
@@ -72,7 +92,7 @@ const Login = ({
         <St.IdPwWrapper>
           <St.InputContainer>
             <St.LoginInput
-              placeholder='travel123@gmail.com'
+              placeholder='이메일'
               value={email}
               onChange={onCheckValidEmail}
             />

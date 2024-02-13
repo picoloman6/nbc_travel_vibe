@@ -12,7 +12,6 @@ const PhotoViewer = ({
   setPreviewPhotos,
   photos
 }) => {
-  console.log(previewPhotos);
   const handleDeletePhoto = async (index) => {
     const deletedPhoto = previewPhotos.filter((item, i) => i !== index);
     const newPhotos = Array.from(deletedPhoto).map((file, index) => ({

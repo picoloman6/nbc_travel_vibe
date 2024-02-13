@@ -7,7 +7,6 @@ import { Body } from './styles/PostingStyle';
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { postPostData } from '../../redux/modules/PostReducer';
-import { useNavigate } from 'react-router-dom';
 import {
   StTools,
   StWrite,
@@ -17,11 +16,13 @@ import {
   StTitle,
   StConformButton
 } from './styles/PostingStyle';
+import { addPostApi } from '../../apis/posts';
+import { ref, uploadBytes, getDownloadURL } from 'firebase/storage';
+import { storage } from '../../apis/posts';
 
 const Posting = () => {
-  const navigate = useNavigate();
-  const postData = useSelector((state) => state.post.posts);
   const dispatch = useDispatch();
+  const user = useSelector((state) => state.user);
 
   const [photos, setPhotos] = useState([]);
   const [selectedCategory, setSelectedCategory] = useState('');
@@ -37,17 +38,32 @@ const Posting = () => {
   };
 
   const handlePosting = async () => {
+    if (!user.userId) {
+      return;
+    }
     const newPost = {
-      postId: postData.length + 1,
       category: selectedCategory,
       title,
       content,
-      created_at: new Date(),
+      createdAt: new Date().getTime(),
       likes: 0,
-      userId: postData.length + 1,
-      photos: photos
+      userId: user.userId,
+      views: 0,
+      userNickname: 'name',
+      photo: previewPhotos[0]
     };
+    const PostId = await addPostApi(newPost);
     dispatch(postPostData(newPost));
+    await handleSavePhoto(PostId);
+  };
+
+  const handleSavePhoto = async (PostId) => {
+    for (const photo of photos) {
+      const imageRef = ref(storage, `posts/${PostId}/${photo.id}`);
+      await uploadBytes(imageRef, photo.url);
+      const downloadURL = await getDownloadURL(imageRef);
+      console.log(downloadURL);
+    }
   };
 
   const handleTitle = (e) => {
@@ -78,7 +94,7 @@ const Posting = () => {
         <StWriteBox>
           <StContentSection>
             <StTitle
-              placeholder='제목을 입력하셈'
+              placeholder='제목을 입력해주세요'
               onChange={handleTitle}
               value={title}></StTitle>
             <PhotoViewer
@@ -89,17 +105,12 @@ const Posting = () => {
               photos={photos}
             />
             <StWrite
-              placeholder='글 쓰셈'
+              placeholder='글을 작성해주세요'
               onChange={handleContent}
               value={content}
             />
           </StContentSection>
           <StConformButton onClick={handlePosting}>ㄱㄱㄱ</StConformButton>
-          <button
-            onClick={() => navigate('/modifyPost', { state: 2 })}
-            state={2}>
-            수정하기로 이동
-          </button>
         </StWriteBox>
       </Body>
       <PhotoModal

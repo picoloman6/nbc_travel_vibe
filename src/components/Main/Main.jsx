@@ -7,8 +7,8 @@ import { FcLike } from 'react-icons/fc';
 import * as Style from './styles/Main.styles';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { getCommentsApi } from '../../apis/comments';
 import { plusView } from '../../redux/modules/PostReducer';
+import { updatePostApi } from '../../apis/posts';
 
 const Main = () => {
   const navigate = useNavigate();
@@ -18,22 +18,16 @@ const Main = () => {
 
   const articles = useSelector((state) => state.post.posts)
 
-  const [comments, setComments] = useState([]);
-
-  //postId를 어떻게 가져와야할까?
-
-  const findCommentNum = useCallback(async (postId) => {
-    const comments = await getCommentsApi();
-    setComments(comments);
-    return comments.length;
-  }, []);
-  console.log(articles)
-
   const handleArticleCardClick = (postId) => {
+    // db 수정
+    const updatePost = async (postId) => {
+      await updatePostApi(postId);
+    }
+    updatePost(postId);
+
+    //내부 데이터 수정
     dispatch(plusView(postId));
-    console.log(articles[0].views)
     navigate(`/article?pid=${postId}`);
-    console.log(articles[0].views)
   }
 
   const handleCategoryClick = (item) => {
@@ -69,10 +63,12 @@ const Main = () => {
             return lowerCategory === 'all' ? item : item.category === lowerCategory;
           })
             .map((item) => {
+              console.log(item)
+
               return (
                 <Style.StArticleCard key={item.postId} onClick={() => handleArticleCardClick(item.postId)}>
                   <Style.StArticleThumbImg
-                    src={item.photos[0]}
+                    // src={ }
                     art={'게시글 썸네일 이미지'}
                   />
                   <Style.StProfileWrap>

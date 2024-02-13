@@ -36,7 +36,7 @@ const MyArticle = () => {
                             console.log(item)
                             return (
                                 <StContentWrap key={item.postId} onClick={() => handleConentClick(item.postId)}>
-                                    <StThumbImg src={item.photos[0]}></StThumbImg>
+                                    <StThumbImg ></StThumbImg>
                                     <StContentStatsWrap>
                                         <div>
                                             <StContentTitle>{item.title}</StContentTitle>

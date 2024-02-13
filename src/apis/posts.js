@@ -6,7 +6,8 @@ import {
   addDoc,
   getDocs,
   orderBy,
-  query
+  query,
+  updateDoc
 } from 'firebase/firestore/lite';
 
 import db from './config';
@@ -30,6 +31,15 @@ export const postDummy = async (newPost) => {
 export const deletePostApi = async (postId) => {
   try {
     await deleteDoc(doc(db, 'posts', postId));
+  } catch (e) {
+    console.log(e);
+  }
+};
+
+export const updatePostApi = async (postId) => {
+  try {
+    const postRef = doc(db, 'posts', postId);
+    await updateDoc(postRef, { views: postRef.views + 1 });
   } catch (e) {
     console.log(e);
   }

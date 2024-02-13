@@ -51,12 +51,12 @@ const Main = () => {
           <Style.StCategoryWrap>
             {categoryItems.map((item, idx) => {
               return (
-                <>
+                <React.Fragment key={idx}>
                   <Style.StCatergoryItem key={idx} onClick={() => handleCategoryClick(item)} $category={category} $item={item}>
                     {item}
                   </Style.StCatergoryItem>
                   <Style.StLine />
-                </>
+                </React.Fragment>
               )
             })}
           </Style.StCategoryWrap>

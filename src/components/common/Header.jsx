@@ -19,9 +19,10 @@ const Header = () => {
   const [isSignUp, setIsSignUp] = useState(false);
   const [isLogoutModalOpen, setIsLogoutModalOpen] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [loggedInUserId, setLoggedInUserId] = useState('');
 
   const onModalHandler = () => {
-    if (!isLoggedIn) {
+    if (isLoggedIn) {
       setIsLoggedIn(false);
       alert('로그아웃 되었습니다.');
     } else {
@@ -63,14 +64,14 @@ const Header = () => {
         <StNavLink to='/' onClick={handleHomeButtonClick}>
           Home
         </StNavLink>
-        {!isLoggedIn ? (
+        {isLoggedIn ? (
           <StNavLink to={`/myarticle?uid=${user.userId}`}>My Blog</StNavLink>
         ) : (
           <StHeaderBtn onClick={handleMyBlogButtonClick}>My Blog</StHeaderBtn>
         )}
       </StHeaderBtnWapper>
       <StHeaderBtnWapper>
-        {!isLoggedIn ? (
+        {isLoggedIn ? (
           <>
             <StNavLink
               to={`/posting?uid=${user.userId}`}

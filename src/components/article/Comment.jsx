@@ -8,8 +8,8 @@ import { StDeleteBtn } from '../common/styles/Button.style';
 import { StArticleHr } from '../../pages/styles/Article.style';
 import { dateConvertor } from '../../Shared/date';
 
-const Comment = ({ comment, border, deleteComment }) => {
-  const { commentId, content, createdAt, userNickname } = comment;
+const Comment = ({ comment, border, deleteComment, isOwnComment }) => {
+  const { commentId, userId, content, createdAt, userNickname } = comment;
 
   return (
     <>
@@ -20,13 +20,15 @@ const Comment = ({ comment, border, deleteComment }) => {
             <span>{userNickname}</span>
             <span>{dateConvertor(createdAt)}</span>
           </StArticleCommentUser>
-          <StDeleteBtn
-            onClick={() => deleteComment(commentId)}
-            $width='35px'
-            $height='25px'
-            $fontSize='11px'>
-            삭제
-          </StDeleteBtn>
+          {isOwnComment && (
+            <StDeleteBtn
+              onClick={() => deleteComment(commentId, userId)}
+              $width='35px'
+              $height='25px'
+              $fontSize='11px'>
+              삭제
+            </StDeleteBtn>
+          )}
         </StArticleCommentTop>
         <StArticleComment>{content}</StArticleComment>
       </StArticleHeaderWrapper>

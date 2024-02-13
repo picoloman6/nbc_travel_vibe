@@ -22,6 +22,7 @@ const ArticlePage = () => {
   const navigate = useNavigate();
   const [searchParams] = useSearchParams();
   const [comments, setComments] = useState([]);
+  const user = useSelector((state) => state.user);
 
   const postId = searchParams.get('pid');
   const posts = useSelector((state) => state.post.posts);
@@ -32,30 +33,49 @@ const ArticlePage = () => {
     setComments(comments);
   }, [postId]);
 
-  console.log(comments);
-
   const postComment = async (content) => {
-    await postCommentApi(content, postId, '1', 'kaka');
+    if (!user.userId) {
+      alert('로그인 하세요.');
+      return;
+    }
+    await postCommentApi(content, postId, user.userId, 'kaka');
     await getComments();
   };
 
-  const deleteComment = async (commentId) => {
+  const deleteComment = async (commentId, userId) => {
+    if (user.userId !== userId) {
+      alert('작성자가 아닙니다.');
+      return;
+    }
+
     await deleteCommentApi(commentId);
     await getComments();
   };
 
   const moveToUpdate = () => {
+    if (user.userId !== post.userId) {
+      alert('작성자가 아닙니다.');
+      return;
+    }
+
     navigate(`/posting?pid=${postId}`);
   };
 
   const deletePost = async () => {
+    if (user.userId !== post.userId) {
+      alert('작성자가 아닙니다.');
+      return;
+    }
+
     await deletePostApi(postId);
     const newPosts = await getPostsApi();
     dispatch(postGetData(newPosts));
     navigate('/');
-    comments.forEach((v) => {
-      deleteCommentApi(v.commentId);
-    });
+    if (comments.length > 0) {
+      comments.forEach((v) => {
+        deleteCommentApi(v.commentId);
+      });
+    }
   };
 
   useEffect(() => {
@@ -77,6 +97,7 @@ const ArticlePage = () => {
             createdAt={post.createdAt}
             moveToUpdate={moveToUpdate}
             deletePost={deletePost}
+            isOwnPost={user.userId === post.userId}
           />
           <StArticleHr />
           <ArticleContent
@@ -96,6 +117,7 @@ const ArticlePage = () => {
                   comment={v}
                   border={i < comments.length - 1}
                   deleteComment={deleteComment}
+                  isOwnComment={user.userId === v.userId}
                 />
               ))}
           </div>

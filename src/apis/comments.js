@@ -4,7 +4,7 @@ import {
   deleteDoc,
   doc,
   getDocs,
-  orderBy,
+  // orderBy,
   query,
   where
 } from 'firebase/firestore/lite';
@@ -16,8 +16,8 @@ export const getCommentsApi = async (postId) => {
     const res = await getDocs(
       query(
         collection(db, 'comments'),
-        where('postId', '==', postId),
-        orderBy('createdAt', 'desc')
+        where('postId', '==', postId)
+        // orderBy('createdAt', 'desc')
       )
     );
 

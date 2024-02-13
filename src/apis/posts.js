@@ -37,7 +37,7 @@ export const deletePostApi = async (postId) => {
   }
 };
 
-export const updatePostApi = async (postId) => {
+export const updatePostViewApi = async (postId) => {
   try {
     const postRef = doc(db, 'posts', postId);
     await updateDoc(postRef, { views: increment(1) });

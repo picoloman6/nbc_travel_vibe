@@ -81,7 +81,7 @@ const Main = () => {
                     <Style.StProfileImge></Style.StProfileImge>
                     <div>
                       <Style.StNickname>{item.userNickname}</Style.StNickname>
-                      <Style.StCreatedDate>{item.created_at}</Style.StCreatedDate>
+                      <Style.StCreatedDate>{item.createdAt}</Style.StCreatedDate>
                     </div>
                   </Style.StProfileWrap>
                   <Style.StArticleContentInfoWrap>

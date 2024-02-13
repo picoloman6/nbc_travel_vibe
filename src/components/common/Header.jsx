@@ -48,10 +48,11 @@ const Header = () => {
   };
 
   const handleMyBlogButtonClick = () => {
-    if (isLoggedIn) {
+    if (!isLoggedIn) {
       alert('로그인 후 사용 가능합니다.');
       setIsOpen(!isOpen);
     }
+    return;
   };
 
   const handleHomeButtonClick = () => {

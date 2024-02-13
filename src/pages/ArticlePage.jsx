@@ -48,17 +48,18 @@ const ArticlePage = () => {
           <ArticleContent
             content={post.content}
             likes={post.likes}
-            comments={comments.length}
+            photos={post.photos}
+            commentsLen={comments ? comments.length : 0}
           />
           <StArticleHr />
           <CommentForm />
           <StArticleHr />
-          {comments.length > 0 &&
+          {comments &&
             comments.map((v, i) => (
-              <>
-                <Comment comment={v} key={v.commentId} />
+              <div key={v.commentId}>
+                <Comment comment={v} />
                 {i !== comments.length - 1 && <StArticleHr />}
-              </>
+              </div>
             ))}
         </Body>
       )}

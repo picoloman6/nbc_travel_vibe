@@ -2,23 +2,27 @@ import {
   StArticleHeaderWrapper,
   StArticleContent,
   StArticleContentBottom,
-  StArticleHeart
+  StArticleHeart,
+  StArticlePhotoWrapper,
+  StArticlePhoto
 } from './Styles/Article.style';
 import { FaHeart } from 'react-icons/fa';
 import { IoChatboxOutline } from 'react-icons/io5';
 
-const ArticleContent = ({ contentLen, likes, comments }) => {
+const ArticleContent = ({ content, commentsLen, likes, photos }) => {
   return (
     <StArticleHeaderWrapper>
-      <div
-        style={{ border: '1px solid black', width: '500px', height: '250px' }}>
-        사진
-      </div>
-      <StArticleContent>{contentLen}</StArticleContent>
+      <StArticlePhotoWrapper>
+        {photos &&
+          photos.map((v, i) => (
+            <StArticlePhoto key={i} src={v} alt='no image' />
+          ))}
+      </StArticlePhotoWrapper>
+      <StArticleContent>{content}</StArticleContent>
       <StArticleContentBottom>
         <div>
           <IoChatboxOutline />
-          <span>{comments.length}</span>
+          <span>{commentsLen}</span>
         </div>
         <StArticleHeart>
           <FaHeart />

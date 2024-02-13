@@ -1,13 +1,5 @@
 import React, { useState } from 'react';
-import {
-  StLoginWrapper,
-  StSignUp,
-  StPwIcon,
-  StCloseBtn,
-  StAskSignUpWrapper,
-  StAskSignUp,
-  StLoginInput
-} from './styles/Login.style';
+import * as St from './styles/Login.style';
 import {
   StLogoName,
   StLoginTitle,
@@ -18,8 +10,7 @@ import {
 } from './styles/SignUp.style';
 import { useDispatch } from 'react-redux';
 import { postUserData } from '../../redux/modules/UserReducer';
-import { FiEyeOff } from 'react-icons/fi';
-import { FiEye } from 'react-icons/fi';
+import { FiEye, FiEyeOff } from 'react-icons/fi';
 import defaultAvatar from '../assets/defaultAvatar.png';
 
 const SignUp = ({
@@ -121,13 +112,13 @@ const SignUp = ({
 
   return (
     <>
-      <StLoginWrapper>
-        <StCloseBtn onClick={onModalHandler}>x</StCloseBtn>
+      <St.LoginWrapper>
+        <St.CloseBtn onClick={onModalHandler}>x</St.CloseBtn>
         <StLogoName>Travel Vibe</StLogoName>
         <StLoginTitle>회원가입</StLoginTitle>
         <StIdPwWrapper>
           <StInputContainer>
-            <StLoginInput
+            <St.LoginInput
               placeholder='travel123@gmail.com'
               value={email}
               onChange={onCheckValidEmail}
@@ -140,7 +131,7 @@ const SignUp = ({
             {foundEmail && '중복되는 이메일입니다.'}
           </StErrorMsg>
           <StInputContainer>
-            <StLoginInput
+            <St.LoginInput
               placeholder='닉네임'
               value={nickName}
               onChange={onCheckUniqueNickname}
@@ -148,16 +139,16 @@ const SignUp = ({
           </StInputContainer>
           <StErrorMsg>{foundNickname && '중복되는 닉네임입니다.'}</StErrorMsg>
           <StInputContainer>
-            <StLoginInput
+            <St.LoginInput
               type={isShowPw ? 'text' : 'password'}
               autoComplete='on'
               placeholder='비밀번호'
               value={firstPw}
               onChange={onCheckValidPw}
             />
-            <StPwIcon onClick={onShowPw}>
+            <St.PwIcon onClick={onShowPw}>
               {isShowPw ? <FiEye /> : <FiEyeOff />}
-            </StPwIcon>
+            </St.PwIcon>
           </StInputContainer>
           <StErrorMsg>
             {!isValidPw && firstPw.length > 0 && (
@@ -165,16 +156,16 @@ const SignUp = ({
             )}
           </StErrorMsg>
           <StInputContainer>
-            <StLoginInput
+            <St.LoginInput
               type={isSecondShowPw ? 'text' : 'password'}
               autoComplete='on'
               placeholder='비밀번호 확인'
               value={secondPw}
               onChange={onDoubleCheckPw}
             />
-            <StPwIcon onClick={onShowSecondPw}>
+            <St.PwIcon onClick={onShowSecondPw}>
               {isSecondShowPw ? <FiEye /> : <FiEyeOff />}
-            </StPwIcon>
+            </St.PwIcon>
           </StInputContainer>
           <StErrorMsg>
             {secondPw.length > 0 &&
@@ -183,11 +174,11 @@ const SignUp = ({
           </StErrorMsg>
         </StIdPwWrapper>
         <StSignUpBtn onClick={onSignUp}>회원가입</StSignUpBtn>
-        <StAskSignUpWrapper>
-          <StAskSignUp>이미 가입하셨나요?</StAskSignUp>
-          <StSignUp onClick={onSignUpHandler}>로그인</StSignUp>
-        </StAskSignUpWrapper>
-      </StLoginWrapper>
+        <St.AskSignUpWrapper>
+          <St.AskSignUp>이미 가입하셨나요?</St.AskSignUp>
+          <St.SignUp onClick={onSignUpHandler}>로그인</St.SignUp>
+        </St.AskSignUpWrapper>
+      </St.LoginWrapper>
     </>
   );
 };

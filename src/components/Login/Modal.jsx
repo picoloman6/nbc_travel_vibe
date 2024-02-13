@@ -1,4 +1,4 @@
-import { StContainer, StBackground } from './styles/Login.style';
+import * as St from './styles/Login.style';
 
 import Login from './Login';
 import SignUp from './SignUp';
@@ -32,8 +32,8 @@ const Modal = ({
   const importUsers = useSelector((state) => state.user.users);
 
   return (
-    <StBackground $isOpen={isOpen}>
-      <StContainer>
+    <St.Background $isOpen={isOpen}>
+      <St.Container>
         {isSignUp ? (
           <SignUp
             onModalHandler={onModalHandler}
@@ -58,8 +58,8 @@ const Modal = ({
             setLoggedInUserId={setLoggedInUserId}
           />
         )}
-      </StContainer>
-    </StBackground>
+      </St.Container>
+    </St.Background>
   );
 };
 

@@ -1,3 +1,4 @@
+import { getStorage, ref } from 'firebase/storage';
 import {
   collection,
   deleteDoc,
@@ -7,6 +8,7 @@ import {
   orderBy,
   query
 } from 'firebase/firestore/lite';
+
 
 import db from './config';
 
@@ -34,3 +36,6 @@ export const deletePostApi = async (postId) => {
     console.log(e);
   }
 };
+
+export const storage = getStorage();
+export const storageRef = ref();

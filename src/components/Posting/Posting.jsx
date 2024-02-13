@@ -29,6 +29,7 @@ const Posting = () => {
   const [content, setContent] = useState('');
   const [isPhotoOpen, setIsPhotoOpen] = useState(false);
   const [selectPhoto, setSelectPhoto] = useState('');
+  const [previewPhotos, setPreviewPhotos] = useState([]);
 
   const handlePhotoView = (photo) => {
     setSelectPhoto(photo);
@@ -67,6 +68,7 @@ const Posting = () => {
             setPhotos={setPhotos}
             setIsPhotoOpen={setIsPhotoOpen}
             setSelectPhoto={setSelectPhoto}
+            setPreviewPhotos={setPreviewPhotos}
           />
           <Category
             selectedCategory={selectedCategory}
@@ -80,9 +82,11 @@ const Posting = () => {
               onChange={handleTitle}
               value={title}></StTitle>
             <PhotoViewer
-              photos={photos}
+              setPreviewPhotos={setPreviewPhotos}
               setPhotos={setPhotos}
               handlePhotoView={handlePhotoView}
+              previewPhotos={previewPhotos}
+              photos={photos}
             />
             <StWrite
               placeholder='글 쓰셈'

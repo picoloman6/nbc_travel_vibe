@@ -58,7 +58,7 @@ export const LogoName = styled.p`
   color: ${colors.mainBlue};
 `;
 
-export const LoginWrapper = styled.form`
+export const LoginWrapper = styled.div`
   height: 100%;
   width: 90%;
   display: flex;
@@ -74,7 +74,7 @@ export const LoginTitle = styled.p`
   color: black;
 `;
 
-export const IdPwWrapper = styled.div`
+export const IdPwWrapper = styled.form`
   display: flex;
   flex-direction: column;
   margin-top: 30px;

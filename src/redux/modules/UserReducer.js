@@ -15,7 +15,7 @@ const initialState = {
   users: [
     {
       userId: 1,
-      email: 'aaaa@gmail.com',
+      email: 'aa@gmail.com',
       nono: 'aaaa1111',
       nickname: 'sdfsdf',
       image: defaultAvatar

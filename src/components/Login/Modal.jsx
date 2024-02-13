@@ -10,8 +10,7 @@ const Modal = ({
   onModalHandler,
   isSignUp,
   setIsSignUp,
-  setIsLoggedIn,
-  setLoggedInUserId
+  setIsLoggedIn
 }) => {
   const onSignUpHandler = () => {
     setIsSignUp(!isSignUp);
@@ -55,7 +54,6 @@ const Modal = ({
             setIsLoggedIn={setIsLoggedIn}
             validEmail={validEmail}
             validPw={validPw}
-            setLoggedInUserId={setLoggedInUserId}
           />
         )}
       </St.Container>

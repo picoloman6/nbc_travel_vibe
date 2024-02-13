@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { useSelector } from 'react-redux';
 import {
   StHeader,
   StHeaderBtnWapper,
@@ -13,6 +14,7 @@ import { useNavigate } from 'react-router-dom';
 
 const Header = () => {
   const navigate = useNavigate();
+  const user = useSelector((state) => state.user);
 
   const [isOpen, setIsOpen] = useState(false);
   const [isSignUp, setIsSignUp] = useState(false);
@@ -43,7 +45,7 @@ const Header = () => {
   // };
 
   const handlePostButtonClick = () => {
-    navigate('/posting');
+    navigate(`/posting?uid=${user.userId}`);
   };
 
   const handleMyBlogButtonClick = () => {
@@ -68,7 +70,7 @@ const Header = () => {
           Home
         </StNavLink>
         {!isLoggedIn ? (
-          <StNavLink to='/myarticle'>My Blog</StNavLink>
+          <StNavLink to={`/myarticle?uid=${user.userId}`}>My Blog</StNavLink>
         ) : (
           <StHeaderBtn onClick={handleMyBlogButtonClick}>My Blog</StHeaderBtn>
         )}
@@ -76,12 +78,16 @@ const Header = () => {
       <StHeaderBtnWapper>
         {!isLoggedIn ? (
           <>
-            <StNavLink to='/posting' onClick={handlePostButtonClick}>
+            <StNavLink
+              to={`/posting?uid=${user.userId}`}
+              onClick={handlePostButtonClick}>
               Post
             </StNavLink>
             <StHeaderBtn onClick={onLogoutModalHandler}>Logout</StHeaderBtn>
             <StHeaderProfileImage
-              onClick={() => navigate('/mypage')}></StHeaderProfileImage>
+              onClick={() =>
+                navigate(`/mypage?uid=${user.userId}`)
+              }></StHeaderProfileImage>
           </>
         ) : (
           <>

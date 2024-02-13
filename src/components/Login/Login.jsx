@@ -5,6 +5,8 @@ import { FiEye } from 'react-icons/fi';
 import { FiEyeOff } from 'react-icons/fi';
 import { signInWithEmailAndPassword } from 'firebase/auth';
 import { auth } from '../../apis/config';
+import { useDispatch } from 'react-redux';
+import { postUserData } from '../../redux/modules/UserReducer';
 
 const Login = ({
   setIsOpen,
@@ -59,9 +61,12 @@ const Login = ({
   //   }
   // };
 
+  const dispatch = useDispatch();
   const onLoginConfirm = async () => {
     try {
       const userCredential = await signInWithEmailAndPassword(auth, email, pw);
+      dispatch(postUserData(userCredential.user.accessToken));
+
       console.log('user with login:', userCredential.user);
       alert('로그인 되었습니다.');
       setIsLoggedIn(true);

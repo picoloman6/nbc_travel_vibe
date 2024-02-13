@@ -10,8 +10,6 @@ import {
 import Modal from '../Login/Modal';
 import LogoutModal from '../Main/LogoutModal';
 import { useNavigate } from 'react-router-dom';
-import { signOut } from 'firebase/auth';
-import { auth } from '../../apis/config';
 
 const Header = () => {
   const navigate = useNavigate();
@@ -49,7 +47,7 @@ const Header = () => {
   };
 
   const handleMyBlogButtonClick = () => {
-    if (!isLoggedIn) {
+    if (isLoggedIn) {
       alert('로그인 후 사용 가능합니다.');
       setIsOpen(!isOpen);
     }

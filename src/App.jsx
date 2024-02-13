@@ -1,12 +1,7 @@
-import { useSelector, useDispatch } from 'react-redux';
-
 import ResetStyles, { StAppWrapper } from './App.style.js';
+import Posting from './components/Posting/Posting.jsx';
+import { useSelector, useDispatch } from 'react-redux';
 import Modal from './components/Login/Modal.jsx';
-
-import { postUserData } from './redux/modules/UserReducer.js';
-// import { postPostData } from './redux/modules/PostReducer.js';
-// import { postCommentData } from './redux/modules/CommentReducer.js';
-import { useEffect } from 'react';
 import Router from './Shared/Router.js';
 
 const App = () => {

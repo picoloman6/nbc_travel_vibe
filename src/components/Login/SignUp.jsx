@@ -47,7 +47,7 @@ const SignUp = ({
   };
 
   // 중복 이메일 찾기
-  const foundEmail = importUsers.find((user) => user.email === email);
+  // const foundEmail = importUsers.find((user) => user.email === email);
 
   // 비밀번호 형식 유효성검사
   const onCheckValidPw = (e) => {
@@ -67,13 +67,13 @@ const SignUp = ({
   // 닉네임 중복검사
   const onCheckUniqueNickname = (e) => {
     setNickName(e.target.value);
-    if (foundNickname) {
-      setIsValidNickName(false);
-    } else {
-      setIsValidNickName(true);
-    }
+    // if (foundNickname) {
+    //   setIsValidNickName(false);
+    // } else {
+    //   setIsValidNickName(true);
+    // }
   };
-  const foundNickname = importUsers.find((user) => user.nickname === nickName);
+  // const foundNickname = importUsers.find((user) => user.nickname === nickName);
 
   // 회원가입 기능
   // const dispatch = useDispatch();
@@ -146,7 +146,7 @@ const SignUp = ({
             {!isValidEmail &&
               email.length > 0 &&
               '올바르지 않은 이메일 형식입니다.'}
-            {foundEmail && '중복되는 이메일입니다.'}
+            {/* {foundEmail && '중복되는 이메일입니다.'} */}
           </StErrorMsg>
           <StInputContainer>
             <St.LoginInput
@@ -155,7 +155,12 @@ const SignUp = ({
               onChange={onCheckUniqueNickname}
             />
           </StInputContainer>
-          <StErrorMsg>{foundNickname && '중복되는 닉네임입니다.'}</StErrorMsg>
+          {/* <StErrorMsg>{foundNickname && '중복되는 닉네임입니다.'}</StErrorMsg> */}
+          <StErrorMsg>
+            {nickName.length < 3 &&
+              1 < nickName.length &&
+              '닉네임을 2글자 이상 입력해주세요'}
+          </StErrorMsg>
           <StInputContainer>
             <St.LoginInput
               type={isShowPw ? 'text' : 'password'}

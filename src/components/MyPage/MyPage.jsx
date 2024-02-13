@@ -42,7 +42,8 @@ const MyPage = () => {
       try {
         const q = query(collection(db, 'users'));
         const querySnapshot = await getDocs(q);
-        querySnapshot.forEach((doc) => {
+        console.log(querySnapshot)
+        querySnapshot.docs.forEach((doc) => {
           console.log(doc.id, ' => ', doc.data());
         });
       } catch (error) {

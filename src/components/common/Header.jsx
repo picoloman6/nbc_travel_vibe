@@ -5,12 +5,13 @@ import {
   StHeaderBtnWapper,
   StHeaderBtn,
   StHeaderProfileImage,
-  StNavLink,
-  ProfileImg
+  StNavLink
 } from './styles/Header.style';
 import Modal from '../Login/Modal';
 import LogoutModal from '../Main/LogoutModal';
 import { useNavigate } from 'react-router-dom';
+import { signOut } from 'firebase/auth';
+import { auth } from '../../apis/config';
 
 const Header = () => {
   const navigate = useNavigate();
@@ -22,7 +23,7 @@ const Header = () => {
   const [loggedInUserId, setLoggedInUserId] = useState('');
 
   const onModalHandler = () => {
-    if (isLoggedIn) {
+    if (!isLoggedIn) {
       setIsLoggedIn(false);
       alert('로그아웃 되었습니다.');
     } else {
@@ -36,6 +37,12 @@ const Header = () => {
   const onLogoutModalHandler = () => {
     setIsLogoutModalOpen(!isLogoutModalOpen);
   };
+
+  // const onLogoutModalHandler = async () => {
+  //   await signOut(auth);
+  //   setIsLoggedIn(false);
+  //   console.log('로그아웃');
+  // };
 
   const handlePostButtonClick = () => {
     navigate('/posting');
@@ -62,14 +69,14 @@ const Header = () => {
         <StNavLink to='/' onClick={handleHomeButtonClick}>
           Home
         </StNavLink>
-        {isLoggedIn ? (
+        {!isLoggedIn ? (
           <StNavLink to='/myarticle'>My Blog</StNavLink>
         ) : (
           <StHeaderBtn onClick={handleMyBlogButtonClick}>My Blog</StHeaderBtn>
         )}
       </StHeaderBtnWapper>
       <StHeaderBtnWapper>
-        {isLoggedIn ? (
+        {!isLoggedIn ? (
           <>
             <StNavLink to='/posting' onClick={handlePostButtonClick}>
               Post

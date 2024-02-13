@@ -42,7 +42,7 @@ const Header = () => {
   };
 
   const handleMyBlogButtonClick = () => {
-    if (isLoggedIn) {
+    if (!isLoggedIn) {
       alert('로그인 후 사용 가능합니다.');
       setIsOpen(!isOpen);
     }
@@ -62,14 +62,14 @@ const Header = () => {
         <StNavLink to='/' onClick={handleHomeButtonClick}>
           Home
         </StNavLink>
-        {!isLoggedIn ? (
+        {isLoggedIn ? (
           <StNavLink to='/myarticle'>My Blog</StNavLink>
         ) : (
           <StHeaderBtn onClick={handleMyBlogButtonClick}>My Blog</StHeaderBtn>
         )}
       </StHeaderBtnWapper>
       <StHeaderBtnWapper>
-        {!isLoggedIn ? (
+        {isLoggedIn ? (
           <>
             <StNavLink to='/posting' onClick={handlePostButtonClick}>
               Post
@@ -79,11 +79,12 @@ const Header = () => {
               onClick={() => navigate('/mypage')}></StHeaderProfileImage>
           </>
         ) : (
-          <StHeaderBtn onClick={onModalHandler}>Login</StHeaderBtn>
+          <>
+            <StHeaderBtn onClick={onModalHandler}>Login</StHeaderBtn>
+            <StHeaderProfileImage
+              onClick={handleMyBlogButtonClick}></StHeaderProfileImage>
+          </>
         )}
-        <StHeaderBtn onClick={onModalHandler}>
-          {isLoggedIn ? 'Logout' : 'Login'}
-        </StHeaderBtn>
 
         <Modal
           isOpen={isOpen}
@@ -104,16 +105,6 @@ const Header = () => {
             setIsLogoutModalOpen={setIsLogoutModalOpen}
           />
         )}
-
-        <StHeaderBtn>
-          {isLoggedIn && (
-            <ProfileImg
-              $isLoggedIn={isLoggedIn}
-              src={foundUser.image}
-              alt='기본이미지'
-            />
-          )}
-        </StHeaderBtn>
       </StHeaderBtnWapper>
     </StHeader>
   );

@@ -63,6 +63,9 @@ const Login = ({
     try {
       const userCredential = await signInWithEmailAndPassword(auth, email, pw);
       console.log('user with login:', userCredential.user);
+      alert('로그인 되었습니다.');
+      setIsLoggedIn(true);
+      setIsOpen(false);
     } catch (error) {
       const errorCode = error.code;
       const errorMessage = error.message;

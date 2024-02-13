@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import colors from '../../../constants/colors';
 
 export const StArticleHeaderWrapper = styled.div`
+  width: 100%;
   padding: 30px 40px;
 `;
 
@@ -92,4 +93,18 @@ export const StArticleCommentUser = styled.div`
 
 export const StArticleComment = styled.p`
   line-height: 25px;
+`;
+
+export const StArticlePhotoWrapper = styled.div`
+  width: 100%;
+  height: 50%;
+  overflow: auto;
+  white-space: nowrap;
+`;
+
+export const StArticlePhoto = styled.img`
+  border: 1px solid black;
+  width: 30%;
+  height: 30%;
+  margin-right: 25px;
 `;

@@ -7,7 +7,7 @@ import PhotoViewer from './PhotoViewer';
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useLocation } from 'react-router-dom';
-import { postGetData } from '../../redux/modules/PostReducer';
+import { postPostData } from '../../redux/modules/PostReducer';
 import {
   StTools,
   StWrite,
@@ -72,7 +72,7 @@ const Posting = () => {
   };
   useEffect(() => {
     if (modifyPost) {
-      dispatch(postGetData(modifyPost));
+      dispatch(postPostData(modifyPost));
     }
   }, [modifyPost]);
 

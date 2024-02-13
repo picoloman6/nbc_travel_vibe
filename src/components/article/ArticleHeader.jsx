@@ -11,7 +11,8 @@ const ArticleHeader = ({
   title,
   userNickname,
   createdAt,
-  moveToUpdate
+  moveToUpdate,
+  deletePost
 }) => {
   return (
     <StArticleHeaderWrapper>
@@ -29,7 +30,11 @@ const ArticleHeader = ({
             onClick={moveToUpdate}>
             수정
           </StUpdateBtn>
-          <StDeleteBtn $fontSize='14px' $width='50px' $height='30px'>
+          <StDeleteBtn
+            $fontSize='14px'
+            $width='50px'
+            $height='30px'
+            onClick={deletePost}>
             삭제
           </StDeleteBtn>
         </div>

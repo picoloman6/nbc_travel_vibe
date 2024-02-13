@@ -13,7 +13,7 @@ const Main = () => {
   const navigate = useNavigate();
 
   const handleArticleCardClick = () => {
-    navigate('/article?pid=kaPLHprVYqCd0ixiTcLw');
+    navigate('/article?pid=1NXMuOqEGDwZJ0MWkPkg');
   };
 
   return (

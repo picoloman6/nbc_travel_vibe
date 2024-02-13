@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useState } from 'react';
 import { useSearchParams, useNavigate } from 'react-router-dom';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 
 import Header from '../components/common/Header';
 import Body from '../components/common/Body';
@@ -14,8 +14,11 @@ import {
   getCommentsApi,
   postCommentApi
 } from '../apis/comments';
+import { deletePostApi, getPostsApi } from '../apis/posts';
+import { postGetData } from '../redux/modules/PostReducer';
 
 const ArticlePage = () => {
+  const dispatch = useDispatch();
   const navigate = useNavigate();
   const [searchParams] = useSearchParams();
   const [comments, setComments] = useState([]);
@@ -29,6 +32,8 @@ const ArticlePage = () => {
     setComments(comments);
   }, [postId]);
 
+  console.log(comments);
+
   const postComment = async (content) => {
     await postCommentApi(content, postId, '1', 'kaka');
     await getComments();
@@ -41,6 +46,16 @@ const ArticlePage = () => {
 
   const moveToUpdate = () => {
     navigate(`/posting?pid=${postId}`);
+  };
+
+  const deletePost = async () => {
+    await deletePostApi(postId);
+    const newPosts = await getPostsApi();
+    dispatch(postGetData(newPosts));
+    navigate('/');
+    comments.forEach((v) => {
+      deleteCommentApi(v.commentId);
+    });
   };
 
   useEffect(() => {
@@ -61,6 +76,7 @@ const ArticlePage = () => {
             userNickname={post.userNickname}
             createdAt={post.createdAt}
             moveToUpdate={moveToUpdate}
+            deletePost={deletePost}
           />
           <StArticleHr />
           <ArticleContent

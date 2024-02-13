@@ -97,20 +97,19 @@ const SignUp = ({
   //   }
   // };
 
-  const onSignUp = () => {
-    createUserWithEmailAndPassword(auth, email, firstPw)
-      .then((userCredential) => {
-        // Signed in
-        const user = userCredential.user;
-        console.log('user with signUp:', user);
-        // ...
-      })
-      .catch((error) => {
-        const errorCode = error.code;
-        const errorMessage = error.message;
-        console.log('error with signUp:', errorCode, errorMessage);
-        // ..
-      });
+  const onSignUp = async () => {
+    try {
+      const userCredential = await createUserWithEmailAndPassword(
+        auth,
+        email,
+        firstPw
+      );
+      console.log('user with signUp:', userCredential.user);
+    } catch (error) {
+      const errorCode = error.code;
+      const errorMessage = error.message;
+      console.log('error with signUp:', errorCode, errorMessage);
+    }
   };
 
   // 회원가입 시 로그인상태로 전환

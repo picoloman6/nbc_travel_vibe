@@ -7,7 +7,10 @@ import {
   getDocs,
   orderBy,
   query,
-  updateDoc
+  updateDoc,
+  CollectionReference,
+  QuerySnapshot,
+  increment
 } from 'firebase/firestore/lite';
 
 import db from './config';
@@ -39,7 +42,7 @@ export const deletePostApi = async (postId) => {
 export const updatePostApi = async (postId) => {
   try {
     const postRef = doc(db, 'posts', postId);
-    await updateDoc(postRef, { views: postRef.views + 1 });
+    await updateDoc(postRef, { views: increment(1) });
   } catch (e) {
     console.log(e);
   }

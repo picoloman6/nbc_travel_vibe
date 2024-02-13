@@ -7,28 +7,40 @@ import { FcLike } from 'react-icons/fc';
 import * as Style from './styles/Main.styles';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { getPostsApi } from '../../apis/posts';
-import { postGetData, postPostData } from '../../redux/modules/PostReducer';
+import { getCommentsApi } from '../../apis/comments';
 
 const Main = () => {
   const navigate = useNavigate();
-  const dispatch = useDispatch();
-
   const categoryItems = ['All', 'Travel', 'Eat', 'Relax']
-
   const [category, setCategory] = useState('All')
+  const [isRendered, serIsRendered] = useState(false)
 
-  const articles = useSelector((state) => {
-    return state.post.posts
-  })
+  const articles = useSelector((state) => state.post.posts)
 
-  const handleArticleCardClick = (id) => {
-    navigate(`/article?pid=${id}`);
+  const [comments, setComments] = useState([]);
+
+  //postId를 어떻게 가져와야할까?
+
+
+
+  const findCommentNum = useCallback(async (postId) => {
+    const comments = await getCommentsApi();
+    setComments(comments);
+    return comments.length;
+  }, []);
+
+  console.log("🚀 ~ Main ~ comments:", comments)
+
+  // const count = findCommentNum(item.postId);
+
+  const handleArticleCardClick = (postId) => {
+    navigate(`/article?pid=${postId}`);
   }
 
   const handleCategoryClick = (item) => {
     setCategory(item)
   }
+
 
   return (
     <Style.StMainBackground>
@@ -92,7 +104,7 @@ const Main = () => {
                           <LiaCommentDots />
                         </Style.StIconWrap>{' '}
                         {/* 댓글 수 */}
-                        <span>{item.comments}</span>
+                        <span>{ }</span>
                       </Style.StIconsStatsWrap>
                     </div>
                     <Style.StIconsStatsWrap>

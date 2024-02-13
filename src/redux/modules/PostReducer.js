@@ -1,5 +1,6 @@
 const GET_DATA = 'post/GET_DATA';
 const POST_DATA = 'post/POST_DATA';
+const PLUS_VIEW = 'post/PLUS_VIEW';
 
 export const postGetData = (posts) => ({
   type: GET_DATA,
@@ -9,6 +10,11 @@ export const postGetData = (posts) => ({
 export const postPostData = (post) => ({
   type: POST_DATA,
   payload: post
+});
+
+export const plusView = (view) => ({
+  type: PLUS_VIEW,
+  payload: view
 });
 
 const initialState = {
@@ -26,6 +32,17 @@ const postReducer = (state = initialState, action) => {
       return {
         ...state,
         posts: [...state.posts, action.payload]
+      };
+    case PLUS_VIEW:
+      const plusTargetId = action.payload;
+      const plusedArticle = state.posts.map((item) => {
+        if (item.postId === plusTargetId) {
+          return { ...item, views: state.views + 1 };
+        } else return item;
+      });
+      return {
+        ...state,
+        posts: plusedArticle
       };
     default:
       return state;

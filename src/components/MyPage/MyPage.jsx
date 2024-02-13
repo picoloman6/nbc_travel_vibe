@@ -31,14 +31,17 @@ const MyPage = () => {
   const [newPassword, setNewPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
   const [image, setImage] = useState(user.image);
+  const [usersData, setUsersData] = useState('')
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
   useEffect(() => {
     const fetchData = async () => {
+      console.log('asfd')
       try {
-        const querySnapshot = await getDocs(collection(db, 'users'));
+        const q = query(collection(db, 'users'));
+        const querySnapshot = await getDocs(q);
         querySnapshot.forEach((doc) => {
           console.log(doc.id, ' => ', doc.data());
         });
@@ -46,7 +49,6 @@ const MyPage = () => {
         console.error('Error getting documents: ', error);
       }
     };
-
     fetchData();
   }, []);
 

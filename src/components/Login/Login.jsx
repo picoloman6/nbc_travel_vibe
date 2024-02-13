@@ -72,7 +72,7 @@ const Login = ({
         <St.IdPwWrapper>
           <St.InputContainer>
             <St.LoginInput
-              placeholder='travel123@gmail.com'
+              placeholder='이메일'
               value={email}
               onChange={onCheckValidEmail}
             />

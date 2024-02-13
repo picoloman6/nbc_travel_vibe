@@ -8,7 +8,7 @@ import commentReducer from '../modules/CommentReducer';
 const rootReducer = combineReducers({
   user: userReducer,
   post: postReducer,
-  comment: commentReducer
+  comment: commentReducer,
 });
 
 const store = configureStore({

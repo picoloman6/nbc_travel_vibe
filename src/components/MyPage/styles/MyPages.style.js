@@ -13,6 +13,7 @@ export const StContainer = styled.div`
   padding: 20px;
   box-sizing: border-box;
   margin: 0 auto;
+  min-width: 800px;
 `;
 
 export const StMyPageWrapper = styled.div`

@@ -56,7 +56,6 @@ const initialState = {
           url: 'https://i.namu.wiki/i/mmkvzpz0i0UFFKSrfyN5-jrvbiu5FWfhdFZLWnug67p1NcoISI3ql8wHLri5AalgIVcC6sRAVMUzLlST-KYh7g.webp'
         }
       ],
-      userId: 1,
       userNickname: 'zkzkzk'
     }
   ]
@@ -80,6 +79,3 @@ const postReducer = (state = initialState, action) => {
 };
 
 export default postReducer;
-// posts: state.posts.map((post) =>
-//           post.postId === action.payload.postId ? action.payload : post
-//         )

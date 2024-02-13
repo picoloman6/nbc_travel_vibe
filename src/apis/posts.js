@@ -46,5 +46,10 @@ export const updatePostCommentLen = async (postId, commentLen) => {
   }
 };
 
+export const addPostApi = async (newPost) => {
+  const doc = await addDoc(collection(db, 'posts'), newPost);
+  return doc.id;
+};
+
 export const storage = getStorage();
 export const storageRef = ref();

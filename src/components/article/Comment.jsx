@@ -8,7 +8,7 @@ import { StDeleteBtn } from '../common/styles/Button.style';
 import { dateConvertor } from '../../Shared/date';
 
 const Comment = ({ comment }) => {
-  const { content, created_at, userNickname } = comment;
+  const { content, createdAt, userNickname } = comment;
 
   return (
     <StArticleHeaderWrapper>
@@ -16,7 +16,7 @@ const Comment = ({ comment }) => {
         <StArticleCommentUser>
           <span>사진</span>
           <span>{userNickname}</span>
-          <span>{dateConvertor(created_at)}</span>
+          <span>{dateConvertor(createdAt)}</span>
         </StArticleCommentUser>
         <StDeleteBtn $width='35px' $height='25px' $fontSize='11px'>
           삭제

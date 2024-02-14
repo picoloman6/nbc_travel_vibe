@@ -6,7 +6,7 @@ import PhotoInput from './PhotoInput';
 import { Body } from './styles/PostingStyle';
 import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { postPostData } from '../../redux/modules/PostReducer';
+import { postGetData, postPostData } from '../../redux/modules/PostReducer';
 import {
   StTools,
   StWrite,
@@ -16,7 +16,12 @@ import {
   StTitle,
   StConformButton
 } from './styles/PostingStyle';
-import { addPostApi, updatePostApi, updatePostPhoto } from '../../apis/posts';
+import {
+  addPostApi,
+  getPostsApi,
+  updatePostApi,
+  updatePostPhoto
+} from '../../apis/posts';
 import { ref, uploadBytes, getDownloadURL } from 'firebase/storage';
 import { storage } from '../../apis/posts';
 import { useLocation, useSearchParams, useNavigate } from 'react-router-dom';
@@ -67,14 +72,18 @@ const Posting = () => {
     };
 
     if (mode === 'update') {
+      console.log('여기');
       await updatePostApi(postIdQuery, newPost);
+      alert('수정 완료!');
+      navigate('/');
     } else {
       const PostId = await addPostApi(newPost);
       await handleSavePhoto(PostId, newPost);
     }
 
     setMode('add');
-    dispatch(postPostData(newPost));
+    const newPosts = await getPostsApi();
+    dispatch(postGetData(newPosts));
   };
 
   const handleSavePhoto = async (PostId, newPost) => {
@@ -84,7 +93,7 @@ const Posting = () => {
       const downloadURL = await getDownloadURL(imageRef);
       await updatePostPhoto(PostId, downloadURL);
       newPost.photo = downloadURL;
-      alert('완료!');
+      alert('등록 완료!');
       navigate('/');
     }
   };

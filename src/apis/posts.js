@@ -78,6 +78,7 @@ export const addPostApi = async (newPost) => {
 };
 
 export const updatePostApi = async (postId, newPost) => {
+  delete newPost.photo;
   try {
     await updateDoc(doc(db, 'posts', postId), newPost);
   } catch (e) {

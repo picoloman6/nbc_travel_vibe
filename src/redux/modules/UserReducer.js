@@ -24,6 +24,7 @@ const initialState = {
   userId: null,
   image: null,
   nickname: null
+
 };
 
 const userReducer = (state = initialState, action) => {

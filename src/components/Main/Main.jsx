@@ -19,24 +19,24 @@ const Main = () => {
   const categoryItems = ['All', 'Travel', 'Eat', 'Relax'];
   const [category, setCategory] = useState('All');
 
-  const articles = useSelector((state) => state.post.posts)
+  const articles = useSelector((state) => state.post.posts);
 
   const handleArticleCardClick = (postId) => {
     // db 수정
     try {
       const updatePost = async (postId) => {
         await updatePostViewApi(postId);
-      }
+      };
       updatePost(postId);
     } catch (e) {
-      alert("문제가 발생했습니다. 잠시 후 다시 시도해주세요.")
-      console.log(e)
+      alert('문제가 발생했습니다. 잠시 후 다시 시도해주세요.');
+      console.log(e);
     }
 
     //내부 데이터 수정
     dispatch(plusView(postId));
     navigate(`/article?pid=${postId}`);
-  }
+  };
 
   const handleCategoryClick = (item) => {
     setCategory(item);
@@ -55,12 +55,15 @@ const Main = () => {
             {categoryItems.map((item, idx) => {
               return (
                 <React.Fragment key={idx}>
-                  <Style.StCatergoryItem key={idx} onClick={() => handleCategoryClick(item)} $category={category} $item={item}>
+                  <Style.StCatergoryItem
+                    key={idx}
+                    onClick={() => handleCategoryClick(item)}
+                    $category={category} $item={item}>
                     {item}
                   </Style.StCatergoryItem>
                   <Style.StLine />
                 </React.Fragment>
-              )
+              );
             })}
           </Style.StCategoryWrap>
         </Style.StCategoryBar>
@@ -110,7 +113,7 @@ const Main = () => {
                         {item.content}
                       </Style.StArticleContentTxt>
                     </Style.StArticleContentInfoWrap>
-                    <hr style={{ margin: "auto auto 0 auto", width: '93%' }}></hr>
+                    <hr style={{ margin: 'auto auto 0 auto', width: '93%' }}></hr>
                     <Style.StContentStats>
                       <div style={{ display: 'flex' }}>
                         <Style.StIconsStatsWrap>

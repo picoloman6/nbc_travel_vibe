@@ -22,6 +22,11 @@ React를 이용한 여행 컨셉의 블로그 플랫폼 만들기
 |                                        [@seoyeon-1206](https://github.com/seoyeon-1206)                                         |                                           [@picoloman6](https://github.com/picoloman6)                                           |                                          [@HuaHuaChiChi](https://github.com/HuaHuaChiChi)                                          |                                              [@innes-k](https://github.com/innes-k)                                              |                                             [@seopport](https://github.com/seopport)                                             |
 |                                                              리더                                                               |                                                               팀원                                                               |                                                                팀원                                                                |                                                               팀원                                                               |                                                               팀원                                                               |
 |                                                         맡은 부분 작성                                                          |                                                                                                                                  |                                                                                                                                    |                                                                                                                                  |                                                  메인페이지, 게시물 관리 페이지                                                  |
+=======
+|            [@seoyeon-1206](https://github.com/seoyeon-1206)           |         [@picoloman6](https://github.com/picoloman6)         |       [@HuaHuaChiChi](https://github.com/HuaHuaChiChi)       |       [@innes-k](https://github.com/innes-k)        |           [@seopport](https://github.com/seopport)           |
+|                             리더                             |                             팀원                             |                             팀원                             |                             팀원                             |                             팀원                             |
+|                        마이페이지                           |                                            |                          |                           |      메인페이지, 게시물 관리 페이지  |
+ 
 
 <br>
 
@@ -145,6 +150,10 @@ yarn start
 
 | 사진 추가 필요 |
 | -------------- |
++ 헤더의 프로필 이미지를 눌러 마이페이지로 이동할 수 있습니다.
++ 마이페이지에서는 닉네임과 프로필 사진을 수정할 수 있습니다.
+  + 수정할 닉네임을 입력하고 수정할 사진을 첨부한 뒤 완료를 눌러 수정을 완료합니다.
+  + 취소 버튼을 누르면 이전 페이지로 돌아갑니다.
 
 - 헤더의 프로필 이미지를 눌러 마이페이지로 이동할 수 있습니다.
 - 마이페이지에서는 닉네임과 비밀번호를 수정할 수 있습니다.

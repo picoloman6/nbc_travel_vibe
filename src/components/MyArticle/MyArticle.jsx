@@ -16,6 +16,7 @@ import {
 } from '../MyArticle/styles/MyArticle.style';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 import { useSelector } from 'react-redux';
+import { dateConvertor } from '../../Shared/date';
 
 const MyArticle = () => {
   const Articles = useSelector((state) => {
@@ -51,7 +52,7 @@ const MyArticle = () => {
                   <StContentCategoryDateWrap>
                     <span>{item.category}</span>
                     <StLine></StLine>
-                    <span>{item.createdAt}</span>
+                    <span>{dateConvertor(item.createdAt)}</span>
                   </StContentCategoryDateWrap>
                 </StContentStatsWrap>
               </StContentWrap>

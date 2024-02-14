@@ -35,6 +35,7 @@ React를 이용한 여행 컨셉의 블로그 플랫폼 만들기
 - **Library :** redux, react-router-dom, styled-components, react-icons, dotenv
 - **Design :** Figma
 - **Login :** Firebase Authentication
+- **Deployment :** Vercel
 
 <br>
 

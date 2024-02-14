@@ -230,3 +230,5 @@ yarn start
          opacity: 100%;
        }
      ```
+
+- **해결방안**: Navlink에 $isActive prop을 넘겨주는 대신에 &.active 선택자를 사용하여 스타일을 지정하는 방법으로 문제를 해결했습니다. Navlink가 활성 상태일 때 자동으로 '.active' 클래스를 부여하므로, isActive prop을 따로 제어할 필요가 없었습니다. 이 방법을 통해 active 상태에 따라 스타일을 지정할 수 있었습니다.

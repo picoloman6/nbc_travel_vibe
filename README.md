@@ -120,7 +120,7 @@ yarn start
 
 #### 2. 게시물 페이지
 
-| ![image](https://github.com/picoloman6/nbc_travel_vibe/assets/103973797/0167c28d-4a94-4301-8b2f-a17d4e4c075a) |
+| ![image](https://github.com/picoloman6/nbc_travel_vibe/assets/103973797/555642b3-cddf-4ad4-afab-8971040ea118) |
 | ---- |
 
 + 게시물의 상세 내용을 조회할 수 있습니다.

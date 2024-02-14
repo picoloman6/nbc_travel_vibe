@@ -42,6 +42,7 @@ const Main = () => {
     setCategory(item);
   };
 
+
   return (
     <Style.StMainBackground>
       <Header />
@@ -113,7 +114,7 @@ const Main = () => {
                         {item.content}
                       </Style.StArticleContentTxt>
                     </Style.StArticleContentInfoWrap>
-                    <hr style={{ margin: '0 auto', width: '93%' }}></hr>
+                    <hr style={{ margin: 'auto auto 0 auto', width: '93%' }}></hr>
                     <Style.StContentStats>
                       <div style={{ display: 'flex' }}>
                         <Style.StIconsStatsWrap>

@@ -20,8 +20,7 @@ import { updateUserData } from '../../redux/modules/UserReducer';
 import { useNavigate } from 'react-router-dom';
 import { onAuthStateChanged } from "firebase/auth";
 import db, { auth } from '../../apis/config';
-import { collection, doc, getDocs, query, updateDoc } from 'firebase/firestore/lite';
-
+import { collection, getDocs, query, updateDoc } from 'firebase/firestore/lite';
 
 const MyPage = () => {
   const [nickname, setNickname] = useState("")
@@ -31,38 +30,43 @@ const MyPage = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  // users 데이터 가져오기
+  // users 데이터 가져오기 
   useEffect(() => {
     const fetchData = async () => {
       try {
         const q = query(collection(db, 'users'));
         const querySnapshot = await getDocs(q);
-        querySnapshot.docs.forEach((doc) => {
-          const { nickname, email, image } = doc.data();
+        querySnapshot.docs.forEach((item) => {
+          const { nickname, email, image } = item.data();
           setNickname(nickname)
           setEmail(email)
           setImage(image)
-        });
+        })
       } catch (error) {
         console.error('Error getting documents: ', error);
       }
-    };
+    }
     fetchData();
-  }, []);
+  }, [])
 
   //Firestore에서 사용자 데이터 업데이트하는 함수
   const updateUserInFirestore = async (updatedData) => {
     try {
-      const userRef = doc(db, 'users', 'iIMfE29MjRVa7Y7HpzwY0mUE3 ');
-      await updateDoc(userRef, updatedData);
-      dispatch(updateUserData(updatedData));
+      const q = query(collection(db, 'users'));
+      const querySnapshot = await getDocs(q);
+      querySnapshot.docs.forEach(async (item) => {
+        const docId = item.id;
+        const userRef = item(db, 'users', docId);
+        await updateDoc(userRef, updatedData);
+        dispatch(updateUserData(updatedData));
+      });
     } catch (error) {
-      console.log("firestore 업데이트 실패")
+      console.log("firestore 업데이트 실패:", error);
     }
   }
 
   const handleUpdate = () => {
-    const updatedData = { nickname, image }
+    const updatedData = { email, nickname, image }
     updateUserInFirestore(updatedData)
     console.log(updatedData)
     // let updateUser = { ...user };

@@ -1,13 +1,16 @@
-import Category from './Category';
-import Header from '../common/Header';
-import PhotoModal from './PhotoModal';
-import PhotoViewer from './PhotoViewer';
-import PhotoInput from './PhotoInput';
-import { Body } from './styles/PostingStyle';
 import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { postGetData } from '../../redux/modules/PostReducer';
+import { ref, uploadBytes, getDownloadURL } from 'firebase/storage';
+import { useLocation, useSearchParams, useNavigate } from 'react-router-dom';
+
+import Category from '../components/Posting/Category';
+import Header from '../components/common/Header';
+import PhotoModal from '../components/Posting/PhotoModal';
+import PhotoViewer from '../components/Posting/PhotoViewer';
+import PhotoInput from '../components/Posting/PhotoInput';
+import { postGetData } from '../redux/modules/PostReducer';
 import {
+  Body,
   StTools,
   StWrite,
   StWriteBox,
@@ -15,18 +18,16 @@ import {
   StContentSection,
   StTitle,
   StConformButton
-} from './styles/PostingStyle';
+} from '../components/Posting/styles/PostingStyle';
 import {
   addPostApi,
   getPostsApi,
   updatePostApi,
-  updatePostPhoto
-} from '../../apis/posts';
-import { ref, uploadBytes, getDownloadURL } from 'firebase/storage';
-import { storage } from '../../apis/posts';
-import { useLocation, useSearchParams, useNavigate } from 'react-router-dom';
+  updatePostPhoto,
+  storage
+} from '../apis/posts';
 
-const Posting = () => {
+const PostingPage = () => {
   const dispatch = useDispatch();
   const user = useSelector((state) => state.user);
   const navigate = useNavigate();
@@ -75,12 +76,15 @@ const Posting = () => {
     };
 
     if (mode === 'update') {
+      await handleSavePhoto(postIdQuery, newPost);
       await updatePostApi(postIdQuery, newPost);
       alert('수정 완료!');
       navigate('/');
     } else {
       const PostId = await addPostApi(newPost);
       await handleSavePhoto(PostId, newPost);
+      alert('등록 완료!');
+      navigate('/');
     }
 
     setMode('add');
@@ -95,8 +99,6 @@ const Posting = () => {
       const downloadURL = await getDownloadURL(imageRef);
       await updatePostPhoto(PostId, downloadURL);
       newPost.photo = downloadURL;
-      alert('등록 완료!');
-      navigate('/');
     }
   };
 
@@ -165,4 +167,4 @@ const Posting = () => {
   );
 };
 
-export default Posting;
+export default PostingPage;

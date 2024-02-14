@@ -9,7 +9,6 @@ import {
   query,
   updateDoc,
   increment
-
 } from 'firebase/firestore/lite';
 
 import db from './config';
@@ -34,14 +33,14 @@ export const deletePostApi = async (postId) => {
   }
 };
 
-
 export const updatePostViewApi = async (postId) => {
   try {
     const postRef = doc(db, 'posts', postId);
     await updateDoc(postRef, { views: increment(1) });
-    } catch (e) {
+  } catch (e) {
     console.log(e);
   }
+};
 
 export const updatePostCommentLen = async (postId, commentLen) => {
   try {
@@ -71,7 +70,9 @@ export const addPostApi = async (newPost) => {
 export const updatePostApi = async (postId, newPost) => {
   try {
     await updateDoc(doc(db, 'posts', postId), newPost);
-  
+  } catch (e) {
+    console.log(e);
+  }
 };
 
 export const storage = getStorage();

@@ -16,7 +16,7 @@ import {
   StTitle,
   StConformButton
 } from './styles/PostingStyle';
-import { addPostApi, updatePostApi } from '../../apis/posts';
+import { addPostApi, updatePostApi, updatePostPhoto } from '../../apis/posts';
 import { ref, uploadBytes, getDownloadURL } from 'firebase/storage';
 import { storage } from '../../apis/posts';
 import { useLocation, useSearchParams, useNavigate } from 'react-router-dom';
@@ -63,26 +63,27 @@ const Posting = () => {
       userId: user.userId,
       views: 0,
       userNickname: 'name',
-      photo: previewPhotos[0]
+      photo: ''
     };
 
     if (mode === 'update') {
       await updatePostApi(postIdQuery, newPost);
     } else {
       const PostId = await addPostApi(newPost);
-      await handleSavePhoto(PostId);
+      await handleSavePhoto(PostId, newPost);
     }
 
     setMode('add');
     dispatch(postPostData(newPost));
   };
 
-  const handleSavePhoto = async (PostId) => {
+  const handleSavePhoto = async (PostId, newPost) => {
     for (const photo of photos) {
       const imageRef = ref(storage, `posts/${PostId}/${photo.id}`);
       await uploadBytes(imageRef, photo.url);
       const downloadURL = await getDownloadURL(imageRef);
-      console.log(downloadURL);
+      await updatePostPhoto(PostId, downloadURL);
+      newPost.photo = downloadURL;
       alert('완료!');
       navigate('/');
     }
@@ -141,7 +142,7 @@ const Posting = () => {
               value={content}
             />
           </StContentSection>
-          <StConformButton onClick={handlePosting}>ㄱㄱㄱ</StConformButton>
+          <StConformButton onClick={handlePosting}>완료</StConformButton>
         </StWriteBox>
       </Body>
       <PhotoModal

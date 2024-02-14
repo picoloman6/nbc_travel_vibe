@@ -20,6 +20,7 @@ const Header = () => {
   const [isLogoutModalOpen, setIsLogoutModalOpen] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [loggedInUserId, setLoggedInUserId] = useState('');
+  const users = useSelector((state) => state.user);
 
   const onModalHandler = () => {
     if (isLoggedIn) {
@@ -48,7 +49,7 @@ const Header = () => {
   };
 
   const handleMyBlogButtonClick = () => {
-    if (!isLoggedIn) {
+    if (!user.userId) {
       alert('로그인 후 사용 가능합니다.');
       setIsOpen(!isOpen);
     }
@@ -59,24 +60,20 @@ const Header = () => {
     navigate('/');
   };
 
-  // 프로필 이미지
-  // const users = useSelector((state) => state.user.users);
-  // const foundUser = users.find((user) => user.userId === loggedInUserId);
-
   return (
     <StHeader>
       <StHeaderBtnWapper>
         <StNavLink to='/' onClick={handleHomeButtonClick}>
           Home
         </StNavLink>
-        {isLoggedIn ? (
+        {user.userId ? (
           <StNavLink to={`/myarticle?uid=${user.userId}`}>My Blog</StNavLink>
         ) : (
           <StHeaderBtn onClick={handleMyBlogButtonClick}>My Blog</StHeaderBtn>
         )}
       </StHeaderBtnWapper>
       <StHeaderBtnWapper>
-        {isLoggedIn ? (
+        {user.userId ? (
           <>
             <StNavLink
               to={`/posting?uid=${user.userId}`}
@@ -107,7 +104,7 @@ const Header = () => {
           setIsLoggedIn={setIsLoggedIn}
         />
 
-        {!isLoggedIn && (
+        {!user.userId && (
           <LogoutModal
             isLoggedIn={isLoggedIn}
             setIsLoggedIn={setIsLoggedIn}

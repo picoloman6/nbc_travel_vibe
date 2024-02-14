@@ -43,12 +43,6 @@ const Main = () => {
     setCategory(item);
   };
 
-  const getPhotos = async (postId) => {
-    const photoRef = ref(storage, `/posts/${postId}/0`);
-    const photoPath = await getDownloadURL(photoRef);
-    setPhotos((prev) => [...prev, photoPath]);
-  };
-
   return (
     <Style.StMainBackground>
       <Header />
@@ -84,14 +78,14 @@ const Main = () => {
                   ? item
                   : item.category === lowerCategory;
               })
-              .map((item, i) => {
-                getPhotos(item.postId);
+              .map((item) => {
+                console.log(item.photo, '여기');
                 return (
                   <Style.StArticleCard
                     key={item.postId}
                     onClick={() => handleArticleCardClick(item.postId)}>
                     <Style.StArticleThumbImg
-                      src={photos[i]}
+                      src={item.photo}
                       art={'게시글 썸네일 이미지'}
                     />
                     <Style.StProfileWrap>

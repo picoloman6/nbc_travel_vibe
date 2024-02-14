@@ -42,6 +42,16 @@ export const updatePostViewApi = async (postId) => {
   }
 };
 
+export const updatePostPhoto = async (postId, photo) => {
+  try {
+    await updateDoc(doc(db, 'posts', postId), {
+      photo
+    });
+  } catch (e) {
+    console.log(e);
+  }
+};
+
 export const updatePostCommentLen = async (postId, commentLen) => {
   try {
     await updateDoc(doc(db, 'post', postId), {

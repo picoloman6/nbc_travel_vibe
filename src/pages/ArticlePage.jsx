@@ -29,7 +29,7 @@ const ArticlePage = () => {
 
   const postId = searchParams.get('pid');
   const posts = useSelector((state) => state.post.posts);
-  const post = posts.filter((v) => v.postId === postId)[0];
+  const post = posts && posts.filter((v) => v.postId === postId)[0];
 
   const getComments = useCallback(async () => {
     const comments = await getCommentsApi(postId);

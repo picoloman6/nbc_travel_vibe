@@ -63,21 +63,16 @@ const Login = ({
   // };
 
   const dispatch = useDispatch();
-  const users = useSelector((state) => state.user);
   const onLoginConfirm = async () => {
     try {
       const userCredential = await signInWithEmailAndPassword(auth, email, pw);
       const { accessToken, uid } = userCredential.user;
       const userInfo = await getUsersApi(email);
-      console.log('userInfo:', userInfo);
 
       dispatch(postUserData({ accessToken, userId: uid, email, ...userInfo }));
 
-      console.log(users);
-
-      console.log('user with login:', userCredential.user);
       alert('로그인 되었습니다.');
-      setIsLoggedIn(true);
+      setIsLoggedIn(false);
       setIsOpen(false);
     } catch (error) {
       const errorCode = error.code;

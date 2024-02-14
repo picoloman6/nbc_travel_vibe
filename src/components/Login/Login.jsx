@@ -5,8 +5,9 @@ import { FiEye } from 'react-icons/fi';
 import { FiEyeOff } from 'react-icons/fi';
 import { signInWithEmailAndPassword } from 'firebase/auth';
 import { auth } from '../../apis/config';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { postUserData } from '../../redux/modules/UserReducer';
+import { getUsersApi } from '../../apis/users';
 
 const Login = ({
   setIsOpen,
@@ -62,11 +63,17 @@ const Login = ({
   // };
 
   const dispatch = useDispatch();
+  const users = useSelector((state) => state.user);
   const onLoginConfirm = async () => {
     try {
       const userCredential = await signInWithEmailAndPassword(auth, email, pw);
       const { accessToken, uid } = userCredential.user;
-      dispatch(postUserData({ accessToken, userId: uid, email }));
+      const userInfo = await getUsersApi(email);
+      console.log('userInfo:', userInfo);
+
+      dispatch(postUserData({ accessToken, userId: uid, email, ...userInfo }));
+
+      console.log(users);
 
       console.log('user with login:', userCredential.user);
       alert('로그인 되었습니다.');
@@ -78,6 +85,10 @@ const Login = ({
       console.log('error with login:', errorCode, errorMessage);
     }
   };
+
+  // 로그인한 유저정보 확인하기
+  // const user = useSelector((state) => state.user);
+  // console.log(user);
 
   // 비밀번호 보이게 하기
   const [isShowPw, setIsShowPw] = useState(false);

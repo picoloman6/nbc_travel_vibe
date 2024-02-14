@@ -3,7 +3,8 @@ import {
   doc,
   getDocs,
   collection,
-  query
+  query,
+  where
 } from 'firebase/firestore/lite';
 import db from '../apis/config';
 import { createUserWithEmailAndPassword } from 'firebase/auth';
@@ -32,17 +33,19 @@ export const addUsersApi = async (email, firstPw, nickName) => {
   }
 };
 
-export const getUsersApi = async () => {
+export const getUsersApi = async (email) => {
   try {
-    const usersRef = query(collection(db, 'users'));
+    const usersRef = query(
+      collection(db, 'users'),
+      where('email', '==', email)
+    );
     const snapshot = await getDocs(usersRef);
 
     const users = snapshot.docs.map((doc) => ({
-      id: doc.id,
       ...doc.data()
     }));
-
-    return users;
+    console.log(snapshot, users);
+    return users[0];
   } catch (error) {
     console.error('Error getting users data:', error);
     throw error;

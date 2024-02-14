@@ -107,18 +107,19 @@ const SignUp = ({
     }
   };
 
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const usersData = await getUsersApi();
-        console.log('Users data:', usersData);
-      } catch (error) {
-        console.error('Error getting users data:', error);
-      }
-    };
+  // collection에 잘 들어가나 확인
+  // useEffect(() => {
+  //   const fetchData = async () => {
+  //     try {
+  //       const usersData = await getUsersApi();
+  //       console.log('Users data:', usersData);
+  //     } catch (error) {
+  //       console.error('Error getting users data:', error);
+  //     }
+  //   };
 
-    fetchData();
-  }, []);
+  //   fetchData();
+  // }, []);
 
   // 회원가입 시 로그인상태로 전환
   // useEffect(() => {

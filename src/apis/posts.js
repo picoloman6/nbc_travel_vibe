@@ -47,5 +47,13 @@ export const addPostApi = async (newPost) => {
   return doc.id;
 };
 
+export const updatePostApi = async (postId, newPost) => {
+  try {
+    await updateDoc(doc(db, 'posts', postId), newPost);
+  } catch (e) {
+    console.log(e);
+  }
+};
+
 export const storage = getStorage();
 export const storageRef = ref();

@@ -67,7 +67,7 @@ const ArticlePage = () => {
       return;
     }
 
-    navigate(`/posting?pid=${postId}`);
+    navigate(`/posting?pid=${postId}`, { state: post });
   };
 
   const deletePost = async () => {

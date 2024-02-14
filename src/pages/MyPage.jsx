@@ -3,9 +3,12 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { ref, uploadBytes, getStorage, getDownloadURL } from 'firebase/storage';
 
-import Body from '../common/Body';
-import Header from '../common/Header';
-import { StDeleteBtn, StSubmitBtn } from '../common/styles/Button.style';
+import Body from '../components/common/Body';
+import Header from '../components/common/Header';
+import {
+  StDeleteBtn,
+  StSubmitBtn
+} from '../components/common/styles/Button.style';
 import {
   StAvatar,
   StBtnsWrapper,
@@ -18,9 +21,9 @@ import {
   StUserInfoDeatilWrapper,
   StUserInfoWrapper
 } from './styles/MyPages.style';
-import { updateUserData } from '../../redux/modules/UserReducer';
-import { updateUserInfoApi } from '../../apis/users';
-import { userDefaultImg } from '../../constants/users';
+import { updateUserData } from '../redux/modules/UserReducer';
+import { updateUserInfoApi } from '../apis/users';
+import { userDefaultImg } from '../constants/users';
 
 const MyPage = () => {
   const user = useSelector((state) => state.user);

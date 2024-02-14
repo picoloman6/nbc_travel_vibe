@@ -9,7 +9,13 @@ import {
 import { FaHeart } from 'react-icons/fa';
 import { IoChatboxOutline } from 'react-icons/io5';
 
-const ArticleContent = ({ content, commentsLen, likes, photos }) => {
+const ArticleContent = ({
+  content,
+  commentsLen,
+  likes,
+  photos,
+  updateLikes
+}) => {
   return (
     <StArticleHeaderWrapper>
       <StArticlePhotoWrapper>
@@ -24,7 +30,7 @@ const ArticleContent = ({ content, commentsLen, likes, photos }) => {
           <IoChatboxOutline />
           <span>{commentsLen}</span>
         </div>
-        <StArticleHeart>
+        <StArticleHeart onClick={updateLikes}>
           <FaHeart />
           <span>{likes}</span>
         </StArticleHeart>

@@ -22,8 +22,8 @@ React를 이용한 여행 컨셉의 블로그 플랫폼 만들기
 | <p align="center"><img src="https://avatars.githubusercontent.com/u/128902050?v=4" style="width:87%; border-radius: 40px"/></p> | <p align="center"><img src="https://avatars.githubusercontent.com/u/85938399?v=4)" style="width:95%; border-radius: 40px" /></p> | <p align="center"><img src="https://avatars.githubusercontent.com/u/154486286?v=4" style="width:230px; border-radius: 40px" /></p> | <p align="center"><img src="https://avatars.githubusercontent.com/u/148458439?v=4" style="width:80%; border-radius: 40px" /></p> | <p align="center"><img src="https://avatars.githubusercontent.com/u/103973797?v=4" style="width:90%; border-radius: 40px" /></p> |
 |            [@seoyeon-1206](https://github.com/seoyeon-1206)           |         [@picoloman6](https://github.com/picoloman6)         |       [@HuaHuaChiChi](https://github.com/HuaHuaChiChi)       |       [@innes-k](https://github.com/innes-k)        |           [@seopport](https://github.com/seopport)           |
 |                             리더                             |                             팀원                             |                             팀원                             |                             팀원                             |                             팀원                             |
-|                           Frontend                           |                           Frontend                           |                           Frontend                           |                           Frontend                           |                           Frontend                           |
-
+|                        맡은 부분 작성                           |                                            |                          |                           |      메인페이지, 게시물 관리 페이지  |
+ 
 
 
 
@@ -88,7 +88,7 @@ yarn start
 |      |
 | :--: |
 
-##### 1.1. 로그인 및 회원가입
+#### 1.1. 로그인 및 회원가입
 
 + 헤더의 로그인을 눌러 로그인을 할 수 있습니다.
   + 로그인을 누르면 모달창이 뜨고, 이메일과 비밀번호를 입력하고 로그인합니다.
@@ -138,7 +138,6 @@ yarn start
 + 지정할 카테고리를 선택합니다.
 + 사진 등록하기를 눌러 사진을 등록할 수 있습니다.
   + 사진을 등록하면 회색 칸에 보여지게 되고, 사진을 클릭하면 확대하여 볼 수 있습니다.
-
 + 제목과 내용을 입력하고 등록 버튼을 눌러 게시글을 등록할 수 있습니다.
 + 수정하기를 눌러 ***[추가 필요]***
 

@@ -70,7 +70,8 @@ const Posting = () => {
       views: 0,
       userNickname: user.nickname,
       comments: 0,
-      photo: ''
+      photo: '',
+      userImage: user.image
     };
 
     if (mode === 'update') {

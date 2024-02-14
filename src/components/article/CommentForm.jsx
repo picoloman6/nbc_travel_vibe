@@ -6,7 +6,7 @@ import {
 
 import { StSubmitBtn } from '../common/styles/Button.style';
 
-const CommentForm = ({ postComment, userPhoto }) => {
+const CommentForm = ({ postComment }) => {
   const handleClick = (e) => {
     e.preventDefault();
     if (e.target.tagName === 'BUTTON') {

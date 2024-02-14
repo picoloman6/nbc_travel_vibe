@@ -10,6 +10,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { plusView } from '../../redux/modules/PostReducer';
 import { updatePostViewApi } from '../../apis/posts';
 import { getDownloadURL, getStorage, ref } from 'firebase/storage';
+import { userDefaultImg } from '../../constants/users';
 
 const Main = () => {
   const navigate = useNavigate();
@@ -89,7 +90,19 @@ const Main = () => {
                       art={'게시글 썸네일 이미지'}
                     />
                     <Style.StProfileWrap>
-                      <Style.StProfileImge></Style.StProfileImge>
+                      <Style.StProfileImge
+                        src={
+                          item.userImage === '기본이미지'
+                            ? userDefaultImg
+                            : item.userImage
+                        }
+                        alt='기본이미지'
+                        style={{
+                          width: '40px',
+                          height: '40px',
+                          borderRadius: '50px'
+                        }}
+                      />
                       <div>
                         <Style.StNickname>{item.userNickname}</Style.StNickname>
                         <Style.StCreatedDate>

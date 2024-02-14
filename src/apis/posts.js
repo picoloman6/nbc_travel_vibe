@@ -8,8 +8,7 @@ import {
   orderBy,
   query,
   updateDoc,
-  increment,
-  decrement
+  increment
 } from 'firebase/firestore/lite';
 
 import db from './config';
@@ -63,7 +62,7 @@ export const updatePostCommentLen = async (postId, type) => {
   }
 };
 
-export const updatePostLikesApi = async (postId, newLike) => {
+export const updatePostLikesApi = async (postId) => {
   try {
     await updateDoc(doc(db, 'posts', postId), {
       likes: increment(1)

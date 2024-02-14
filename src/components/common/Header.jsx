@@ -1,5 +1,9 @@
 import { useState } from 'react';
 import { useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+
+import Modal from '../Login/Modal';
+import LogoutModal from '../Main/LogoutModal';
 import {
   StHeader,
   StHeaderBtnWapper,
@@ -7,23 +11,19 @@ import {
   StHeaderProfileImage,
   StNavLink
 } from './styles/Header.style';
-import Modal from '../Login/Modal';
-import LogoutModal from '../Main/LogoutModal';
-import { useNavigate } from 'react-router-dom';
 
 const Header = () => {
   const navigate = useNavigate();
+
   const user = useSelector((state) => state.user);
 
   const [isOpen, setIsOpen] = useState(false);
   const [isSignUp, setIsSignUp] = useState(false);
   const [isLogoutModalOpen, setIsLogoutModalOpen] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [loggedInUserId, setLoggedInUserId] = useState('');
-  const users = useSelector((state) => state.user);
 
   const onModalHandler = () => {
-    if (isLoggedIn) {
+    if (user.userId) {
       setIsLoggedIn(false);
       alert('로그아웃 되었습니다.');
     } else {
@@ -35,14 +35,8 @@ const Header = () => {
   };
 
   const onLogoutModalHandler = () => {
-    setIsLogoutModalOpen(!isLogoutModalOpen);
+    setIsLogoutModalOpen(true);
   };
-
-  // const onLogoutModalHandler = async () => {
-  //   await signOut(auth);
-  //   setIsLoggedIn(false);
-  //   console.log('로그아웃');
-  // };
 
   const handlePostButtonClick = () => {
     navigate(`/posting?uid=${user.userId}`);
@@ -93,7 +87,6 @@ const Header = () => {
               onClick={handleMyBlogButtonClick}></StHeaderProfileImage>
           </>
         )}
-
         <Modal
           isOpen={isOpen}
           setIsOpen={setIsOpen}
@@ -103,8 +96,7 @@ const Header = () => {
           isLoggedIn={isLoggedIn}
           setIsLoggedIn={setIsLoggedIn}
         />
-
-        {!user.userId && (
+        {isLogoutModalOpen && (
           <LogoutModal
             isLoggedIn={isLoggedIn}
             setIsLoggedIn={setIsLoggedIn}

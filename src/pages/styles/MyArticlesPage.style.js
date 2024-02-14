@@ -1,6 +1,7 @@
 import styled from 'styled-components';
-import size from '../../../constants/size';
-import colors from '../../../constants/colors';
+
+import size from '../../constants/size';
+import colors from '../../constants/colors';
 
 export const StMyArticleContainer = styled.div`
   width: ${size.wrapperWidth};

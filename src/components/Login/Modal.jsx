@@ -1,8 +1,8 @@
-import * as St from './styles/Login.style';
+import { useSelector } from 'react-redux';
 
 import Login from './Login';
 import SignUp from './SignUp';
-import { useSelector } from 'react-redux';
+import * as St from './styles/Login.style';
 
 const Modal = ({
   isOpen,

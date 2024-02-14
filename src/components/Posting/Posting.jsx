@@ -75,7 +75,6 @@ const Posting = () => {
     };
 
     if (mode === 'update') {
-      console.log('여기');
       await updatePostApi(postIdQuery, newPost);
       alert('수정 완료!');
       navigate('/');

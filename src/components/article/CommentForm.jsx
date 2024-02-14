@@ -3,7 +3,6 @@ import {
   StArticleForm,
   StArticleTextArea
 } from './Styles/Article.style';
-
 import { StSubmitBtn } from '../common/styles/Button.style';
 
 const CommentForm = ({ postComment }) => {

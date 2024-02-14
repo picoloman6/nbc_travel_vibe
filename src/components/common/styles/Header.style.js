@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import { NavLink } from 'react-router-dom';
+
 import colors from '../../../constants/colors';
 import size from '../../../constants/size';
 import profileImg from '../../assets/title_background.png';
@@ -42,7 +43,7 @@ export const StHeaderBtn = styled.button`
 `;
 
 export const StHeaderProfileImage = styled.div`
-  background-image: url(${profileImg}); //값 받아와야함
+  background-image: url(${profileImg});
   background-size: cover;
   background-position: center;
   width: 35px;

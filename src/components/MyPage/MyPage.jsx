@@ -36,7 +36,7 @@ const MyPage = () => {
       alert('닉네임이 변경되었습니다.');
       setNickname('');
       await updateUserInfoApi(user.userId, nickname);
-      dispatch(updateUserData({ nickname: nickname }));
+      dispatch(updateUserData({ nickname }));
     }
 
     if (image !== '') {

@@ -80,7 +80,6 @@ const Main = () => {
                   : item.category === lowerCategory;
               })
               .map((item) => {
-                console.log(item.photo, '여기');
                 return (
                   <Style.StArticleCard
                     key={item.postId}

@@ -20,7 +20,6 @@ export const addUsersApi = async (email, firstPw, nickName) => {
       firstPw
     );
     const uid = userCredential.user.uid;
-    console.log('uid:', uid, 'user:', userCredential.user);
 
     await setDoc(doc(db, 'users', uid), {
       nickname: nickName,
@@ -42,11 +41,10 @@ export const getUsersApi = async (email) => {
       where('email', '==', email)
     );
     const snapshot = await getDocs(usersRef);
-
     const users = snapshot.docs.map((doc) => ({
       ...doc.data()
     }));
-    console.log(snapshot, users);
+
     return users[0];
   } catch (error) {
     console.error('Error getting users data:', error);

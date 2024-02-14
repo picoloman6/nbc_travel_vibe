@@ -37,10 +37,7 @@ const Posting = () => {
 
   const postData = useSelector((state) => state.post.posts);
   const [modifyData] = postData.filter((item) => item.postId === id);
-  console.log(modifyData);
   const dispatch = useDispatch();
-
-  console.log(modifyData.photos);
 
   useEffect(() => {
     setPhotos(modifyData.photos);

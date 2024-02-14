@@ -75,9 +75,7 @@ const Login = ({
       setIsLoggedIn(false);
       setIsOpen(false);
     } catch (error) {
-      const errorCode = error.code;
-      const errorMessage = error.message;
-      console.log('error with login:', errorCode, errorMessage);
+      console.log(error);
     }
   };
 

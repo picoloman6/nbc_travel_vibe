@@ -38,11 +38,10 @@ export const StUserInfoWrapper = styled.div`
   gap: 60px;
   width: 100%;
 `;
-export const StAvatar = styled.div`
+export const StAvatar = styled.img`
   flex-shrink: 0;
   width: 200px;
   height: 200px;
-  background-color: green;
 `;
 
 export const StUserInfoDeatilWrapper = styled.div`

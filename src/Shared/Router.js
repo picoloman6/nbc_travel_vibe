@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { HashRouter, Routes, Route } from 'react-router-dom';
 
 import MainPage from '../pages/MainPage.jsx';
 import MyPage from '../components/MyPage/MyPage.jsx';
@@ -10,7 +10,7 @@ import ModifyPost from '../components/Posting/ModifyPost.jsx';
 const Router = () => {
   return (
     <>
-      <BrowserRouter>
+      <HashRouter>
         <Routes>
           <Route path='/' element={<MainPage />} />
           <Route path='/myPage' element={<MyPage />} />
@@ -19,7 +19,7 @@ const Router = () => {
           <Route path='/myarticle' element={<MyArticle />} />
           <Route path='/modifyPost' element={<ModifyPost />} />
         </Routes>
-      </BrowserRouter>
+      </HashRouter>
     </>
   );
 };

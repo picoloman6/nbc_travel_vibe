@@ -37,7 +37,7 @@ const postReducer = (state = initialState, action) => {
       const plusTargetId = action.payload;
       const plusedArticle = state.posts.map((item) => {
         if (item.postId === plusTargetId) {
-          return { ...item, views: state.views + 1 };
+          return { ...item, views: item.views + 1 };
         } else return item;
       });
       return {

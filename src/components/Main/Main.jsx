@@ -7,33 +7,39 @@ import { FcLike } from 'react-icons/fc';
 import * as Style from './styles/Main.styles';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { getCommentsApi } from '../../apis/comments';
 import { plusView } from '../../redux/modules/PostReducer';
+import { updatePostViewApi } from '../../apis/posts';
 
 const Main = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const categoryItems = ['All', 'Travel', 'Eat', 'Relax'];
-  const [category, setCategory] = useState('All');
+
+
+  const categoryItems = ['All', 'Travel', 'Eat', 'Relax']
+  const [category, setCategory] = useState('All')
+
 
   const articles = useSelector((state) => state.post.posts);
 
-  const [comments, setComments] = useState([]);
 
-  //postId를 어떻게 가져와야할까?
-
-  const findCommentNum = useCallback(async (postId) => {
-    const comments = await getCommentsApi();
-    setComments(comments);
-    return comments.length;
-  }, []);
-  console.log(articles);
   const handleArticleCardClick = (postId) => {
-    dispatch(plusView(1));
-    console.log(articles[0].views);
+    // db 수정
+    try {
+      const updatePost = async (postId) => {
+        await updatePostViewApi(postId);
+      }
+      updatePost(postId);
+    } catch (e) {
+      alert("문제가 발생했습니다. 잠시 후 다시 시도해주세요.")
+      console.log(e)
+    }
+
+    //내부 데이터 수정
+    dispatch(plusView(postId));
     navigate(`/article?pid=${postId}`);
-    console.log(articles[0].views);
-  };
+  }
+
+
 
   const handleCategoryClick = (item) => {
     setCategory(item);

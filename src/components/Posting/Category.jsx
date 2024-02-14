@@ -1,3 +1,5 @@
+import styled from 'styled-components';
+
 const Category = ({ selectedCategory, setSelectedCategory }) => {
   const categoryOptions = ['travel', 'eat', 'relax'];
 
@@ -8,47 +10,22 @@ const Category = ({ selectedCategory, setSelectedCategory }) => {
   return (
     <div>
       <label>
-        카테고리:
-        <select value={selectedCategory} onChange={handleCategoryChange}>
-          <option value=''>선택하세요</option>
+        <StSelect value={selectedCategory} onChange={handleCategoryChange}>
+          <option value=''>카테고리</option>
           {categoryOptions.map((category, index) => (
             <option key={index} value={category}>
               {category}
             </option>
           ))}
-        </select>
+        </StSelect>
       </label>
-      {selectedCategory ? (
-        <p>선택된 카테고리: {selectedCategory}</p>
-      ) : (
-        <p>카테고리를 지정해주세요!</p>
-      )}
     </div>
   );
 };
 
 export default Category;
 
-// const [isDropDown, setIsDropDown] = useState(false);
-
-//   const category = ['Travel', 'Eat', 'Relax'];
-
-//   return (
-//     <div>
-//       <div onClick={() => setIsDropDown(!isDropDown)}>
-//         <p>{isDropDown ? '카테고리⭡' : '카테고리⭣'}</p>
-//         {isDropDown && (
-//           <ul>
-//             {category.map((categoryItem, index) => (
-//               <li key={index}>
-//                 <p>{categoryItem}</p>
-//               </li>
-//             ))}
-//           </ul>
-//         )}
-//       </div>
-//     </div>
-//   );
-// };
-
-//셀렉트라는 좋은 기능을 모르고 쓴 코드
+const StSelect = styled.select`
+  font-size: 25px;
+  border-radius: 5px;
+`;

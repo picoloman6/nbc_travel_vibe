@@ -15,7 +15,12 @@ import {
   getCommentsApi,
   postCommentApi
 } from '../apis/comments';
-import { deletePostApi, getPostsApi, updatePostLikesApi } from '../apis/posts';
+import {
+  deletePostApi,
+  getPostsApi,
+  updatePostCommentLen,
+  updatePostLikesApi
+} from '../apis/posts';
 import { postGetData } from '../redux/modules/PostReducer';
 
 const ArticlePage = () => {
@@ -29,7 +34,7 @@ const ArticlePage = () => {
 
   const postId = searchParams.get('pid');
   const posts = useSelector((state) => state.post.posts);
-  const post = posts.filter((v) => v.postId === postId)[0];
+  const post = posts && posts.filter((v) => v.postId === postId)[0];
 
   const getComments = useCallback(async () => {
     const comments = await getCommentsApi(postId);
@@ -41,7 +46,15 @@ const ArticlePage = () => {
       alert('로그인 하세요.');
       return;
     }
-    await postCommentApi(content, postId, user.userId, 'kaka');
+
+    await updatePostCommentLen(postId, 'increment');
+    await postCommentApi(
+      content,
+      postId,
+      user.userId,
+      user.nickname,
+      user.image
+    );
     await getComments();
   };
 
@@ -51,6 +64,7 @@ const ArticlePage = () => {
       return;
     }
 
+    await updatePostCommentLen(postId, 'decrement');
     await deleteCommentApi(commentId);
     await getComments();
   };

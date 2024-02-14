@@ -9,37 +9,35 @@ import { useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { plusView } from '../../redux/modules/PostReducer';
 import { updatePostViewApi } from '../../apis/posts';
+import { getDownloadURL, getStorage, ref } from 'firebase/storage';
 
 const Main = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
-
-  const categoryItems = ['All', 'Travel', 'Eat', 'Relax']
-  const [category, setCategory] = useState('All')
-
+  const categoryItems = ['All', 'Travel', 'Eat', 'Relax'];
+  const [category, setCategory] = useState('All');
+  const storage = getStorage();
+  const [photos, setPhotos] = useState([]);
 
   const articles = useSelector((state) => state.post.posts);
-
 
   const handleArticleCardClick = (postId) => {
     // db 수정
     try {
       const updatePost = async (postId) => {
         await updatePostViewApi(postId);
-      }
+      };
       updatePost(postId);
     } catch (e) {
-      alert("문제가 발생했습니다. 잠시 후 다시 시도해주세요.")
-      console.log(e)
+      alert('문제가 발생했습니다. 잠시 후 다시 시도해주세요.');
+      console.log(e);
     }
 
     //내부 데이터 수정
     dispatch(plusView(postId));
     navigate(`/article?pid=${postId}`);
-  }
-
-
+  };
 
   const handleCategoryClick = (item) => {
     setCategory(item);
@@ -81,6 +79,7 @@ const Main = () => {
                   : item.category === lowerCategory;
               })
               .map((item) => {
+                console.log(item.photo, '여기');
                 return (
                   <Style.StArticleCard
                     key={item.postId}
@@ -119,7 +118,7 @@ const Main = () => {
                             <LiaCommentDots />
                           </Style.StIconWrap>{' '}
                           {/* 댓글 수 */}
-                          <span>{}</span>
+                          <span>{item.comments}</span>
                         </Style.StIconsStatsWrap>
                       </div>
                       <Style.StIconsStatsWrap>

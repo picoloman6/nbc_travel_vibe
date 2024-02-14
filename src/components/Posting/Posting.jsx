@@ -6,7 +6,7 @@ import PhotoInput from './PhotoInput';
 import { Body } from './styles/PostingStyle';
 import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { postPostData } from '../../redux/modules/PostReducer';
+import { postGetData, postPostData } from '../../redux/modules/PostReducer';
 import {
   StTools,
   StWrite,
@@ -16,7 +16,12 @@ import {
   StTitle,
   StConformButton
 } from './styles/PostingStyle';
-import { addPostApi, updatePostApi } from '../../apis/posts';
+import {
+  addPostApi,
+  getPostsApi,
+  updatePostApi,
+  updatePostPhoto
+} from '../../apis/posts';
 import { ref, uploadBytes, getDownloadURL } from 'firebase/storage';
 import { storage } from '../../apis/posts';
 import { useLocation, useSearchParams, useNavigate } from 'react-router-dom';
@@ -54,6 +59,7 @@ const Posting = () => {
       alert('카테고리, 제목, 내용은 필수로 입력해야합니다!');
       return;
     }
+
     const newPost = {
       category: selectedCategory,
       title,
@@ -62,28 +68,34 @@ const Posting = () => {
       likes: 0,
       userId: user.userId,
       views: 0,
-      userNickname: 'name',
-      photo: previewPhotos[0]
+      userNickname: user.nickname,
+      comments: 0,
+      photo: ''
     };
 
     if (mode === 'update') {
+      console.log('여기');
       await updatePostApi(postIdQuery, newPost);
+      alert('수정 완료!');
+      navigate('/');
     } else {
       const PostId = await addPostApi(newPost);
-      await handleSavePhoto(PostId);
+      await handleSavePhoto(PostId, newPost);
     }
 
     setMode('add');
-    dispatch(postPostData(newPost));
+    const newPosts = await getPostsApi();
+    dispatch(postGetData(newPosts));
   };
 
-  const handleSavePhoto = async (PostId) => {
+  const handleSavePhoto = async (PostId, newPost) => {
     for (const photo of photos) {
       const imageRef = ref(storage, `posts/${PostId}/${photo.id}`);
       await uploadBytes(imageRef, photo.url);
       const downloadURL = await getDownloadURL(imageRef);
-      console.log(downloadURL);
-      alert('완료!');
+      await updatePostPhoto(PostId, downloadURL);
+      newPost.photo = downloadURL;
+      alert('등록 완료!');
       navigate('/');
     }
   };
@@ -141,7 +153,7 @@ const Posting = () => {
               value={content}
             />
           </StContentSection>
-          <StConformButton onClick={handlePosting}>ㄱㄱㄱ</StConformButton>
+          <StConformButton onClick={handlePosting}>완료</StConformButton>
         </StWriteBox>
       </Body>
       <PhotoModal

@@ -79,4 +79,6 @@ export const StConformButton = styled.button`
   background: ${colors.mainBlue};
   border-radius: 20px;
   border: none;
+
+  cursor: pointer;
 `;

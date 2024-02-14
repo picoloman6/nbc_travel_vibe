@@ -9,14 +9,23 @@ import { StArticleHr } from '../../pages/styles/Article.style';
 import { dateConvertor } from '../../Shared/date';
 
 const Comment = ({ comment, border, deleteComment, isOwnComment }) => {
-  const { commentId, userId, content, createdAt, userNickname } = comment;
+  const { commentId, userId, content, createdAt, userNickname, userPhoto } =
+    comment;
 
   return (
     <>
       <StArticleHeaderWrapper>
         <StArticleCommentTop>
           <StArticleCommentUser>
-            <span>사진</span>
+            <img
+              src={
+                userPhoto === '기본이미지'
+                  ? 'https://encrypted-tbn3.gstatic.com/licensed-image?q=tbn:ANd9GcR7h0XNCZC4R_NicVVuNbbE9YrQ0iAjncl3didVtA9P8kN5PhgZy_aKPP15vfL_98IBZJjsXZEUKjzS66g'
+                  : userPhoto
+              }
+              alt='기본이미지'
+              style={{ width: '40px', height: '40px', borderRadius: '50px' }}
+            />
             <span>{userNickname}</span>
             <span>{dateConvertor(createdAt)}</span>
           </StArticleCommentUser>

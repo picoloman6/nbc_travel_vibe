@@ -11,6 +11,7 @@ import * as Style from './styles/Main.styles';
 import { plusView } from '../../redux/modules/PostReducer';
 import { updatePostViewApi } from '../../apis/posts';
 import { userDefaultImg } from '../../constants/users';
+import { dateConvertor } from '../../Shared/date';
 
 const Main = () => {
   const navigate = useNavigate();
@@ -41,6 +42,7 @@ const Main = () => {
   const handleCategoryClick = (item) => {
     setCategory(item);
   };
+
 
 
   return (
@@ -104,7 +106,7 @@ const Main = () => {
                       <div>
                         <Style.StNickname>{item.userNickname}</Style.StNickname>
                         <Style.StCreatedDate>
-                          {item.created_at}
+                          {dateConvertor(item.createdAt)}
                         </Style.StCreatedDate>
                       </div>
                     </Style.StProfileWrap>

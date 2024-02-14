@@ -82,11 +82,11 @@ yarn start
 
 #### 1. 메인 페이지
 
-| 로그인하는 사진 |
-| --------------- |
 
-|      |
-| :--: |
+|   메인 페이지    | 로그인 모달 | 회원가입 모달 |
+| --------------- | -------- | -------- |
+| ![image](https://github.com/picoloman6/nbc_travel_vibe/assets/103973797/c0ac8474-ba21-4f7c-85c0-5d5f8321541e) | ![image](https://github.com/picoloman6/nbc_travel_vibe/assets/103973797/31416479-5595-4ddd-9518-90f396445f2a)  |  ![image](https://github.com/picoloman6/nbc_travel_vibe/assets/103973797/53a82d18-fa9d-48a1-90f6-e82fa2ce1b4b) |
+
 
 #### 1.1. 로그인 및 회원가입
 
@@ -99,7 +99,6 @@ yarn start
 
 + 로그인이 되지 않았을 때는 Post와 My Blog 기능을 사용할 수 없습니다.
 + 로그인 했을 시에는 로그아웃 버튼을 눌러 로그아웃할 수 있습니다.
-
 
 
 **1.2. 카테고리 탭**
@@ -121,17 +120,20 @@ yarn start
 
 #### 2. 게시물 페이지
 
+| ![image](https://github.com/picoloman6/nbc_travel_vibe/assets/103973797/0167c28d-4a94-4301-8b2f-a17d4e4c075a) |
+| ---- |
+
 + 게시물의 상세 내용을 조회할 수 있습니다.
 + 게시물을 수정, 삭제할 수 있습니다.
 + 하트 버튼을 눌러 게시글에 좋아요를 표시할 수 있습니다.
 + 댓글을 작성하고 등록을 눌러 댓글을 추가할 수 있습니다.
 + 등록 한 댓글은 삭제 버튼을 눌러 삭제할 수 있습니다.
 
-
+<br>
 
 #### 3. 글 작성하기
 
-|      |
+| ![image](https://github.com/picoloman6/nbc_travel_vibe/assets/103973797/41492e14-8922-47d6-838b-078b5a859106) |
 | ---- |
 
 + 헤더의 Post 버튼을 눌러 글을 작성할 수 있습니다.
@@ -147,6 +149,10 @@ yarn start
 
 #### 4. 마이페이지
 
+| 사진 추가 필요 |
+| ---- |
+
+
 + 헤더의 프로필 이미지를 눌러 마이페이지로 이동할 수 있습니다.
 + 마이페이지에서는 닉네임과 비밀번호를 수정할 수 있습니다.
   + 수정할 닉네임과 비밀번호를 입력한 뒤 완료를 눌러 수정을 완료합니다.
@@ -156,6 +162,9 @@ yarn start
 <br>
 
 #### 5. 게시글 관리 페이지
+
+|![image](https://github.com/picoloman6/nbc_travel_vibe/assets/103973797/9a2389be-ccec-4a6c-af8a-e20337c9ec05) |
+| ---- |
 
 + 헤더의 My Blog를 눌러 자신이 쓴 게시글들을 확인할 수 있습니다.
 + 게시글을 누르면 해당 게시글 페이지로 이동합니다.

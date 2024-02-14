@@ -19,10 +19,12 @@ import {
 import { addPostApi } from '../../apis/posts';
 import { ref, uploadBytes, getDownloadURL } from 'firebase/storage';
 import { storage } from '../../apis/posts';
+import { useNavigate } from 'react-router-dom';
 
 const Posting = () => {
   const dispatch = useDispatch();
   const user = useSelector((state) => state.user);
+  const navigate = useNavigate();
 
   const [photos, setPhotos] = useState([]);
   const [selectedCategory, setSelectedCategory] = useState('');
@@ -39,6 +41,11 @@ const Posting = () => {
 
   const handlePosting = async () => {
     if (!user.userId) {
+      alert('로그인이 필요합니다.');
+      return;
+    }
+    if (title === '' || content === '' || selectedCategory === '') {
+      alert('카테고리, 제목, 내용은 필수로 입력해야합니다!');
       return;
     }
     const newPost = {
@@ -63,6 +70,8 @@ const Posting = () => {
       await uploadBytes(imageRef, photo.url);
       const downloadURL = await getDownloadURL(imageRef);
       console.log(downloadURL);
+      alert('완료!');
+      navigate('/');
     }
   };
 

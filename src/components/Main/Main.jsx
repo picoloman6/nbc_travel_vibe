@@ -40,7 +40,7 @@ const Main = () => {
 
   const handleCategoryClick = (item) => {
     setCategory(item);
-  }
+  };
 
 
   return (
@@ -58,7 +58,8 @@ const Main = () => {
                   <Style.StCatergoryItem
                     key={idx}
                     onClick={() => handleCategoryClick(item)}
-                    $category={category} $item={item}>
+                    $category={category}
+                    $item={item}>
                     {item}
                   </Style.StCatergoryItem>
                   <Style.StLine />

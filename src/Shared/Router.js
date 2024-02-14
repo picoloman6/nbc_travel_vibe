@@ -1,7 +1,7 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
 import MainPage from '../pages/MainPage.jsx';
-import MyPage from '../components/MyPage/MyPage.jsx';
+import MyPage from '../pages/MyPage.jsx';
 import Posting from '../components/Posting/Posting.jsx';
 import ArticlePage from '../pages/ArticlePage.jsx';
 import MyArticle from '../components/MyArticle/MyArticle.jsx';

@@ -59,6 +59,10 @@ const Header = () => {
     navigate('/');
   };
 
+  // 프로필 이미지
+  // const users = useSelector((state) => state.user.users);
+  // const foundUser = users.find((user) => user.userId === loggedInUserId);
+
   return (
     <StHeader>
       <StHeaderBtnWapper>

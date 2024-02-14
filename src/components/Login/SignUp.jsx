@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import * as St from './styles/Login.style';
 import {
   StLogoName,
@@ -11,9 +11,7 @@ import {
 // import { useDispatch } from 'react-redux';
 // import { postUserData } from '../../redux/modules/UserReducer';
 import { FiEye, FiEyeOff } from 'react-icons/fi';
-// import defaultAvatar from '../assets/defaultAvatar.png';
-import { auth } from '../../apis/config';
-import { createUserWithEmailAndPassword } from 'firebase/auth';
+import { addUsersApi, getUsersApi } from '../../apis/users';
 
 const SignUp = ({
   onSignUpHandler,
@@ -47,7 +45,7 @@ const SignUp = ({
   };
 
   // 중복 이메일 찾기
-  const foundEmail = importUsers.find((user) => user.email === email);
+  // const foundEmail = importUsers.find((user) => user.email === email);
 
   // 비밀번호 형식 유효성검사
   const onCheckValidPw = (e) => {
@@ -67,13 +65,13 @@ const SignUp = ({
   // 닉네임 중복검사
   const onCheckUniqueNickname = (e) => {
     setNickName(e.target.value);
-    if (foundNickname) {
-      setIsValidNickName(false);
-    } else {
-      setIsValidNickName(true);
-    }
+    // if (foundNickname) {
+    //   setIsValidNickName(false);
+    // } else {
+    //   setIsValidNickName(true);
+    // }
   };
-  const foundNickname = importUsers.find((user) => user.nickname === nickName);
+  // const foundNickname = importUsers.find((user) => user.nickname === nickName);
 
   // 회원가입 기능
   // const dispatch = useDispatch();
@@ -99,18 +97,29 @@ const SignUp = ({
 
   const onSignUp = async () => {
     try {
-      const userCredential = await createUserWithEmailAndPassword(
-        auth,
-        email,
-        firstPw
-      );
-      console.log('user with signUp:', userCredential.user);
+      await addUsersApi(email, firstPw, nickName);
+
+      setIsOpen(false);
+      setIsLoggedIn(true);
+      alert('축하합니다 🎉 회원가입이 완료되었습니다.');
     } catch (error) {
-      const errorCode = error.code;
-      const errorMessage = error.message;
-      console.log('error with signUp:', errorCode, errorMessage);
+      alert('회원가입에 실패했습니다. 다시 시도해주세요.');
     }
   };
+
+  // collection에 잘 들어가나 확인
+  // useEffect(() => {
+  //   const fetchData = async () => {
+  //     try {
+  //       const usersData = await getUsersApi();
+  //       console.log('Users data:', usersData);
+  //     } catch (error) {
+  //       console.error('Error getting users data:', error);
+  //     }
+  //   };
+
+  //   fetchData();
+  // }, []);
 
   // 회원가입 시 로그인상태로 전환
   // useEffect(() => {
@@ -145,7 +154,7 @@ const SignUp = ({
             {!isValidEmail &&
               email.length > 0 &&
               '올바르지 않은 이메일 형식입니다.'}
-            {foundEmail && '중복되는 이메일입니다.'}
+            {/* {foundEmail && '중복되는 이메일입니다.'} */}
           </StErrorMsg>
           <StInputContainer>
             <St.LoginInput
@@ -154,7 +163,12 @@ const SignUp = ({
               onChange={onCheckUniqueNickname}
             />
           </StInputContainer>
-          <StErrorMsg>{foundNickname && '중복되는 닉네임입니다.'}</StErrorMsg>
+          {/* <StErrorMsg>{foundNickname && '중복되는 닉네임입니다.'}</StErrorMsg> */}
+          <StErrorMsg>
+            {nickName.length < 3 &&
+              1 < nickName.length &&
+              '닉네임을 2글자 이상 입력해주세요'}
+          </StErrorMsg>
           <StInputContainer>
             <St.LoginInput
               type={isShowPw ? 'text' : 'password'}

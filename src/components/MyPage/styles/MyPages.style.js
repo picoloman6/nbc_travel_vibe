@@ -23,12 +23,14 @@ export const StMyPageWrapper = styled.div`
   padding: 20px 200px;
   width: 100%;
 `;
+
 export const StMyPageTitle = styled.h1`
   font-weight: 600;
   font-size: 48px;
   color: ${colors.mainBlue};
   margin-bottom: 20px;
 `;
+
 export const StUserInfoWrapper = styled.div`
   display: flex;
   flex-direction: row;
@@ -38,6 +40,7 @@ export const StUserInfoWrapper = styled.div`
   gap: 60px;
   width: 100%;
 `;
+
 export const StAvatar = styled.img`
   flex-shrink: 0;
   width: 200px;
@@ -68,6 +71,7 @@ export const StUserInfoDeatilWrapper = styled.div`
     color: ${colors.subText};
   }
 `;
+
 export const StEmail = styled.div`
   display: flex;
   flex-direction: column;
@@ -86,25 +90,34 @@ export const StEmail = styled.div`
     padding-left: 20px;
   }
 `;
+
 export const StNickName = styled.div`
   display: flex;
   flex-direction: column;
   gap: 20px;
 `;
+
 export const StCurrentPw = styled.div`
   display: flex;
   flex-direction: column;
   gap: 20px;
 `;
+
 export const StNewPw = styled.div`
   display: flex;
   flex-direction: column;
   gap: 20px;
 `;
+
 export const StBtnsWrapper = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: flex-end;
   gap: 20px;
   margin-top: 20px;
+`;
+
+export const StImgUpdate = styled.p`
+  font-size: 24px;
+  margin-top: 15px;
 `;

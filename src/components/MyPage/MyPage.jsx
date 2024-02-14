@@ -1,33 +1,26 @@
-import React, { useCallback, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+
+import Body from '../common/Body';
+import Header from '../common/Header';
 import { StDeleteBtn, StSubmitBtn } from '../common/styles/Button.style';
 import {
   StAvatar,
   StBtnsWrapper,
   StContainer,
-  StCurrentPw,
   StEmail,
+  StImgUpdate,
   StMyPageTitle,
   StMyPageWrapper,
-  StNewPw,
   StNickName,
   StUserInfoDeatilWrapper,
   StUserInfoWrapper
 } from './styles/MyPages.style';
-import Body from '../common/Body';
-import Header from '../common/Header';
-import { useDispatch, useSelector } from 'react-redux';
 import { updateUserData } from '../../redux/modules/UserReducer';
-import { useNavigate } from 'react-router-dom';
-import { onAuthStateChanged } from 'firebase/auth';
-import db, { auth } from '../../apis/config';
-import {
-  collection,
-  getDocs,
-  query,
-  updateDoc,
-  doc
-} from 'firebase/firestore/lite';
-import { getUsersApi, updateUserInfoApi } from '../../apis/users';
+import { updateUserInfoApi } from '../../apis/users';
+import { userDefaultImg } from '../../constants/users';
+import { ref, uploadBytes, getStorage, getDownloadURL } from 'firebase/storage';
 
 const MyPage = () => {
   const user = useSelector((state) => state.user);
@@ -36,30 +29,45 @@ const MyPage = () => {
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const storage = getStorage();
 
-  const getUserData = useCallback(() => {
-    setImage(user.image);
-  }, [user]);
-
-  const handleUpdate = () => {
-    if (nickname.length < 3) {
-      alert('닉네임을 3글자 이상 입력하세요');
-      return;
+  const handleUpdate = async () => {
+    if (nickname.length > 3 && user.nickname !== nickname) {
+      alert('닉네임이 변경되었습니다.');
+      setNickname('');
+      await updateUserInfoApi(user.userId, nickname);
+      dispatch(updateUserData({ nickname: nickname }));
     }
 
-    if (user.nickname === nickname) {
-      alert('닉네임이 변경되지 않았습니다.');
-      return;
+    if (image !== '') {
+      alert('사진이 변경되었습니다.');
+      setImage('');
+      const image = await changeUserImage();
+      dispatch(updateUserData({ image }));
     }
-
-    alert('닉네임이 변경되었습니다.');
-    setNickname('');
-    updateUserInfoApi(user.userId, nickname);
-    dispatch(updateUserData({ nickname: nickname }));
   };
 
   const handleCancle = () => {
     navigate('/');
+  };
+
+  const handleImageChange = (e) => {
+    const blob = new Blob(e.target.files);
+    e.target.value = '';
+    setImage(blob);
+  };
+
+  const changeUserImage = async () => {
+    if (image === '') {
+      alert('이미지를 입력하세요');
+      return;
+    }
+
+    const imageRef = ref(storage, `users/${user.userId}`);
+    await uploadBytes(imageRef, image);
+    const downloadURL = await getDownloadURL(imageRef);
+
+    return downloadURL;
   };
 
   useEffect(() => {
@@ -67,9 +75,7 @@ const MyPage = () => {
       alert('잘못된 접속입니다.');
       navigate('/');
     }
-
-    getUserData();
-  }, [getUserData, navigate, user]);
+  }, [navigate, user]);
 
   return (
     <StContainer>
@@ -78,7 +84,19 @@ const MyPage = () => {
         <StMyPageWrapper>
           <StMyPageTitle>프로필 설정</StMyPageTitle>
           <StUserInfoWrapper>
-            <StAvatar src={user.image === '기본이미지'} />
+            <div>
+              <StAvatar
+                src={user.image === '기본이미지' ? userDefaultImg : user.image}
+                alt='기본이미지'
+              />
+              <input
+                type='file'
+                accept='image/*'
+                onChange={handleImageChange}
+                style={{ width: '80%' }}
+              />
+              {image && <StImgUpdate>사진 업로드 완료</StImgUpdate>}
+            </div>
             <StUserInfoDeatilWrapper>
               <StEmail>
                 <label>이메일</label>

@@ -36,16 +36,17 @@ const userReducer = (state = initialState, action) => {
       };
     // 3. 여기 와서 action을 추가한다. 대신 데이터의 불변성을 유지한다.
     case UPDATE_USER_DATA:
-      // const updateUser = action.updateUser;
-      // const updateUsers = state.users.map((user) => {
-      //   if (user.userId === updateUser.userId) {
-      //     return updateUser;
-      //   }
-      //   return user;
-      // });
+      const updatedUser = action.updatedUser;
+      const updatedUsers = state.users.map(user => {
+        if (user.email === updatedUser.email) {
+          // 기존 유저와 업데이트된 유저의 아이디가 같은 경우 업데이트된 유저로 대체
+          return updatedUser;
+        }
+        return user;
+      });
       return {
         ...state,
-        ...action.updateUser
+        users: updatedUsers // 업데이트된 유저 리스트로 상태 업데이트
       };
     default:
       return state;

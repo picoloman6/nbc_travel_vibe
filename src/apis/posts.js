@@ -18,6 +18,8 @@ export const getPostsApi = async () => {
       query(collection(db, 'posts'), orderBy('createdAt', 'desc'))
     );
 
+    console.log(res.docs);
+
     return res.docs.map((v) => ({ ...v.data(), postId: v.id }));
   } catch (e) {
     console.log(e);

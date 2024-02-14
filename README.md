@@ -16,12 +16,13 @@ React를 이용한 여행 컨셉의 블로그 플랫폼 만들기
 
 ### 🔽 **팀원 소개**
 
-|                                                             신서연                                                              |                                                              유한빈                                                              |                                                               김승희                                                               |                                                              곽인해                                                              |                                                              서지원                                                              |
-| :-----------------------------------------------------------------------------------------------------------------------------: | :------------------------------------------------------------------------------------------------------------------------------: | :--------------------------------------------------------------------------------------------------------------------------------: | :------------------------------------------------------------------------------------------------------------------------------: | :------------------------------------------------------------------------------------------------------------------------------: |
+|                            신서연                           |                            유한빈                            |                            김승희                            |                            곽인해                            |                            서지원                            |
+| :----------------------------------------------------------: | :----------------------------------------------------------: | :----------------------------------------------------------: | :----------------------------------------------------------: | :----------------------------------------------------------: |
 | <p align="center"><img src="https://avatars.githubusercontent.com/u/128902050?v=4" style="width:87%; border-radius: 40px"/></p> | <p align="center"><img src="https://avatars.githubusercontent.com/u/85938399?v=4)" style="width:95%; border-radius: 40px" /></p> | <p align="center"><img src="https://avatars.githubusercontent.com/u/154486286?v=4" style="width:230px; border-radius: 40px" /></p> | <p align="center"><img src="https://avatars.githubusercontent.com/u/148458439?v=4" style="width:80%; border-radius: 40px" /></p> | <p align="center"><img src="https://avatars.githubusercontent.com/u/103973797?v=4" style="width:90%; border-radius: 40px" /></p> |
-|                                        [@seoyeon-1206](https://github.com/seoyeon-1206)                                         |                                           [@picoloman6](https://github.com/picoloman6)                                           |                                          [@HuaHuaChiChi](https://github.com/HuaHuaChiChi)                                          |                                              [@innes-k](https://github.com/innes-k)                                              |                                             [@seopport](https://github.com/seopport)                                             |
-|                                                              리더                                                               |                                                               팀원                                                               |                                                                팀원                                                                |                                                               팀원                                                               |                                                               팀원                                                               |
-|                                                         맡은 부분 작성                                                          |                                                                                                                                  |                                                                                                                                    |                                                                                                                                  |                                                  메인페이지, 게시물 관리 페이지                                                  |
+|            [@seoyeon-1206](https://github.com/seoyeon-1206)           |         [@picoloman6](https://github.com/picoloman6)         |       [@HuaHuaChiChi](https://github.com/HuaHuaChiChi)       |       [@innes-k](https://github.com/innes-k)        |           [@seopport](https://github.com/seopport)           |
+|                             리더                             |                             팀원                             |                             팀원                             |                             팀원                             |                             팀원                             |
+|                마이페이지                        |                                            |                          |                           |      메인페이지, 게시물 관리 페이지  |
+ 
 
 <br>
 
@@ -137,7 +138,6 @@ yarn start
 - 사진 등록하기를 눌러 사진을 등록할 수 있습니다.
   - 사진을 등록하면 회색 칸에 보여지게 되고, 사진을 클릭하면 확대하여 볼 수 있습니다.
 - 제목과 내용을 입력하고 등록 버튼을 눌러 게시글을 등록할 수 있습니다.
-- 수정하기를 눌러 **_[추가 필요]_**
 
 <br>
 
@@ -145,11 +145,15 @@ yarn start
 
 | 사진 추가 필요 |
 | -------------- |
++ 헤더의 프로필 이미지를 눌러 마이페이지로 이동할 수 있습니다.
++ 마이페이지에서는 닉네임과 프로필 사진을 수정할 수 있습니다.
+  + 수정할 닉네임을 입력하고 수정할 사진을 첨부한 뒤 완료를 눌러 수정을 완료합니다.
+  + 취소 버튼을 누르면 이전 페이지로 돌아갑니다.
 
 - 헤더의 프로필 이미지를 눌러 마이페이지로 이동할 수 있습니다.
 - 마이페이지에서는 닉네임과 비밀번호를 수정할 수 있습니다.
   - 수정할 닉네임과 비밀번호를 입력한 뒤 완료를 눌러 수정을 완료합니다.
-  - 취소 버튼을 누르면 **_[추가 필요]_**
+  - 취소 버튼을 누르면 이전 페이지로 돌아갑니다.
 
 <br>
 
@@ -165,7 +169,10 @@ yarn start
 
 ### 🚦트러블 슈팅
 
-1. firestore collection() 참조 오류
+
+<details>
+<summary>1. firestore collection() 참조 오류</summary>
+<div>
 
 - 에러 메시지 : `FirebaseError: Expected first argument to collection() to be a CollectionReference`
 
@@ -180,3 +187,43 @@ yarn start
       where('email', '==', email)
     );
   ```
+
+</div>
+</details>
+
+
+<details>
+  <summary style="font-weight: bold;">2. NavLink isActive 스타일 적용 문제</summary>
+  <div markdown="1">
+    
+ - **문제 :** 헤더 부분에서 Navlink를 사용하여 활성 상태에 따라 스타일을 적용하려 했으나, 현재 페이지의 URL이 NavLink의 to값과 일치함에도 isActive의 상태에 따라 지정한 스타일이 올바르게 작동되지 않는 문제가 발생했습니다.
+
+- **시도 :** 
+
+  1. isActive props를 넘겨줄 때 path 비교 로직 추가하기
+
+     ```jsx
+     opacity: ${(props) => props.$isActive ? '100%' : '50%'};
+     ```
+
+     $isActive prop을 받아와서 isActive 상태로 스타일을 제어하려고 했으나, opacity가 계속해서 100%로 적용되었습니다.
+
+     ```jsx
+     $isActive={pathName==='/경로'}
+     ```
+
+     이 경우 useLocation으로 path를 받아와서 NavLink isActive props에 현재 path와 비교하는 로직을 추가하여 해결할 수 있었습니다.  
+
+     
+
+  2. 클래스 선택자 사용하기
+
+     props를 넘겨받는 방식이 아닌 .active 클래스 선택자를 사용하여 스타일을 변경하도록 하니 정상 작동하였습니다.
+
+     ```jsx
+     &.active {
+         opacity: 100%;
+       }
+     ```
+
+- **해결방안**: Navlink에 $isActive prop을 넘겨주는 대신에 &.active 선택자를 사용하여 스타일을 지정하는 방법으로 문제를 해결했습니다. Navlink가 활성 상태일 때 자동으로 '.active' 클래스를 부여하므로, isActive prop을 따로 제어할 필요가 없었습니다. 이 방법을 통해 active 상태에 따라 스타일을 지정할 수 있었습니다.

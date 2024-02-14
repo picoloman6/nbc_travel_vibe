@@ -7,6 +7,7 @@ import {
 import { StDeleteBtn } from '../common/styles/Button.style';
 import { StArticleHr } from '../../pages/styles/Article.style';
 import { dateConvertor } from '../../Shared/date';
+import { userDefaultImg } from '../../constants/users';
 
 const Comment = ({ comment, border, deleteComment, isOwnComment }) => {
   const { commentId, userId, content, createdAt, userNickname, userPhoto } =
@@ -18,11 +19,7 @@ const Comment = ({ comment, border, deleteComment, isOwnComment }) => {
         <StArticleCommentTop>
           <StArticleCommentUser>
             <img
-              src={
-                userPhoto === '기본이미지'
-                  ? 'https://encrypted-tbn3.gstatic.com/licensed-image?q=tbn:ANd9GcR7h0XNCZC4R_NicVVuNbbE9YrQ0iAjncl3didVtA9P8kN5PhgZy_aKPP15vfL_98IBZJjsXZEUKjzS66g'
-                  : userPhoto
-              }
+              src={userPhoto === '기본이미지' ? userDefaultImg : userPhoto}
               alt='기본이미지'
               style={{ width: '40px', height: '40px', borderRadius: '50px' }}
             />

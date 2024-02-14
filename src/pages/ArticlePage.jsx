@@ -48,7 +48,13 @@ const ArticlePage = () => {
     }
 
     await updatePostCommentLen(postId, 'increment');
-    await postCommentApi(content, postId, user.userId, user.nickname);
+    await postCommentApi(
+      content,
+      postId,
+      user.userId,
+      user.nickname,
+      user.image
+    );
     await getComments();
   };
 

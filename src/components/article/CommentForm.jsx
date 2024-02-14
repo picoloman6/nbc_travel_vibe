@@ -6,7 +6,7 @@ import {
 
 import { StSubmitBtn } from '../common/styles/Button.style';
 
-const CommentForm = ({ postComment }) => {
+const CommentForm = ({ postComment, userPhoto }) => {
   const handleClick = (e) => {
     e.preventDefault();
     if (e.target.tagName === 'BUTTON') {
@@ -18,7 +18,7 @@ const CommentForm = ({ postComment }) => {
   return (
     <StArticleHeaderWrapper>
       <StArticleForm onClick={handleClick}>
-        <label>캐릭터</label>
+        <span>댓글 달기</span>
         <StArticleTextArea name='content' />
         <StSubmitBtn $width='60px' $height='30px' $fontSize='16px'>
           등록

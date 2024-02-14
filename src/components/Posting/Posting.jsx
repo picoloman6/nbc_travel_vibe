@@ -59,6 +59,7 @@ const Posting = () => {
       alert('카테고리, 제목, 내용은 필수로 입력해야합니다!');
       return;
     }
+
     const newPost = {
       category: selectedCategory,
       title,
@@ -67,7 +68,7 @@ const Posting = () => {
       likes: 0,
       userId: user.userId,
       views: 0,
-      userNickname: 'name',
+      userNickname: user.nickname,
       comments: 0,
       photo: ''
     };

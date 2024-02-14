@@ -27,7 +27,13 @@ export const getCommentsApi = async (postId) => {
   }
 };
 
-export const postCommentApi = async (content, postId, userId, userNickname) => {
+export const postCommentApi = async (
+  content,
+  postId,
+  userId,
+  userNickname,
+  userPhoto
+) => {
   try {
     const dateTime = new Date().getTime();
     const comment = {
@@ -35,8 +41,11 @@ export const postCommentApi = async (content, postId, userId, userNickname) => {
       createdAt: dateTime,
       postId,
       userId,
-      userNickname
+      userNickname,
+      userPhoto
     };
+
+    console.log(userPhoto);
     await addDoc(collection(db, 'comments'), comment);
   } catch (e) {
     console.log(e);

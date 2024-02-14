@@ -174,7 +174,10 @@ yarn start
 
 ### 🚦트러블 슈팅
 
-1. firestore collection() 참조 오류
+
+<details>
+<summary>1. firestore collection() 참조 오류</summary>
+<div>
 
 - 에러 메시지 : `FirebaseError: Expected first argument to collection() to be a CollectionReference`
 
@@ -189,3 +192,41 @@ yarn start
       where('email', '==', email)
     );
   ```
+
+</div>
+</details>
+
+
+<details>
+  <summary style="font-weight: bold;">2. NavLink isActive 스타일 적용 문제</summary>
+  <div markdown="1">
+    
+ - **문제 :** 헤더 부분에서 Navlink를 사용하여 활성 상태에 따라 스타일을 적용하려 했으나, 현재 페이지의 URL이 NavLink의 to값과 일치함에도 isActive의 상태에 따라 지정한 스타일이 올바르게 작동되지 않는 문제가 발생했습니다.
+
+- **시도 :** 
+
+  1. isActive props를 넘겨줄 때 path 비교 로직 추가하기
+
+     ```jsx
+     opacity: ${(props) => props.$isActive ? '100%' : '50%'};
+     ```
+
+     $isActive prop을 받아와서 isActive 상태로 스타일을 제어하려고 했으나, opacity가 계속해서 100%로 적용되었습니다.
+
+     ```jsx
+     $isActive={pathName==='/경로'}
+     ```
+
+     이 경우 useLocation으로 path를 받아와서 NavLink isActive props에 현재 path와 비교하는 로직을 추가하여 해결할 수 있었습니다.  
+
+     
+
+  2. 클래스 선택자 사용하기
+
+     props를 넘겨받는 방식이 아닌 .active 클래스 선택자를 사용하여 스타일을 변경하도록 하니 정상 작동하였습니다.
+
+     ```jsx
+     &.active {
+         opacity: 100%;
+       }
+     ```

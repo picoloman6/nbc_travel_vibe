@@ -6,7 +6,7 @@ import PhotoInput from './PhotoInput';
 import { Body } from './styles/PostingStyle';
 import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { postGetData, postPostData } from '../../redux/modules/PostReducer';
+import { postGetData } from '../../redux/modules/PostReducer';
 import {
   StTools,
   StWrite,
@@ -75,7 +75,6 @@ const Posting = () => {
     };
 
     if (mode === 'update') {
-      console.log('여기');
       await updatePostApi(postIdQuery, newPost);
       alert('수정 완료!');
       navigate('/');

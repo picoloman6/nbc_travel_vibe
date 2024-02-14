@@ -1,15 +1,15 @@
-import React, { useCallback, useEffect, useState } from 'react';
-import Header from '../common/Header';
-import Body from '../common/Body';
+import React, { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 import { FiEye } from 'react-icons/fi';
 import { LiaCommentDots } from 'react-icons/lia';
 import { FcLike } from 'react-icons/fc';
+
+import Header from '../common/Header';
+import Body from '../common/Body';
 import * as Style from './styles/Main.styles';
-import { useNavigate } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
 import { plusView } from '../../redux/modules/PostReducer';
 import { updatePostViewApi } from '../../apis/posts';
-import { getDownloadURL, getStorage, ref } from 'firebase/storage';
 import { userDefaultImg } from '../../constants/users';
 
 const Main = () => {
@@ -18,8 +18,6 @@ const Main = () => {
 
   const categoryItems = ['All', 'Travel', 'Eat', 'Relax'];
   const [category, setCategory] = useState('All');
-  const storage = getStorage();
-  const [photos, setPhotos] = useState([]);
 
   const articles = useSelector((state) => state.post.posts);
 
@@ -80,7 +78,6 @@ const Main = () => {
                   : item.category === lowerCategory;
               })
               .map((item) => {
-                console.log(item.photo, '여기');
                 return (
                   <Style.StArticleCard
                     key={item.postId}

@@ -1,100 +1,81 @@
-import React, { useCallback, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+import { ref, uploadBytes, getStorage, getDownloadURL } from 'firebase/storage';
+
+import Body from '../common/Body';
+import Header from '../common/Header';
 import { StDeleteBtn, StSubmitBtn } from '../common/styles/Button.style';
 import {
   StAvatar,
   StBtnsWrapper,
   StContainer,
-  StCurrentPw,
   StEmail,
+  StImgUpdate,
   StMyPageTitle,
   StMyPageWrapper,
-  StNewPw,
   StNickName,
   StUserInfoDeatilWrapper,
   StUserInfoWrapper
 } from './styles/MyPages.style';
-import Body from '../common/Body';
-import Header from '../common/Header';
-import { useDispatch, useSelector } from 'react-redux';
 import { updateUserData } from '../../redux/modules/UserReducer';
-import { useNavigate } from 'react-router-dom';
-import { onAuthStateChanged } from "firebase/auth";
-import db, { auth } from '../../apis/config';
-import { collection, getDocs, query, updateDoc } from 'firebase/firestore/lite';
-import { doc } from '@firebase/firestore';
-import { getUsersApi } from '../../apis/users';
+import { updateUserInfoApi } from '../../apis/users';
+import { userDefaultImg } from '../../constants/users';
 
 const MyPage = () => {
-  const [userData, setUserData] = useState("null")
-  const [nickname, setNickname] = useState("")
-  const [email, setEmail] = useState("")
-  const [image, setImage] = useState("")
-  const [newPassword, setNewPassword] = useState('');
-  const [confirmPassword, setConfirmPassword] = useState('');
+  const user = useSelector((state) => state.user);
+  const [nickname, setNickname] = useState('');
+  const [image, setImage] = useState('');
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const storage = getStorage();
 
-  // users 데이터 가져오기 
-  useEffect(() => {
-    const fetchUserData = async () => {
-      try {
-        const user = auth.currentUser;
-        if (user) {
-          const email = user.email;
-          const userData = await getUsersApi(email);
-          setUserData(userData);
-          setNickname(userData.nickname);
-          setEmail(userData.email);
-          setImage(userData.image);
-          console.log("유저정보", userData)
-        } else {
-          alert("로그인 하세요.")
-        }
-      } catch (error) {
-        console.error(error);
-      }
-    };
+  const handleUpdate = async () => {
+    if (nickname.length > 3 && user.nickname !== nickname) {
+      alert('닉네임이 변경되었습니다.');
+      setNickname('');
+      await updateUserInfoApi(user.userId, nickname);
+      dispatch(updateUserData({ nickname }));
+    }
 
-    fetchUserData();
-  }, []);
-
-  // 닉네임 업데이트
-  const updateNickname = async () => {
-    try {
-      const user = auth.currentUser;
-      if (user) {
-        const uid = user.uid;
-        console.log("uid", uid)
-        const userRef = doc(db, 'users', uid);
-        await updateDoc(userRef, { nickname: nickname });
-        dispatch(updateUserData({ nickname: nickname }));
-        alert('닉네임이 업데이트되었습니다.');
-      } else {
-        console.error('로그인 하세요.');
-      }
-    } catch (error) {
-      console.error('닉네임 업데이트 오류:', error);
+    if (image !== '') {
+      alert('사진이 변경되었습니다.');
+      setImage('');
+      const image = await changeUserImage();
+      dispatch(updateUserData({ image }));
     }
   };
 
-  const handleUpdate = () => {
-    updateNickname();
-    // 새로운 비밀번호를 입력하고, 확인란과 일치하는 경우
-    if (newPassword && newPassword === confirmPassword) {
+  const handleCancle = () => {
+    navigate('/');
+  };
 
-    }
-    // 비밀번호 유효성 검사
-    if (newPassword !== confirmPassword) {
-      alert('비밀번호가 일치하지 않습니다. 다시 확인해주세요.');
-      setConfirmPassword('')
+  const handleImageChange = (e) => {
+    const blob = new Blob(e.target.files);
+    e.target.value = '';
+    setImage(blob);
+  };
+
+  const changeUserImage = async () => {
+    if (image === '') {
+      alert('이미지를 입력하세요');
       return;
     }
-  }
 
-  const handleCancle = () => {
-    navigate(-1);
-  }
+    const imageRef = ref(storage, `users/${user.userId}`);
+    await uploadBytes(imageRef, image);
+    const downloadURL = await getDownloadURL(imageRef);
+
+    return downloadURL;
+  };
+
+  useEffect(() => {
+    if (!user.userId) {
+      alert('잘못된 접속입니다.');
+      navigate('/');
+    }
+  }, [navigate, user]);
 
   return (
     <StContainer>
@@ -103,24 +84,33 @@ const MyPage = () => {
         <StMyPageWrapper>
           <StMyPageTitle>프로필 설정</StMyPageTitle>
           <StUserInfoWrapper>
-            <StAvatar></StAvatar>
+            <div>
+              <StAvatar
+                src={user.image === '기본이미지' ? userDefaultImg : user.image}
+                alt='기본이미지'
+              />
+              <input
+                type='file'
+                accept='image/*'
+                onChange={handleImageChange}
+                style={{ width: '80%' }}
+              />
+              {image && <StImgUpdate>사진 업로드 완료</StImgUpdate>}
+            </div>
             <StUserInfoDeatilWrapper>
               <StEmail>
                 <label>이메일</label>
-                <div>{email}</div>
+                <div>{user.email}</div>
               </StEmail>
               <StNickName>
-                <label>닉네임</label>
-                <input placeholder={nickname} type='text' onChange={(e) => setNickname(e.target.value)}></input>
+                <label>닉네임({user.nickname})</label>
+                <input
+                  placeholder='닉네임을 입력하세요'
+                  type='text'
+                  onChange={(e) => setNickname(e.target.value)}
+                  value={nickname}
+                />
               </StNickName>
-              <StCurrentPw>
-                <label>새로운 비밀번호</label>
-                <input placeholder="비밀번호" type='password' value={newPassword} onChange={(e) => setNewPassword(e.target.value)}></input>
-              </StCurrentPw>
-              <StNewPw>
-                <label>비밀번호 확인</label>
-                <input type='password' value={confirmPassword} onChange={(e) => setConfirmPassword(e.target.value)} ></input>
-              </StNewPw>
             </StUserInfoDeatilWrapper>
           </StUserInfoWrapper>
           <StBtnsWrapper>
@@ -129,7 +119,7 @@ const MyPage = () => {
           </StBtnsWrapper>
         </StMyPageWrapper>
       </Body>
-    </StContainer >
+    </StContainer>
   );
 };
 

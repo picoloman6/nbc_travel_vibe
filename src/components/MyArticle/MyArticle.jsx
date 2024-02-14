@@ -1,7 +1,8 @@
-import React from 'react';
+import { useNavigate, useSearchParams } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+
 import Body from '../common/Body';
 import Header from '../common/Header';
-import thumbImg from '../assets/title_background.png';
 import {
   StMyArticleContainer,
   StTitle,
@@ -14,8 +15,6 @@ import {
   StContentCategoryDateWrap,
   StLine
 } from '../MyArticle/styles/MyArticle.style';
-import { useNavigate, useSearchParams } from 'react-router-dom';
-import { useSelector } from 'react-redux';
 import { dateConvertor } from '../../Shared/date';
 
 const MyArticle = () => {
@@ -38,7 +37,6 @@ const MyArticle = () => {
         <StTitle>작성글 관리</StTitle>
         <StContent>
           {Articles.filter((item) => item.userId === userId).map((item) => {
-            console.log(item);
             return (
               <StContentWrap
                 key={item.postId}

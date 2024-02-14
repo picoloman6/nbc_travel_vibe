@@ -4,10 +4,12 @@ import {
   getDocs,
   collection,
   query,
-  where
+  where,
+  updateDoc
 } from 'firebase/firestore/lite';
-import db from '../apis/config';
 import { createUserWithEmailAndPassword } from 'firebase/auth';
+
+import db from '../apis/config';
 import { auth } from '../apis/config';
 
 export const addUsersApi = async (email, firstPw, nickName) => {
@@ -18,7 +20,6 @@ export const addUsersApi = async (email, firstPw, nickName) => {
       firstPw
     );
     const uid = userCredential.user.uid;
-    console.log('uid:', uid, 'user:', userCredential.user);
 
     await setDoc(doc(db, 'users', uid), {
       nickname: nickName,
@@ -40,14 +41,21 @@ export const getUsersApi = async (email) => {
       where('email', '==', email)
     );
     const snapshot = await getDocs(usersRef);
-
     const users = snapshot.docs.map((doc) => ({
       ...doc.data()
     }));
-    console.log(snapshot, users);
+
     return users[0];
   } catch (error) {
     console.error('Error getting users data:', error);
     throw error;
+  }
+};
+
+export const updateUserInfoApi = async (userId, nickname) => {
+  try {
+    await updateDoc(doc(db, 'users', userId), { nickname });
+  } catch (error) {
+    console.error(error);
   }
 };

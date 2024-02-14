@@ -1,3 +1,6 @@
+import { useDispatch } from 'react-redux';
+import { useLocation, useNavigate } from 'react-router-dom';
+
 import { StBackground, StLogoutContainer } from './styles/LogoutModal.style';
 import {
   StCloseBtn,
@@ -7,7 +10,7 @@ import {
   StCancelButton,
   StButtonWrap
 } from './styles/LogoutModal.style';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { postUserData } from '../../redux/modules/UserReducer';
 
 const LogoutModal = ({
   isLogoutModalOpen,
@@ -15,6 +18,7 @@ const LogoutModal = ({
   setIsLoggedIn,
   isLoggedIn
 }) => {
+  const dipatch = useDispatch();
   const navigate = useNavigate();
   const handleCloseButtonClick = () => {
     setIsLogoutModalOpen(!isLogoutModalOpen);
@@ -25,6 +29,15 @@ const LogoutModal = ({
   const handleLogoutButtonClick = () => {
     setIsLogoutModalOpen(!isLogoutModalOpen);
     setIsLoggedIn(!isLoggedIn);
+    dipatch(
+      postUserData({
+        accessToken: null,
+        email: null,
+        userId: null,
+        image: null,
+        nickname: null
+      })
+    );
     if (pathname === '/') {
       alert('로그아웃 되었습니다.');
     } else {

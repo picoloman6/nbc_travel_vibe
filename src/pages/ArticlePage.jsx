@@ -106,7 +106,7 @@ const ArticlePage = () => {
       alert('로그인 하세요.');
       return;
     }
-    await updatePostLikesApi(postId, post.likes + 1);
+    await updatePostLikesApi(postId);
     const newPosts = await getPostsApi();
     dispatch(postGetData(newPosts));
   };

@@ -1,3 +1,6 @@
+import { FaHeart } from 'react-icons/fa';
+import { IoChatboxOutline } from 'react-icons/io5';
+
 import {
   StArticleHeaderWrapper,
   StArticleContent,
@@ -6,8 +9,6 @@ import {
   StArticlePhotoWrapper,
   StArticlePhoto
 } from './Styles/Article.style';
-import { FaHeart } from 'react-icons/fa';
-import { IoChatboxOutline } from 'react-icons/io5';
 
 const ArticleContent = ({
   content,
@@ -21,7 +22,7 @@ const ArticleContent = ({
       <StArticlePhotoWrapper>
         {photos &&
           photos.map((v, i) => (
-            <StArticlePhoto key={i} src={v} alt='no image' />
+            <StArticlePhoto key={i} src={v} alt='Article 이미지' />
           ))}
       </StArticlePhotoWrapper>
       <StArticleContent>{content}</StArticleContent>

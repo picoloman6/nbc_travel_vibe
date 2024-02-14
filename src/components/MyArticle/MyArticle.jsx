@@ -1,7 +1,8 @@
-import React from 'react';
+import { useNavigate, useSearchParams } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+
 import Body from '../common/Body';
 import Header from '../common/Header';
-import thumbImg from '../assets/title_background.png';
 import {
   StMyArticleContainer,
   StTitle,
@@ -14,8 +15,6 @@ import {
   StContentCategoryDateWrap,
   StLine
 } from '../MyArticle/styles/MyArticle.style';
-import { useNavigate, useSearchParams } from 'react-router-dom';
-import { useSelector } from 'react-redux';
 import { dateConvertor } from '../../Shared/date';
 
 const MyArticle = () => {

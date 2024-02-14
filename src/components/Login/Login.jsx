@@ -1,23 +1,21 @@
 import { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { signInWithEmailAndPassword } from 'firebase/auth';
+import { FiEye, FiEyeOff } from 'react-icons/fi';
+
 import * as St from './styles/Login.style';
 import { StErrorMsg } from './styles/SignUp.style';
-import { FiEye } from 'react-icons/fi';
-import { FiEyeOff } from 'react-icons/fi';
-import { signInWithEmailAndPassword } from 'firebase/auth';
 import { auth } from '../../apis/config';
-import { useDispatch, useSelector } from 'react-redux';
-import { postUserData } from '../../redux/modules/UserReducer';
 import { getUsersApi } from '../../apis/users';
+import { postUserData } from '../../redux/modules/UserReducer';
 
 const Login = ({
   setIsOpen,
   onModalHandler,
   onSignUpHandler,
-  importUsers,
   setIsLoggedIn,
   validEmail,
-  validPw,
-  setLoggedInUserId
+  validPw
 }) => {
   // Login의 state 상태관리
   const [email, setEmail] = useState('');
@@ -46,22 +44,6 @@ const Login = ({
     }
   };
 
-  // 로그인 기능
-  // const onLoginConfirm = () => {
-  //   const foundUser = importUsers.find((user) => {
-  //     return user.email === email && user.nono === pw;
-  //   });
-
-  //   if (foundUser) {
-  //     alert('로그인 되었습니다.');
-  //     setIsLoggedIn(true);
-  //     setIsOpen(false);
-  //     setLoggedInUserId(foundUser.userId);
-  //   } else {
-  //     alert('등록되지 않은 회원입니다.');
-  //   }
-  // };
-
   const dispatch = useDispatch();
   const onLoginConfirm = async () => {
     try {
@@ -78,10 +60,6 @@ const Login = ({
       console.log(error);
     }
   };
-
-  // 로그인한 유저정보 확인하기
-  // const user = useSelector((state) => state.user);
-  // console.log(user);
 
   // 비밀번호 보이게 하기
   const [isShowPw, setIsShowPw] = useState(false);

@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
+import { ref, uploadBytes, getStorage, getDownloadURL } from 'firebase/storage';
 
 import Body from '../common/Body';
 import Header from '../common/Header';
@@ -20,7 +21,6 @@ import {
 import { updateUserData } from '../../redux/modules/UserReducer';
 import { updateUserInfoApi } from '../../apis/users';
 import { userDefaultImg } from '../../constants/users';
-import { ref, uploadBytes, getStorage, getDownloadURL } from 'firebase/storage';
 
 const MyPage = () => {
   const user = useSelector((state) => state.user);

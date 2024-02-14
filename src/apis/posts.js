@@ -42,6 +42,16 @@ export const updatePostCommentLen = async (postId, commentLen) => {
   }
 };
 
+export const updatePostLikesApi = async (postId, newLike) => {
+  try {
+    await updateDoc(doc(db, 'posts', postId), {
+      likes: newLike
+    });
+  } catch (e) {
+    console.log(e);
+  }
+};
+
 export const addPostApi = async (newPost) => {
   const doc = await addDoc(collection(db, 'posts'), newPost);
   return doc.id;

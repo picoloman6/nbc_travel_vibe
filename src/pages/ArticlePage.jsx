@@ -15,7 +15,7 @@ import {
   getCommentsApi,
   postCommentApi
 } from '../apis/comments';
-import { deletePostApi, getPostsApi } from '../apis/posts';
+import { deletePostApi, getPostsApi, updatePostLikesApi } from '../apis/posts';
 import { postGetData } from '../redux/modules/PostReducer';
 
 const ArticlePage = () => {
@@ -58,7 +58,7 @@ const ArticlePage = () => {
   const getPhotos = useCallback(async () => {
     const photoRef = ref(storage, `/posts/${postId}/0`);
     const photoPath = await getDownloadURL(photoRef);
-    setPhotos((prev) => [...prev, photoPath]);
+    setPhotos([photoPath]);
   }, [postId, storage]);
 
   const moveToUpdate = () => {
@@ -85,6 +85,16 @@ const ArticlePage = () => {
         deleteCommentApi(v.commentId);
       });
     }
+  };
+
+  const updateLikes = async () => {
+    // if (!user.userId) {
+    //   alert('로그인 하세요.');
+    //   return;
+    // }
+    await updatePostLikesApi(postId, post.likes + 1);
+    const newPosts = await getPostsApi();
+    dispatch(postGetData(newPosts));
   };
 
   useEffect(() => {
@@ -115,6 +125,7 @@ const ArticlePage = () => {
             likes={post.likes}
             photos={photo}
             commentsLen={comments ? comments.length : 0}
+            updateLikes={updateLikes}
           />
           <StArticleHr />
           <CommentForm postComment={postComment} />

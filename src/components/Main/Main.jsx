@@ -14,10 +14,13 @@ const Main = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
+
   const categoryItems = ['All', 'Travel', 'Eat', 'Relax']
   const [category, setCategory] = useState('All')
 
-  const articles = useSelector((state) => state.post.posts)
+
+  const articles = useSelector((state) => state.post.posts);
+
 
   const handleArticleCardClick = (postId) => {
     // db 수정
@@ -36,10 +39,11 @@ const Main = () => {
     navigate(`/article?pid=${postId}`);
   }
 
+
+
   const handleCategoryClick = (item) => {
     setCategory(item);
-  }
-
+  };
 
   return (
     <Style.StMainBackground>
@@ -53,73 +57,82 @@ const Main = () => {
             {categoryItems.map((item, idx) => {
               return (
                 <React.Fragment key={idx}>
-                  <Style.StCatergoryItem key={idx} onClick={() => handleCategoryClick(item)} $category={category} $item={item}>
+                  <Style.StCatergoryItem
+                    key={idx}
+                    onClick={() => handleCategoryClick(item)}
+                    $category={category}
+                    $item={item}>
                     {item}
                   </Style.StCatergoryItem>
                   <Style.StLine />
                 </React.Fragment>
-              )
+              );
             })}
           </Style.StCategoryWrap>
         </Style.StCategoryBar>
 
         <Style.StArticlesWrap>
-          {articles.filter((item) => {
-            const lowerCategory = category.toLocaleLowerCase();
-            return lowerCategory === 'all' ? item : item.category === lowerCategory;
-          })
-            .map((item) => {
-              console.log(item)
-
-              return (
-                <Style.StArticleCard key={item.postId} onClick={() => handleArticleCardClick(item.postId)}>
-                  <Style.StArticleThumbImg
-                    // src={ }
-                    art={'게시글 썸네일 이미지'}
-                  />
-                  <Style.StProfileWrap>
-                    <Style.StProfileImge></Style.StProfileImge>
-                    <div>
-                      <Style.StNickname>{item.userNickname}</Style.StNickname>
-                      <Style.StCreatedDate>{item.createdAt}</Style.StCreatedDate>
-                    </div>
-                  </Style.StProfileWrap>
-                  <Style.StArticleContentInfoWrap>
-                    <Style.StArticleTitle>{item.title}</Style.StArticleTitle>
-                    <Style.StArticleContentTxt>
-                      {item.content}
-                    </Style.StArticleContentTxt>
-                  </Style.StArticleContentInfoWrap>
-                  <hr style={{ margin: '0 auto', width: '93%' }}></hr>
-                  <Style.StContentStats>
-                    <div style={{ display: 'flex' }}>
+          {articles &&
+            articles
+              .filter((item) => {
+                const lowerCategory = category.toLocaleLowerCase();
+                return lowerCategory === 'all'
+                  ? item
+                  : item.category === lowerCategory;
+              })
+              .map((item) => {
+                return (
+                  <Style.StArticleCard
+                    key={item.postId}
+                    onClick={() => handleArticleCardClick(item.postId)}>
+                    <Style.StArticleThumbImg
+                      src={item.photo}
+                      art={'게시글 썸네일 이미지'}
+                    />
+                    <Style.StProfileWrap>
+                      <Style.StProfileImge></Style.StProfileImge>
+                      <div>
+                        <Style.StNickname>{item.userNickname}</Style.StNickname>
+                        <Style.StCreatedDate>
+                          {item.created_at}
+                        </Style.StCreatedDate>
+                      </div>
+                    </Style.StProfileWrap>
+                    <Style.StArticleContentInfoWrap>
+                      <Style.StArticleTitle>{item.title}</Style.StArticleTitle>
+                      <Style.StArticleContentTxt>
+                        {item.content}
+                      </Style.StArticleContentTxt>
+                    </Style.StArticleContentInfoWrap>
+                    <hr style={{ margin: '0 auto', width: '93%' }}></hr>
+                    <Style.StContentStats>
+                      <div style={{ display: 'flex' }}>
+                        <Style.StIconsStatsWrap>
+                          <Style.StIconWrap>
+                            <FiEye />
+                          </Style.StIconWrap>{' '}
+                          {/* 조회수 */}
+                          <span>{item.views}</span>
+                        </Style.StIconsStatsWrap>
+                        <Style.StIconsStatsWrap>
+                          <Style.StIconWrap>
+                            <LiaCommentDots />
+                          </Style.StIconWrap>{' '}
+                          {/* 댓글 수 */}
+                          <span>{}</span>
+                        </Style.StIconsStatsWrap>
+                      </div>
                       <Style.StIconsStatsWrap>
                         <Style.StIconWrap>
-                          <FiEye />
+                          <FcLike />
                         </Style.StIconWrap>{' '}
-                        {/* 조회수 */}
-                        <span>{item.views}</span>
+                        {/* 좋아요 수 */}
+                        <span>{item.likes}</span>
                       </Style.StIconsStatsWrap>
-                      <Style.StIconsStatsWrap>
-                        <Style.StIconWrap>
-                          <LiaCommentDots />
-                        </Style.StIconWrap>{' '}
-                        {/* 댓글 수 */}
-                        <span>{ }</span>
-                      </Style.StIconsStatsWrap>
-                    </div>
-                    <Style.StIconsStatsWrap>
-                      <Style.StIconWrap>
-                        <FcLike />
-                      </Style.StIconWrap>{' '}
-                      {/* 좋아요 수 */}
-                      <span>{item.likes}</span>
-                    </Style.StIconsStatsWrap>
-                  </Style.StContentStats>
-                </Style.StArticleCard>
-              )
-            })}
-
+                    </Style.StContentStats>
+                  </Style.StArticleCard>
+                );
+              })}
         </Style.StArticlesWrap>
       </Body>
     </Style.StMainBackground>

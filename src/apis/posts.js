@@ -9,6 +9,7 @@ import {
   query,
   updateDoc,
   increment
+
 } from 'firebase/firestore/lite';
 
 import db from './config';
@@ -25,10 +26,6 @@ export const getPostsApi = async () => {
   }
 };
 
-export const postDummy = async (newPost) => {
-  await addDoc(collection(db, 'posts'), newPost);
-};
-
 export const deletePostApi = async (postId) => {
   try {
     await deleteDoc(doc(db, 'posts', postId));
@@ -37,13 +34,44 @@ export const deletePostApi = async (postId) => {
   }
 };
 
+
 export const updatePostViewApi = async (postId) => {
   try {
     const postRef = doc(db, 'posts', postId);
     await updateDoc(postRef, { views: increment(1) });
+    } catch (e) {
+    console.log(e);
+  }
+
+export const updatePostCommentLen = async (postId, commentLen) => {
+  try {
+    await updateDoc(doc(db, 'post', postId), {
+      comments: commentLen
+    });
   } catch (e) {
     console.log(e);
   }
+};
+
+export const updatePostLikesApi = async (postId, newLike) => {
+  try {
+    await updateDoc(doc(db, 'posts', postId), {
+      likes: increment(1)
+    });
+  } catch (e) {
+    console.log(e);
+  }
+};
+
+export const addPostApi = async (newPost) => {
+  const doc = await addDoc(collection(db, 'posts'), newPost);
+  return doc.id;
+};
+
+export const updatePostApi = async (postId, newPost) => {
+  try {
+    await updateDoc(doc(db, 'posts', postId), newPost);
+  
 };
 
 export const storage = getStorage();

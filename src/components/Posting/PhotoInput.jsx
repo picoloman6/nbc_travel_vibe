@@ -1,8 +1,6 @@
 import { MdAddPhotoAlternate } from 'react-icons/md';
 import styled from 'styled-components';
-import { ref, uploadBytes, getDownloadURL } from 'firebase/storage';
 import { useRef } from 'react';
-import { storage } from '../../apis/posts';
 const PhotoInput = ({ setPhotos, photos, setPreviewPhotos }) => {
   const fileInput = useRef(null);
 
@@ -29,15 +27,6 @@ const PhotoInput = ({ setPhotos, photos, setPreviewPhotos }) => {
     handlePreviewPhotos(newPhotos);
   };
 
-  const handleSavePhoto = async () => {
-    for (const photo of photos) {
-      const imageRef = ref(storage, `folder/${photo.id}`);
-      await uploadBytes(imageRef, photo.url);
-      const downloadURL = await getDownloadURL(imageRef);
-      console.log(downloadURL);
-    }
-  };
-
   return (
     <div>
       <FileInput
@@ -47,7 +36,6 @@ const PhotoInput = ({ setPhotos, photos, setPreviewPhotos }) => {
         multiple
         onChange={handleChange}></FileInput>
       <MdAddPhotoAlternate size={35} onClick={handleButtonClick} />
-      <button onClick={handleSavePhoto}>사진 등록하기</button>
     </div>
   );
 };

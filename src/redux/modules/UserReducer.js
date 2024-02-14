@@ -21,7 +21,9 @@ export const updateUserData = (updateUser) => ({
 const initialState = {
   accessToken: null,
   email: null,
-  userId: null
+  userId: null,
+  nickname: null,
+  image: null
 };
 
 const userReducer = (state = initialState, action) => {

@@ -21,7 +21,7 @@ React를 이용한 여행 컨셉의 블로그 플랫폼 만들기
 | <p align="center"><img src="https://avatars.githubusercontent.com/u/128902050?v=4" style="width:87%; border-radius: 40px"/></p> | <p align="center"><img src="https://avatars.githubusercontent.com/u/85938399?v=4)" style="width:95%; border-radius: 40px" /></p> | <p align="center"><img src="https://avatars.githubusercontent.com/u/154486286?v=4" style="width:230px; border-radius: 40px" /></p> | <p align="center"><img src="https://avatars.githubusercontent.com/u/148458439?v=4" style="width:80%; border-radius: 40px" /></p> | <p align="center"><img src="https://avatars.githubusercontent.com/u/103973797?v=4" style="width:90%; border-radius: 40px" /></p> |
 |                                        [@seoyeon-1206](https://github.com/seoyeon-1206)                                         |                                           [@picoloman6](https://github.com/picoloman6)                                           |                                          [@HuaHuaChiChi](https://github.com/HuaHuaChiChi)                                          |                                              [@innes-k](https://github.com/innes-k)                                              |                                             [@seopport](https://github.com/seopport)                                             |
 |                                                              리더                                                               |                                                               팀원                                                               |                                                                팀원                                                                |                                                               팀원                                                               |                                                               팀원                                                               |
-|                                                         맡은 부분 작성                                                          |                                                                                                                                  |                                                                                                                                    |                                           로그인/회원가입 모달창, <br/> athentication                                            |                                                  메인페이지, 게시물 관리 페이지                                                  |
+|                                                         맡은 부분 작성                                                          |                                                                                                                                  |                                                                                                                                    |                                                                                                                                  |                                                  메인페이지, 게시물 관리 페이지                                                  |
 
 <br>
 
@@ -86,8 +86,8 @@ yarn start
   - 이메일과 닉네임, 비밀번호를 입력하고 회원가입합니다.
   - 각 입력란에 대한 유효성 검사로 조건에 부합하는 값을 입력해야 합니다.
 
-* 로그인이 되지 않았을 때는 Post와 My Blog 기능을 사용할 수 없습니다.
-* 로그인 했을 시에는 로그아웃 버튼을 눌러 로그아웃할 수 있습니다.
+- 로그인이 되지 않았을 때는 Post와 My Blog 기능을 사용할 수 없습니다.
+- 로그인 했을 시에는 로그아웃 버튼을 눌러 로그아웃할 수 있습니다.
 
 **1.2. 카테고리 탭**
 
@@ -112,6 +112,10 @@ yarn start
 - 하트 버튼을 눌러 게시글에 좋아요를 표시할 수 있습니다.
 - 댓글을 작성하고 등록을 눌러 댓글을 추가할 수 있습니다.
 - 등록 한 댓글은 삭제 버튼을 눌러 삭제할 수 있습니다.
+- 게시글 수정 및 삭제
+  - 현재 사용자가 게시물을 작성한 사용자인 경우에만 수정 및 삭제 버튼이 표시됩니다.
+- 댓글 삭제
+  - 현재 사용자가 댓글을 작성한 사용자인 경우에만 삭제 버튼이 표시됩니다.
 
 <br>
 
@@ -134,9 +138,6 @@ yarn start
 | 사진 추가 필요 |
 | -------------- |
 
-| 사진 추가 필요 |
-| -------------- |
-
 - 헤더의 프로필 이미지를 눌러 마이페이지로 이동할 수 있습니다.
 - 마이페이지에서는 닉네임과 비밀번호를 수정할 수 있습니다.
   - 수정할 닉네임과 비밀번호를 입력한 뒤 완료를 눌러 수정을 완료합니다.
@@ -145,9 +146,6 @@ yarn start
 <br>
 
 #### 5. 게시글 관리 페이지
-
-| ![image](https://github.com/picoloman6/nbc_travel_vibe/assets/103973797/9a2389be-ccec-4a6c-af8a-e20337c9ec05) |
-| ------------------------------------------------------------------------------------------------------------- |
 
 | ![image](https://github.com/picoloman6/nbc_travel_vibe/assets/103973797/9a2389be-ccec-4a6c-af8a-e20337c9ec05) |
 | ------------------------------------------------------------------------------------------------------------- |

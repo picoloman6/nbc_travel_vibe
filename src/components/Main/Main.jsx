@@ -104,7 +104,7 @@ const Main = () => {
                       <div>
                         <Style.StNickname>{item.userNickname}</Style.StNickname>
                         <Style.StCreatedDate>
-                          {item.created_at}
+                          {item.createdAt}
                         </Style.StCreatedDate>
                       </div>
                     </Style.StProfileWrap>

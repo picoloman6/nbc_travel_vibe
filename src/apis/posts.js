@@ -8,7 +8,8 @@ import {
   orderBy,
   query,
   updateDoc,
-  increment
+  increment,
+  decrement
 } from 'firebase/firestore/lite';
 
 import db from './config';
@@ -52,10 +53,10 @@ export const updatePostPhoto = async (postId, photo) => {
   }
 };
 
-export const updatePostCommentLen = async (postId, commentLen) => {
+export const updatePostCommentLen = async (postId, type) => {
   try {
-    await updateDoc(doc(db, 'post', postId), {
-      comments: commentLen
+    await updateDoc(doc(db, 'posts', postId), {
+      comments: increment(type === 'increment' ? 1 : -1)
     });
   } catch (e) {
     console.log(e);

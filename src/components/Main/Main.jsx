@@ -118,7 +118,7 @@ const Main = () => {
                             <LiaCommentDots />
                           </Style.StIconWrap>{' '}
                           {/* 댓글 수 */}
-                          <span>{}</span>
+                          <span>{item.comments}</span>
                         </Style.StIconsStatsWrap>
                       </div>
                       <Style.StIconsStatsWrap>

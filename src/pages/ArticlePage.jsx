@@ -15,7 +15,12 @@ import {
   getCommentsApi,
   postCommentApi
 } from '../apis/comments';
-import { deletePostApi, getPostsApi, updatePostLikesApi } from '../apis/posts';
+import {
+  deletePostApi,
+  getPostsApi,
+  updatePostCommentLen,
+  updatePostLikesApi
+} from '../apis/posts';
 import { postGetData } from '../redux/modules/PostReducer';
 
 const ArticlePage = () => {
@@ -41,7 +46,9 @@ const ArticlePage = () => {
       alert('로그인 하세요.');
       return;
     }
-    await postCommentApi(content, postId, user.userId, 'kaka');
+
+    await updatePostCommentLen(postId, 'increment');
+    await postCommentApi(content, postId, user.userId, user.nickname);
     await getComments();
   };
 
@@ -51,6 +58,7 @@ const ArticlePage = () => {
       return;
     }
 
+    await updatePostCommentLen(postId, 'decrement');
     await deleteCommentApi(commentId);
     await getComments();
   };

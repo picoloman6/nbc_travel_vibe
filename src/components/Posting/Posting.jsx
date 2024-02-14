@@ -68,6 +68,7 @@ const Posting = () => {
       userId: user.userId,
       views: 0,
       userNickname: 'name',
+      comments: 0,
       photo: ''
     };
 

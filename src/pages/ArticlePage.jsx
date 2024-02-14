@@ -88,10 +88,10 @@ const ArticlePage = () => {
   };
 
   const updateLikes = async () => {
-    // if (!user.userId) {
-    //   alert('로그인 하세요.');
-    //   return;
-    // }
+    if (!user.userId) {
+      alert('로그인 하세요.');
+      return;
+    }
     await updatePostLikesApi(postId, post.likes + 1);
     const newPosts = await getPostsApi();
     dispatch(postGetData(newPosts));

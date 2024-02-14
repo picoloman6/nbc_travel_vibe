@@ -22,8 +22,10 @@ import { onAuthStateChanged } from "firebase/auth";
 import db, { auth } from '../../apis/config';
 import { collection, getDocs, query, updateDoc } from 'firebase/firestore/lite';
 import { doc } from '@firebase/firestore';
+import { getUsersApi } from '../../apis/users';
 
 const MyPage = () => {
+  const [userData, setUserData] = useState("null")
   const [nickname, setNickname] = useState("")
   const [email, setEmail] = useState("")
   const [image, setImage] = useState("")
@@ -35,29 +37,26 @@ const MyPage = () => {
 
   // users 데이터 가져오기 
   useEffect(() => {
-    const fetchData = async () => {
+    const fetchUserData = async () => {
       try {
-        const q = query(collection(db, 'users'));
-        const querySnapshot = await getDocs(q);
-        querySnapshot.docs.forEach((item) => {
-          const { nickname, email, image } = item.data();
-          console.log(item.data)
-          setNickname(nickname)
-          setEmail(email)
-          setImage(image)
-        })
+        const user = auth.currentUser;
+        if (user) {
+          const email = user.email;
+          const userData = await getUsersApi(email);
+          setUserData(userData);
+          setNickname(userData.nickname);
+          setEmail(userData.email);
+          setImage(userData.image);
+          console.log("유저정보", userData)
+        } else {
+          alert("로그인 하세요.")
+        }
       } catch (error) {
-        console.error('Error getting documents: ', error);
+        console.error(error);
       }
-    }
-    fetchData();
-  }, [])
+    };
 
-  useEffect(() => {
-    const unsubscribe = onAuthStateChanged(auth, (user) => {
-      console.log("user?????", user);
-    });
-    return () => unsubscribe();
+    fetchUserData();
   }, []);
 
   // 닉네임 업데이트
@@ -66,31 +65,21 @@ const MyPage = () => {
       const user = auth.currentUser;
       if (user) {
         const uid = user.uid;
-        const usersRef = doc(db, 'users', uid);
-        await updateDoc(usersRef, { nickname: nickname });
+        console.log("uid", uid)
+        const userRef = doc(db, 'users', uid);
+        await updateDoc(userRef, { nickname: nickname });
         dispatch(updateUserData({ nickname: nickname }));
         alert('닉네임이 업데이트되었습니다.');
       } else {
-        console.error('No user is currently signed in.');
+        console.error('로그인 하세요.');
       }
     } catch (error) {
-      console.error('Error updating nickname:', error);
+      console.error('닉네임 업데이트 오류:', error);
     }
   };
 
-
   const handleUpdate = () => {
-    // const updatedData = { email, nickname, image }
-    // updateUserInFirestore(updatedData)
-    // console.log(updatedData)
-    // let updateUser = { ...user };
-    // // 닉네임을 변경한 경우
-    // if (nickname !== user.nickname) {
-    //   // 닉네임 저장 로직
-    // };
     updateNickname();
-
-
     // 새로운 비밀번호를 입력하고, 확인란과 일치하는 경우
     if (newPassword && newPassword === confirmPassword) {
 
@@ -101,13 +90,6 @@ const MyPage = () => {
       setConfirmPassword('')
       return;
     }
-    // 이미지를 변경한 경우 
-    // if (image !== user.image) {
-    //   updateUser = { ...updateUser, image };
-    // }
-
-    // dispatch(updateUserData(updateUser));
-    // console.log('updateUser:', updateUser);
   }
 
   const handleCancle = () => {

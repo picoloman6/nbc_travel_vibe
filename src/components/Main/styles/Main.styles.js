@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+
 import titleBackgroundImg from '../../assets/title_background.png';
 import colors from '../../../constants/colors';
 import size from '../../../constants/size';

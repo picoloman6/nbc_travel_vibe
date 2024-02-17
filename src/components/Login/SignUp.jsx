@@ -1,4 +1,6 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
+import { FiEye, FiEyeOff } from 'react-icons/fi';
+
 import * as St from './styles/Login.style';
 import {
   StLogoName,
@@ -8,17 +10,13 @@ import {
   StSignUpBtn,
   StInputContainer
 } from './styles/SignUp.style';
-// import { useDispatch } from 'react-redux';
-// import { postUserData } from '../../redux/modules/UserReducer';
-import { FiEye, FiEyeOff } from 'react-icons/fi';
-import { addUsersApi, getUsersApi } from '../../apis/users';
+import { addUsersApi } from '../../apis/users';
 
 const SignUp = ({
   onSignUpHandler,
   onModalHandler,
   validEmail,
   validPw,
-  importUsers,
   setIsOpen,
   setIsLoggedIn
 }) => {
@@ -32,7 +30,6 @@ const SignUp = ({
 
   const [isValidEmail, setIsValidEmail] = useState(false);
   const [isValidPw, setIsValidPw] = useState(false);
-  const [isValidNickName, setIsValidNickName] = useState(false);
 
   // email 형식 유효성검사
   const onCheckValidEmail = (e) => {
@@ -43,9 +40,6 @@ const SignUp = ({
       setIsValidEmail(false);
     }
   };
-
-  // 중복 이메일 찾기
-  // const foundEmail = importUsers.find((user) => user.email === email);
 
   // 비밀번호 형식 유효성검사
   const onCheckValidPw = (e) => {
@@ -65,35 +59,7 @@ const SignUp = ({
   // 닉네임 중복검사
   const onCheckUniqueNickname = (e) => {
     setNickName(e.target.value);
-    // if (foundNickname) {
-    //   setIsValidNickName(false);
-    // } else {
-    //   setIsValidNickName(true);
-    // }
   };
-  // const foundNickname = importUsers.find((user) => user.nickname === nickName);
-
-  // 회원가입 기능
-  // const dispatch = useDispatch();
-
-  // const onSignUp = () => {
-  //   if (isValidEmail && isValidPw && isValidNickName && firstPw === secondPw) {
-  //     dispatch(
-  //       postUserData({
-  //         userId: Date.now(),
-  //         email: email,
-  //         nono: firstPw,
-  //         nickname: nickName,
-  //         image: defaultAvatar
-  //       })
-  //     );
-  //     setIsOpen(false);
-  //     // setIsLoggedIn(true);
-  //     alert('축하합니다 🎉 회원가입이 완료되었습니다.');
-  //   } else {
-  //     alert('입력하신 정보를 확인해주세요.');
-  //   }
-  // };
 
   const onSignUp = async () => {
     try {
@@ -106,25 +72,6 @@ const SignUp = ({
       alert('회원가입에 실패했습니다. 다시 시도해주세요.');
     }
   };
-
-  // collection에 잘 들어가나 확인
-  // useEffect(() => {
-  //   const fetchData = async () => {
-  //     try {
-  //       const usersData = await getUsersApi();
-  //       console.log('Users data:', usersData);
-  //     } catch (error) {
-  //       console.error('Error getting users data:', error);
-  //     }
-  //   };
-
-  //   fetchData();
-  // }, []);
-
-  // 회원가입 시 로그인상태로 전환
-  // useEffect(() => {
-  //   setIsLoggedIn(true);
-  // }, [importUsers]);
 
   // 비밀번호 보이기/숨기기 토글
   const onShowPw = () => {

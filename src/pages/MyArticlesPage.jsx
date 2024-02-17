@@ -1,7 +1,8 @@
-import React from 'react';
-import Body from '../common/Body';
-import Header from '../common/Header';
-import thumbImg from '../assets/title_background.png';
+import { useNavigate, useSearchParams } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+
+import Body from '../components/common/Body';
+import Header from '../components/common/Header';
 import {
   StMyArticleContainer,
   StTitle,
@@ -13,12 +14,10 @@ import {
   StContentTxt,
   StContentCategoryDateWrap,
   StLine
-} from '../MyArticle/styles/MyArticle.style';
-import { useNavigate, useSearchParams } from 'react-router-dom';
-import { useSelector } from 'react-redux';
-import { dateConvertor } from '../../Shared/date';
+} from './styles/MyArticlesPage.style';
+import { dateConvertor } from '../Shared/date';
 
-const MyArticle = () => {
+const MyArticles = () => {
   const Articles = useSelector((state) => {
     return state.post.posts;
   });
@@ -38,7 +37,6 @@ const MyArticle = () => {
         <StTitle>작성글 관리</StTitle>
         <StContent>
           {Articles.filter((item) => item.userId === userId).map((item) => {
-            console.log(item);
             return (
               <StContentWrap
                 key={item.postId}
@@ -64,4 +62,4 @@ const MyArticle = () => {
   );
 };
 
-export default MyArticle;
+export default MyArticles;

@@ -1,16 +1,17 @@
-import React, { useCallback, useEffect, useState } from 'react';
-import Header from '../common/Header';
-import Body from '../common/Body';
+import React, { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 import { FiEye } from 'react-icons/fi';
 import { LiaCommentDots } from 'react-icons/lia';
 import { FcLike } from 'react-icons/fc';
+
+import Header from '../common/Header';
+import Body from '../common/Body';
 import * as Style from './styles/Main.styles';
-import { useNavigate } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
 import { plusView } from '../../redux/modules/PostReducer';
 import { updatePostViewApi } from '../../apis/posts';
-import { getDownloadURL, getStorage, ref } from 'firebase/storage';
 import { userDefaultImg } from '../../constants/users';
+import { dateConvertor } from '../../Shared/date';
 
 const Main = () => {
   const navigate = useNavigate();
@@ -18,8 +19,6 @@ const Main = () => {
 
   const categoryItems = ['All', 'Travel', 'Eat', 'Relax'];
   const [category, setCategory] = useState('All');
-  const storage = getStorage();
-  const [photos, setPhotos] = useState([]);
 
   const articles = useSelector((state) => state.post.posts);
 
@@ -43,6 +42,8 @@ const Main = () => {
   const handleCategoryClick = (item) => {
     setCategory(item);
   };
+
+
 
   return (
     <Style.StMainBackground>
@@ -80,7 +81,6 @@ const Main = () => {
                   : item.category === lowerCategory;
               })
               .map((item) => {
-                console.log(item.photo, '여기');
                 return (
                   <Style.StArticleCard
                     key={item.postId}
@@ -106,7 +106,7 @@ const Main = () => {
                       <div>
                         <Style.StNickname>{item.userNickname}</Style.StNickname>
                         <Style.StCreatedDate>
-                          {item.created_at}
+                          {dateConvertor(item.createdAt)}
                         </Style.StCreatedDate>
                       </div>
                     </Style.StProfileWrap>
@@ -116,7 +116,7 @@ const Main = () => {
                         {item.content}
                       </Style.StArticleContentTxt>
                     </Style.StArticleContentInfoWrap>
-                    <hr style={{ margin: '0 auto', width: '93%' }}></hr>
+                    <hr style={{ margin: 'auto auto 0 auto', width: '93%' }}></hr>
                     <Style.StContentStats>
                       <div style={{ display: 'flex' }}>
                         <Style.StIconsStatsWrap>
